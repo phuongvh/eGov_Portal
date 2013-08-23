@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.vportal.portlet.vadvman.service.persistence.AdvItemFinder.findItem">
+		<![CDATA[
+			SELECT
+				*
+			FROM 
+			    AdvItem
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vadvman.service.persistence.AdvItemFinder.countItem">
+		<![CDATA[
+			SELECT
+				COUNT(createDate) as total
+			FROM 
+			    AdvItem
+		]]>
+	</sql>
+</custom-sql>

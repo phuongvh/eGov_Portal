@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.vportal.portlet.edirectory">
+	<author>HOAN</author>
+	<namespace>edirectory</namespace>
+
+	<entity name="EDEmployee" uuid="true" local-service="true"
+		remote-service="true" table="EDEmployee">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date"></column>
+		<!-- ngay tao thong tin -->
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Other fields -->
+		<column name="title" type="String"></column>
+		<!-- Tieu de -->
+		<column name="name" type="String"></column>
+		<!-- ho va ten -->
+		<column name="birthday" type="Date"></column>
+		<!-- ngay sinh -->
+		<column name="homeSide" type="String"></column>
+		<!-- que quan -->
+		<column name="family" type="String"></column>
+		<!-- thanh phan gia dinh -->
+		<column name="race" type="String"></column>
+		<!-- dan toc -->
+		<column name="home" type="String"></column>
+		<!-- noi o hien nay -->
+		<column name="homePhone" type="String"></column>
+		<!-- dien thoai nha -->
+		<column name="workPhone" type="String"></column>
+		<!-- dien thoai co quan -->
+		<column name="mobilePhone" type="String"></column>
+		<!-- dien thoai di dong -->
+		<column name="email" type="String"></column>
+		<column name="departmentId" type="long"></column>
+		<!-- phong ban hien nay -->
+		<column name="majorLevel" type="String"></column>
+		<!-- trinh do chuyen mon -->
+		<column name="philosophism" type="String"></column>
+		<!-- ly luan chinh tri -->
+		<column name="foreignLanguage" type="String"></column>
+		<!-- trinh do ngoai ngu -->
+		<column name="joinDate" type="Date"></column>
+		<!-- Ngay vao dang -->
+		<column name="image" type="String"></column>
+		<!-- Anh lon -->
+		<column name="isShowTree" type="boolean"></column>
+		<column name="otherInfo" type="String"></column>
+		<!-- cac thong tin khac -->
+		<column name="companyId" type="long"></column>
+		<column name="groupId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="languageId" type="String"></column>
+		<column name="displayOrder" type="long"></column>
+		<column name="sex" type="String"></column>
+		<column name="status" type="long"></column>
+		<column name="show" type="String"></column>
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="displayOrder"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder return-type="EDEmployee" name="Department_Id">
+			<finder-column name="departmentId"></finder-column>
+			<finder-column name="id"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="GroupId">
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="DepartmentId_Status">
+			<finder-column name="departmentId"></finder-column>
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="status"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="DepartmentId">
+			<finder-column name="departmentId"></finder-column>
+		</finder>
+		<finder name="IsShowed" return-type="Collection">
+			<finder-column name="isShowTree"></finder-column>
+		</finder>
+		<finder name="G_L" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="languageId"></finder-column>
+		</finder>
+		<finder name="G_L_I" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="languageId"></finder-column>
+			<finder-column name="isShowTree"></finder-column>
+		</finder>
+		<finder return-type="EDEmployee" name="E_G">
+			<finder-column name="id"></finder-column>
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="DepartmentId_GroupId">
+			<finder-column name="departmentId"></finder-column>
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<reference package-path="com.liferay.counter" entity="Counter"></reference>
+	</entity>
+
+	<entity name="EDDepartment" local-service="true" remote-service="true"
+		table="EDDepartment">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date"></column>
+		<!-- ngay tao thong tin -->
+		<!-- Other fields -->
+		<column name="name" type="String"></column>
+		<!-- ten phong -->
+		<column name="parent" type="long"></column>
+		<column name="phone" type="String"></column>
+		<!-- dien thoai cua phong -->
+		<column name="fax" type="String"></column>
+		<!-- so fax cua phong -->
+		<column name="levelEd" type="long"></column>
+		<!-- cap bac cua phong -->
+		<column name="email" type="String"></column>
+		<column name="address" type="String"></column>
+		<column name="description" type="String"></column>
+		<!-- mo ta cua phong -->
+		<column name="website" type="String"></column>
+		<column name="imgurl" type="String"></column>
+		<column name="companyId" type="long"></column>
+		<column name="groupId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="languageId" type="String"></column>
+		<column name="domainId" type="String"></column>
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="levelEd"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder name="Level" return-type="Collection">
+			<finder-column name="levelEd"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="GroupId">
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder name="ParentId" return-type="Collection">
+			<finder-column name="parent"></finder-column>
+			<finder-column name="languageId"></finder-column>
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="domainId"></finder-column>
+		</finder>
+		<finder name="Parent" return-type="Collection">
+			<finder-column name="parent"></finder-column>
+		</finder>
+		<finder name="LanguageAndGroup" return-type="Collection">
+			<finder-column name="languageId"></finder-column>
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="domainId"></finder-column>
+		</finder>
+		<finder name="LevelAndDomain" return-type="Collection">
+			<finder-column name="levelEd"></finder-column>
+			<finder-column name="languageId"></finder-column>
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="domainId"></finder-column>
+		</finder>
+		<finder name="D_G" return-type="EDDepartment">
+			<finder-column name="id"></finder-column>
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder name="L_G" return-type="Collection">
+			<finder-column name="languageId"></finder-column>
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder name="L_G_P" return-type="Collection">
+			<finder-column name="languageId"></finder-column>
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="parent"></finder-column>
+		</finder>
+		<reference package-path="com.liferay.counter" entity="Counter"></reference>
+	</entity>
+
+	<entity name="EDFunction" local-service="true" remote-service="true"
+		table="EDFunction">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date"></column>
+		<!-- ngay tao thong tin -->
+		<!-- Other fields -->
+		<column name="name" type="String"></column>
+		<!-- ten chuc vu -->
+		<column name="levelEd" type="int"></column>
+		<column name="isShowTree" type="boolean"></column>
+		<column name="description" type="String"></column>
+		<!-- ten chuc vu -->
+		<column name="groupId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="companyId" type="long"></column>
+		<column name="languageId" type="String"></column>
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="levelEd"></order-column>
+		</order>
+		<!-- Finder -->
+		<finder name="IsShowed" return-type="Collection">
+			<finder-column name="isShowTree"></finder-column>
+		</finder>
+		<finder name="G_L" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="languageId"></finder-column>
+		</finder>
+		<finder return-type="EDFunction" name="F_G">
+			<finder-column name="id"></finder-column>
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<reference package-path="com.liferay.counter" entity="Counter"></reference>
+	</entity>
+
+	<entity name="EDFunctionDepartment" local-service="true"
+		remote-service="true" table="EDFunctionDepartment">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Other fields -->
+		<column name="functionId" type="long"></column>
+		<column name="departmentId" type="long"></column>
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="functionId"></order-column>
+			<order-column name="departmentId"></order-column>
+		</order>
+		<!-- Finder -->
+		<finder name="FunctionId" return-type="Collection">
+			<finder-column name="functionId"></finder-column>
+		</finder>
+		<finder name="DepartmentId" return-type="Collection">
+			<finder-column name="departmentId"></finder-column>
+		</finder>
+		<reference package-path="com.liferay.counter" entity="Counter"></reference>
+	</entity>
+
+	<entity name="EDFunctionEmployee" uuid="true" local-service="true"
+		remote-service="true" table="EDFunctionEmployee">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true"></column>
+		<!-- Other fields -->
+		<column name="functionId" type="long"></column>
+		<column name="employeeId" type="long"></column>
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="functionId"></order-column>
+			<order-column name="employeeId"></order-column>
+		</order>
+		<!-- Finder -->
+		<finder name="FunctionId" return-type="Collection">
+			<finder-column name="functionId"></finder-column>
+		</finder>
+		<finder name="EmployeeId" return-type="Collection">
+			<finder-column name="employeeId"></finder-column>
+		</finder>
+		<reference package-path="com.liferay.counter" entity="Counter"></reference>
+	</entity>
+	<exceptions>
+		<exception>NameEmployeeInvalid</exception>
+		<exception>BrithDayEmployeeInvalid</exception>
+		<exception>JoinDateEmployeeInvalid</exception>
+		<exception>EmailEmployeeInvalid</exception>
+		<exception>DepartmentEmployeeInvalid</exception>
+		<exception>FunctionEmployeeInvalid</exception>
+		<exception>FunctionNameInvalid</exception>
+		<exception>DepartmentNameInvalid</exception>
+		<exception>DeleteEDDepartment</exception>
+		<exception>DeleteFunction</exception>
+		<exception>EDStringLength</exception>
+	</exceptions>
+</service-builder>

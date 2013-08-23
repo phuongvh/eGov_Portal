@@ -1,0 +1,38 @@
+#clip_fhead{
+	background:#FC914A url(/html/portlet/vclipcontent/images/bg_fhead.gif) repeat-y scroll right center;
+	padding:2px 0px 5px 5px;	
+}
+.clip_gallery{
+	color:#FA8536;		
+	font-size:11px;
+	margin:5px 0px;
+	font-weight: bold;
+}
+.clip_player{
+	
+}
+#column1_clip
+{
+	width : 40px;
+	text-align: center;
+	vertical-align: top;
+	
+}
+#column2_clip
+{
+	width : 40px;
+	text-align: center;
+	vertical-align: top;
+	
+}
+#column3_clip
+{
+	width : 40px;
+	text-align: center;
+	vertical-align: top;
+}
+.thumbnailborder{  
+  border:solid 1px silver;
+  padding:4px;
+} 
+

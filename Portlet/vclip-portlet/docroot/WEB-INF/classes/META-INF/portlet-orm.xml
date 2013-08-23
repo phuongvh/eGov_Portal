@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.vportal.portlet.vclip.model.impl.ClipModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="clipTypeId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="url" />
+			<basic name="name" />
+			<basic name="title" />
+			<basic name="image" />
+			<basic name="description" />
+			<basic name="active">
+				<column name="ACTIVE_" />
+			</basic>
+			<basic name="language" />
+			<basic name="hitcount" />
+			<basic name="hitcountview" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vclip.model.impl.ClipTypeModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="title" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="active">
+				<column name="ACTIVE_" />
+			</basic>
+			<basic name="language" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.vportal.portlet.vclip.model.impl.ClipImpl" name="Clip">
+		<table name="Clip" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vclip.model.impl.ClipTypeImpl" name="ClipType">
+		<table name="ClipType" />
+		<attributes />
+	</entity>
+</entity-mappings>

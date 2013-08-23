@@ -1,0 +1,18 @@
+package com.vportal.portlet.vcounter.util;
+
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+
+public class CounterUserListener implements HttpSessionListener {
+	public void sessionCreated(HttpSessionEvent httpSessionEvent) {
+		try {
+			ECounterUtil.online();
+		} catch (Exception e) {
+
+		}
+	}
+
+	public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
+		ECounterUtil.offline();
+	}
+}

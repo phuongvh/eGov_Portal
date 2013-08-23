@@ -1,0 +1,23 @@
+<div class="wd-head-container">
+	<div class="wd-center">
+		<div class="wd-style">
+			#if(!$is_signed_in)
+				<a href="$sign_in_url" class="wd-logo" id="sign-in" rel="nofollow"></a>
+			#end
+			#if($is_signed_in)
+				<a href="#" class="wd-logo" id="sign-in" rel="nofollow"></a>
+			#end			
+			<div class="wd-menu">
+				<ul>
+					#foreach ($nav_item in $nav_items)						
+						<li>								
+							<a href="$nav_item.getURL()" $nav_item.getTarget() class="nav-center"><span class="nav-center">$nav_item.icon() $htmlUtil.escape($nav_item.getName())</span><span class="nav-right">&nbsp;</span></a>
+						</li>												
+					#end
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+</script>

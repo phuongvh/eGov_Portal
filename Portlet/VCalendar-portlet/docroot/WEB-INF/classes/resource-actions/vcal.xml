@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<resource-action-mapping>
+    <portlet-resource>
+        <portlet-name>vcalendar</portlet-name>
+        <supports>
+            <action-key>VIEW_CALENDAR_PUBLISHED</action-key>
+            <action-key>VIEW_CALENDAR_ADD</action-key> 
+            <action-key>VIEW</action-key>	
+        </supports>
+        <community-defaults>
+            <action-key>VIEW</action-key>
+        </community-defaults>
+        <guest-defaults>        	
+        </guest-defaults>
+        <guest-unsupported>
+            <action-key>VIEW_CALENDAR_PUBLISHED</action-key>
+            <action-key>VIEW_CALENDAR_ADD</action-key> 
+            <action-key>VIEW</action-key>          
+        </guest-unsupported>
+    </portlet-resource>
+ </resource-action-mapping>

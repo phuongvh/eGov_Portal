@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.vportal.portlet.vfaq.model.FAQCategory">
+		<field name="name" type="String">
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="description" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="image" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="createdByUser" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="modifiedByUser" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="language" type="String" >
+			<hint name="max-length">150</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vfaq.model.FAQQuestion">
+		<field name="sentByUser" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="senderEmail" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="questionType" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="modifiedByUser" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="title" type="String" >
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="content" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="language" type="String" >
+			<hint name="max-length">150</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vfaq.model.FAQAnswer">
+		<field name="content" type="String" >
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="answeredByUser" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="modifiedByUser" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="approvedByUser" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="attachName" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="language" type="String" >
+			<hint name="max-length">150</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vfaq.model.FAQComment">
+		<field name="commName" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="commEmail" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="approveByUser" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="content" type="String" >
+			<hint name="max-length">2000</hint>
+		</field>
+	</model>
+</model-hints>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.vportal.portlet.vfaq.service.FAQAnswerLocalService" class="com.vportal.portlet.vfaq.service.impl.FAQAnswerLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vfaq.service.FAQAnswerLocalServiceUtil" class="com.vportal.portlet.vfaq.service.FAQAnswerLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vfaq.service.FAQAnswerLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerPersistence" class="com.vportal.portlet.vfaq.service.persistence.FAQAnswerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinder" class="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vfaq.service.FAQCategoryLocalService" class="com.vportal.portlet.vfaq.service.impl.FAQCategoryLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vfaq.service.FAQCategoryLocalServiceUtil" class="com.vportal.portlet.vfaq.service.FAQCategoryLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vfaq.service.FAQCategoryLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vfaq.service.persistence.FAQCategoryPersistence" class="com.vportal.portlet.vfaq.service.persistence.FAQCategoryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vfaq.service.persistence.FAQCategoryFinder" class="com.vportal.portlet.vfaq.service.persistence.FAQCategoryFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vfaq.service.FAQCategoryQuestionLocalService" class="com.vportal.portlet.vfaq.service.impl.FAQCategoryQuestionLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vfaq.service.FAQCategoryQuestionLocalServiceUtil" class="com.vportal.portlet.vfaq.service.FAQCategoryQuestionLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vfaq.service.FAQCategoryQuestionLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vfaq.service.persistence.FAQCategoryQuestionPersistence" class="com.vportal.portlet.vfaq.service.persistence.FAQCategoryQuestionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vfaq.service.FAQCommentLocalService" class="com.vportal.portlet.vfaq.service.impl.FAQCommentLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vfaq.service.FAQCommentLocalServiceUtil" class="com.vportal.portlet.vfaq.service.FAQCommentLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vfaq.service.FAQCommentLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vfaq.service.persistence.FAQCommentPersistence" class="com.vportal.portlet.vfaq.service.persistence.FAQCommentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vfaq.service.persistence.FAQCommentFinder" class="com.vportal.portlet.vfaq.service.persistence.FAQCommentFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vfaq.service.FAQQuestionLocalService" class="com.vportal.portlet.vfaq.service.impl.FAQQuestionLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vfaq.service.FAQQuestionLocalServiceUtil" class="com.vportal.portlet.vfaq.service.FAQQuestionLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vfaq.service.FAQQuestionLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vfaq.service.persistence.FAQQuestionPersistence" class="com.vportal.portlet.vfaq.service.persistence.FAQQuestionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vfaq.service.persistence.FAQQuestionFinder" class="com.vportal.portlet.vfaq.service.persistence.FAQQuestionFinderImpl" parent="basePersistence" />
+</beans>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+
+<service-builder package-path="com.vportal.portlet.vlinksman">
+	<author>LongLH</author>
+	<namespace>vlinksman</namespace>
+	<entity name="LinkGroup" local-service="false" remote-service="true" table="LinkGroup">
+		<!-- PK fields -->
+		<column name="linkgroupId" type="long" primary="true"></column>
+		<!-- Group instance -->
+		<column name="groupId" type="long"></column>
+		<column name="companyId" type="long"></column>
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Other fields -->
+		<column name="name" type="String"></column>
+		<column name="description" type="String"></column>
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="createdDate"></order-column>
+		</order>
+		<finder name="groupId" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+		</finder>
+	</entity>
+	<entity name="Links" local-service="false" remote-service="true" table="Links">
+		<!-- PK fields -->
+		<column name="linkId" type="long" primary="true"></column>
+		<!-- Group instance -->
+		<column name="groupId" type="long"></column>
+		<column name="companyId" type="long"></column>
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Other fields -->
+		<column name="linkgroupId" type="long"></column>
+		<column name="name" type="String"></column>
+		<column name="description" type="String"></column>
+		<column name="url" type="String"></column>
+		<column name="position" type="long"></column>
+		<column name="hasImage" type="boolean"></column>
+		<column name="isTargetBlank" type="boolean"></column>
+		<column name="imageName" type="String"></column>
+		<column name="folderId" type="long"></column>
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="position"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder name="linkgroupId" return-type="Collection">
+			<finder-column name="linkgroupId"></finder-column>
+		</finder>
+		<finder name="G_LG" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="linkgroupId"></finder-column>
+		</finder>
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+		</finder>
+	</entity>
+	<!-- Application exceptions -->
+	<exceptions>
+		<!-- exception of LinkGroup -->
+		<exception>InvalidNameLinkGroup</exception>
+		<!-- exception of Link -->
+		<exception>InvalidNameLink</exception>
+		<exception>InvalidUrlLink</exception>
+	</exceptions>
+</service-builder>

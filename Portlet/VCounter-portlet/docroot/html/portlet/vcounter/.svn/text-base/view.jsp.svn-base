@@ -1,0 +1,12 @@
+<%@ include file="/html/portlet/vcounter/init.jsp" %>
+<c:choose>
+    <c:when test="<%= style.equals(\"3\") %>"><!--So thanh vien truc tuyen-->
+    	<%@ include file="/html/portlet/vcounter/includes/style03.jsp" %>
+    </c:when>
+    <c:when test="<%= style.equals(\"2\") %>"><!--So nguoi dang truc tuyen-->
+    	<%@ include file="/html/portlet/vcounter/includes/style02.jsp" %>
+    </c:when>
+	<c:when test="<%= style.equals(\"1\") %>"><!--So luong truy cap-->
+        <%@ include file="/html/portlet/vcounter/includes/style01.jsp" %>
+    </c:when>    
+</c:choose>

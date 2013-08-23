@@ -1,0 +1,748 @@
+/**
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.vportal.portlet.vdoc.service.persistence;
+
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
+import com.liferay.portal.service.ServiceContext;
+
+import com.vportal.portlet.vdoc.model.vdocOrg;
+
+import java.util.List;
+
+/**
+ * The persistence utility for the vdoc org service. This utility wraps {@link vdocOrgPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author MrEn
+ * @see vdocOrgPersistence
+ * @see vdocOrgPersistenceImpl
+ * @generated
+ */
+public class vdocOrgUtil {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+	 */
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache()
+	 */
+	public static void clearCache() {
+		getPersistence().clearCache();
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#clearCache(com.liferay.portal.model.BaseModel)
+	 */
+	public static void clearCache(vdocOrg vdocOrg) {
+		getPersistence().clearCache(vdocOrg);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
+	 */
+	public long countWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().countWithDynamicQuery(dynamicQuery);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
+	 */
+	public static List<vdocOrg> findWithDynamicQuery(DynamicQuery dynamicQuery)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
+	 */
+	public static List<vdocOrg> findWithDynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end)
+		throws SystemException {
+		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
+	 */
+	public static List<vdocOrg> findWithDynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		return getPersistence()
+				   .findWithDynamicQuery(dynamicQuery, start, end,
+			orderByComparator);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean)
+	 */
+	public static vdocOrg update(vdocOrg vdocOrg, boolean merge)
+		throws SystemException {
+		return getPersistence().update(vdocOrg, merge);
+	}
+
+	/**
+	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, boolean, ServiceContext)
+	 */
+	public static vdocOrg update(vdocOrg vdocOrg, boolean merge,
+		ServiceContext serviceContext) throws SystemException {
+		return getPersistence().update(vdocOrg, merge, serviceContext);
+	}
+
+	/**
+	* Caches the vdoc org in the entity cache if it is enabled.
+	*
+	* @param vdocOrg the vdoc org
+	*/
+	public static void cacheResult(
+		com.vportal.portlet.vdoc.model.vdocOrg vdocOrg) {
+		getPersistence().cacheResult(vdocOrg);
+	}
+
+	/**
+	* Caches the vdoc orgs in the entity cache if it is enabled.
+	*
+	* @param vdocOrgs the vdoc orgs
+	*/
+	public static void cacheResult(
+		java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> vdocOrgs) {
+		getPersistence().cacheResult(vdocOrgs);
+	}
+
+	/**
+	* Creates a new vdoc org with the primary key. Does not add the vdoc org to the database.
+	*
+	* @param orgId the primary key for the new vdoc org
+	* @return the new vdoc org
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg create(
+		java.lang.String orgId) {
+		return getPersistence().create(orgId);
+	}
+
+	/**
+	* Removes the vdoc org with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param orgId the primary key of the vdoc org
+	* @return the vdoc org that was removed
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a vdoc org with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg remove(
+		java.lang.String orgId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence().remove(orgId);
+	}
+
+	public static com.vportal.portlet.vdoc.model.vdocOrg updateImpl(
+		com.vportal.portlet.vdoc.model.vdocOrg vdocOrg, boolean merge)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().updateImpl(vdocOrg, merge);
+	}
+
+	/**
+	* Returns the vdoc org with the primary key or throws a {@link com.vportal.portlet.vdoc.NoSuchvdocOrgException} if it could not be found.
+	*
+	* @param orgId the primary key of the vdoc org
+	* @return the vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a vdoc org with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg findByPrimaryKey(
+		java.lang.String orgId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence().findByPrimaryKey(orgId);
+	}
+
+	/**
+	* Returns the vdoc org with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param orgId the primary key of the vdoc org
+	* @return the vdoc org, or <code>null</code> if a vdoc org with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg fetchByPrimaryKey(
+		java.lang.String orgId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByPrimaryKey(orgId);
+	}
+
+	/**
+	* Returns all the vdoc orgs where parentId = &#63;.
+	*
+	* @param parentId the parent ID
+	* @return the matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findByParentId(
+		java.lang.String parentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByParentId(parentId);
+	}
+
+	/**
+	* Returns a range of all the vdoc orgs where parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param parentId the parent ID
+	* @param start the lower bound of the range of vdoc orgs
+	* @param end the upper bound of the range of vdoc orgs (not inclusive)
+	* @return the range of matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findByParentId(
+		java.lang.String parentId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByParentId(parentId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the vdoc orgs where parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param parentId the parent ID
+	* @param start the lower bound of the range of vdoc orgs
+	* @param end the upper bound of the range of vdoc orgs (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findByParentId(
+		java.lang.String parentId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByParentId(parentId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first vdoc org in the ordered set where parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param parentId the parent ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a matching vdoc org could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg findByParentId_First(
+		java.lang.String parentId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence().findByParentId_First(parentId, orderByComparator);
+	}
+
+	/**
+	* Returns the last vdoc org in the ordered set where parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param parentId the parent ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a matching vdoc org could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg findByParentId_Last(
+		java.lang.String parentId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence().findByParentId_Last(parentId, orderByComparator);
+	}
+
+	/**
+	* Returns the vdoc orgs before and after the current vdoc org in the ordered set where parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param orgId the primary key of the current vdoc org
+	* @param parentId the parent ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a vdoc org with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg[] findByParentId_PrevAndNext(
+		java.lang.String orgId, java.lang.String parentId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence()
+				   .findByParentId_PrevAndNext(orgId, parentId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns all the vdoc orgs where groupId = &#63; and language = &#63;.
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @return the matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findByG_L(
+		long groupId, java.lang.String language)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L(groupId, language);
+	}
+
+	/**
+	* Returns a range of all the vdoc orgs where groupId = &#63; and language = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param start the lower bound of the range of vdoc orgs
+	* @param end the upper bound of the range of vdoc orgs (not inclusive)
+	* @return the range of matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findByG_L(
+		long groupId, java.lang.String language, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L(groupId, language, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the vdoc orgs where groupId = &#63; and language = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param start the lower bound of the range of vdoc orgs
+	* @param end the upper bound of the range of vdoc orgs (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findByG_L(
+		long groupId, java.lang.String language, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L(groupId, language, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first vdoc org in the ordered set where groupId = &#63; and language = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a matching vdoc org could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg findByG_L_First(
+		long groupId, java.lang.String language,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence()
+				   .findByG_L_First(groupId, language, orderByComparator);
+	}
+
+	/**
+	* Returns the last vdoc org in the ordered set where groupId = &#63; and language = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a matching vdoc org could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg findByG_L_Last(
+		long groupId, java.lang.String language,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence()
+				   .findByG_L_Last(groupId, language, orderByComparator);
+	}
+
+	/**
+	* Returns the vdoc orgs before and after the current vdoc org in the ordered set where groupId = &#63; and language = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param orgId the primary key of the current vdoc org
+	* @param groupId the group ID
+	* @param language the language
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a vdoc org with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg[] findByG_L_PrevAndNext(
+		java.lang.String orgId, long groupId, java.lang.String language,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence()
+				   .findByG_L_PrevAndNext(orgId, groupId, language,
+			orderByComparator);
+	}
+
+	/**
+	* Returns all the vdoc orgs where groupId = &#63; and language = &#63; and parentId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param parentId the parent ID
+	* @return the matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findByG_L_P(
+		long groupId, java.lang.String language, java.lang.String parentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L_P(groupId, language, parentId);
+	}
+
+	/**
+	* Returns a range of all the vdoc orgs where groupId = &#63; and language = &#63; and parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param parentId the parent ID
+	* @param start the lower bound of the range of vdoc orgs
+	* @param end the upper bound of the range of vdoc orgs (not inclusive)
+	* @return the range of matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findByG_L_P(
+		long groupId, java.lang.String language, java.lang.String parentId,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_P(groupId, language, parentId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the vdoc orgs where groupId = &#63; and language = &#63; and parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param parentId the parent ID
+	* @param start the lower bound of the range of vdoc orgs
+	* @param end the upper bound of the range of vdoc orgs (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findByG_L_P(
+		long groupId, java.lang.String language, java.lang.String parentId,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_P(groupId, language, parentId, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first vdoc org in the ordered set where groupId = &#63; and language = &#63; and parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param parentId the parent ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a matching vdoc org could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg findByG_L_P_First(
+		long groupId, java.lang.String language, java.lang.String parentId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence()
+				   .findByG_L_P_First(groupId, language, parentId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last vdoc org in the ordered set where groupId = &#63; and language = &#63; and parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param parentId the parent ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a matching vdoc org could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg findByG_L_P_Last(
+		long groupId, java.lang.String language, java.lang.String parentId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence()
+				   .findByG_L_P_Last(groupId, language, parentId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the vdoc orgs before and after the current vdoc org in the ordered set where groupId = &#63; and language = &#63; and parentId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param orgId the primary key of the current vdoc org
+	* @param groupId the group ID
+	* @param language the language
+	* @param parentId the parent ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next vdoc org
+	* @throws com.vportal.portlet.vdoc.NoSuchvdocOrgException if a vdoc org with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.vportal.portlet.vdoc.model.vdocOrg[] findByG_L_P_PrevAndNext(
+		java.lang.String orgId, long groupId, java.lang.String language,
+		java.lang.String parentId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.vportal.portlet.vdoc.NoSuchvdocOrgException {
+		return getPersistence()
+				   .findByG_L_P_PrevAndNext(orgId, groupId, language, parentId,
+			orderByComparator);
+	}
+
+	/**
+	* Returns all the vdoc orgs.
+	*
+	* @return the vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll();
+	}
+
+	/**
+	* Returns a range of all the vdoc orgs.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of vdoc orgs
+	* @param end the upper bound of the range of vdoc orgs (not inclusive)
+	* @return the range of vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findAll(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll(start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the vdoc orgs.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of vdoc orgs
+	* @param end the upper bound of the range of vdoc orgs (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.vportal.portlet.vdoc.model.vdocOrg> findAll(
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findAll(start, end, orderByComparator);
+	}
+
+	/**
+	* Removes all the vdoc orgs where parentId = &#63; from the database.
+	*
+	* @param parentId the parent ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByParentId(java.lang.String parentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByParentId(parentId);
+	}
+
+	/**
+	* Removes all the vdoc orgs where groupId = &#63; and language = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_L(long groupId, java.lang.String language)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_L(groupId, language);
+	}
+
+	/**
+	* Removes all the vdoc orgs where groupId = &#63; and language = &#63; and parentId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param parentId the parent ID
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_L_P(long groupId, java.lang.String language,
+		java.lang.String parentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_L_P(groupId, language, parentId);
+	}
+
+	/**
+	* Removes all the vdoc orgs from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeAll();
+	}
+
+	/**
+	* Returns the number of vdoc orgs where parentId = &#63;.
+	*
+	* @param parentId the parent ID
+	* @return the number of matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByParentId(java.lang.String parentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByParentId(parentId);
+	}
+
+	/**
+	* Returns the number of vdoc orgs where groupId = &#63; and language = &#63;.
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @return the number of matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_L(long groupId, java.lang.String language)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_L(groupId, language);
+	}
+
+	/**
+	* Returns the number of vdoc orgs where groupId = &#63; and language = &#63; and parentId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param language the language
+	* @param parentId the parent ID
+	* @return the number of matching vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_L_P(long groupId, java.lang.String language,
+		java.lang.String parentId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_L_P(groupId, language, parentId);
+	}
+
+	/**
+	* Returns the number of vdoc orgs.
+	*
+	* @return the number of vdoc orgs
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countAll()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countAll();
+	}
+
+	public static vdocOrgPersistence getPersistence() {
+		if (_persistence == null) {
+			_persistence = (vdocOrgPersistence)PortletBeanLocatorUtil.locate(com.vportal.portlet.vdoc.service.ClpSerializer.getServletContextName(),
+					vdocOrgPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(vdocOrgUtil.class,
+				"_persistence");
+		}
+
+		return _persistence;
+	}
+
+	public void setPersistence(vdocOrgPersistence persistence) {
+		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(vdocOrgUtil.class, "_persistence");
+	}
+
+	private static vdocOrgPersistence _persistence;
+}

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.vportal.portlet.vcms.model.VcmsType">
+		<field name="name" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="description" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+	</model>
+	
+	<model name="com.vportal.portlet.vcms.model.VcmsPortion">
+		<field name="name" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="description" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsCategory">
+		<field name="name" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="description" type="String" >
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="href" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="image" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsArticle">
+		<field name="title" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="lead" type="String" >
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="content" type="String" >
+			<hint name="max-length">4500</hint>
+		</field>
+		<field name="imageTitle" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="image" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="author" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="source" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsStatus">
+		<field name="name" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="description" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsArticleVersion">
+		<field name="createdByUser" type="String" >
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="versionName" type="String" >
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="title" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="lead" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="content" type="String" >
+			<hint name="max-length">4500</hint>
+		</field>
+		<field name="imageTitle" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="image" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="author" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="source" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsArticleStatus">
+		<field name="createdByUser" type="String" >
+			<hint name="max-length">200</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsArticleType">
+		<field name="typeId" type="long" />
+		<field name="articleId" type="String" />
+		<field name="position" type="int" />
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsAttachedMessage">
+		<field name="createdByUser" type="String" >
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="articleId" type="String" >
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="content" type="String" >
+			<hint name="max-length">2000</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsThread">
+		<field name="title" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="description" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsDiscussion">
+		<field name="visitorName" type="String" >
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="visitorEmail" type="String" >
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="visitorPhone" type="String" >
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="title" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="content" type="String" >
+			<hint name="max-length">4500</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vcms.model.VcmsLogger">
+		<field name="content" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+	</model>
+</model-hints>

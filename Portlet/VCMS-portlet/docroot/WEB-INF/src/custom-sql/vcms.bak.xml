@@ -1,0 +1,730 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countByC_P_L_S_D">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)
+			WHERE
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?)
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countByP_L_S_D">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle			
+			WHERE				
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?)
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByC_S">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId 
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)		
+			WHERE
+				(VcmsCARelation.categoryId in (?)) AND
+				(VcmsArticle.groupId =?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?)	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByC_S_S">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId 
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)		
+			WHERE
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.groupId =?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticle.sticky = ?)	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByP_S">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsPARelation
+				ON (VcmsArticle.articleId = VcmsPARelation.articleId)		
+			WHERE
+				(VcmsPARelation.portionId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByP_S_S">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsPARelation
+				ON (VcmsArticle.articleId = VcmsPARelation.articleId)		
+			WHERE
+				(VcmsPARelation.portionId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticle.sticky = ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByL_P_S_S">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId 
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)		
+			WHERE
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) 	
+			ORDER BY
+				VcmsArticle.modifiedDate DESC
+		]]>
+	</sql>
+	
+	
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByAllL_P_S_S">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId 
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)	
+			INNER JOIN VcmsCategory
+				ON (VcmsCategory.categoryId = VcmsCARelation.categoryId)			
+			WHERE
+				((VcmsCategory.categoryId = ?) OR (VcmsCategory.parentId = ?)) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) 	
+			ORDER BY
+				VcmsArticle.modifiedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countByAllL_P_S_S">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)	
+			INNER JOIN VcmsCategory
+				ON (VcmsCategory.categoryId = VcmsCARelation.categoryId)			
+			WHERE
+				((VcmsCategory.categoryId = ?) OR (VcmsCategory.parentId = ?)) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) 
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByC_S_After">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId 
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)		
+			WHERE
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticle.publishedDate < ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByP_S_After">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsPARelation
+				ON (VcmsArticle.articleId = VcmsPARelation.articleId)		
+			WHERE
+				(VcmsPARelation.portionId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticle.publishedDate < ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByC_S_Before">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId 
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)		
+			WHERE
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticle.publishedDate > ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByP_S_Before">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsPARelation
+				ON (VcmsArticle.articleId = VcmsPARelation.articleId)		
+			WHERE
+				(VcmsPARelation.portionId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticle.publishedDate > ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByC_P_L_S">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId 
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)		
+			WHERE
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countByC_P_L_S">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)		
+			WHERE
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByP_P_L_S">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsPARelation
+				ON (VcmsArticle.articleId = VcmsPARelation.articleId)		
+			WHERE
+				(VcmsPARelation.portionId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countByP_P_L_S">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsPARelation
+				ON (VcmsArticle.articleId = VcmsPARelation.articleId)		
+			WHERE
+				(VcmsPARelation.portionId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByT_P_L_S">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsTARelation
+				ON (VcmsArticle.articleId = VcmsTARelation.articleId)		
+			WHERE
+				(VcmsTARelation.threadId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countByT_P_L_S">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsTARelation
+				ON (VcmsArticle.articleId = VcmsTARelation.articleId)		
+			WHERE
+				(VcmsTARelation.threadId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByT_P_L_S">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsTARelation
+				ON (VcmsArticle.articleId = VcmsTARelation.articleId)		
+			WHERE
+				(VcmsTARelation.threadId = ?) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByTS_P_L_S">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsTARelation
+				ON (VcmsArticle.articleId = VcmsTARelation.articleId)		
+			WHERE
+				(VcmsTARelation.threadId IN (?)) AND
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.getUpComingExpiredArticles">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsArticle		
+			WHERE
+				(VcmsArticle.sticky = 'TRUE') AND
+				(VcmsArticle.stickyNeverExpired = 'FALSE') AND
+				(VcmsArticle.stickyExpireDate = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsLoggerFinder.findByUser">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsLogger		
+			WHERE
+				(VcmsLogger.createdByUser IS NULL) AND
+				(VcmsLogger.createdByUser = ?)
+			ORDER BY 
+				VcmsLogger.createdDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsLoggerFinder.findByPeriod">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VcmsLogger		
+			WHERE
+				(VcmsLogger.createdDate >= ?) AND
+				(VcmsLogger.createdDate <= ?)
+			ORDER BY 
+				VcmsLogger.createdDate DESC
+		]]>
+	</sql>
+
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsStatusFinder.upPosition">
+		<![CDATA[
+			UPDATE
+				VcmsStatus
+			SET
+				position = position + 1
+			WHERE
+				(position >= (?)) AND (companyId = ?) AND (groupId = ?) AND (statusId <> (?))
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsStatusFinder.downPosition">
+		<![CDATA[
+			UPDATE
+				VcmsStatus
+			SET
+				position = position - 1
+			WHERE
+				(position >= (?)) AND (companyId = ?) AND (groupId = ?) AND (statusId <> (?))
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsStatusFinder.updatePrimary">
+		<![CDATA[
+			UPDATE
+				VcmsStatus
+			SET
+				isPrimary = 'false'
+			WHERE
+				(companyId = ?) AND (groupId = ?) AND (statusId <> (?))
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsStatusFinder.updateActive">
+		<![CDATA[
+			UPDATE
+				VcmsStatus
+			SET
+				active_ = 'false'
+			WHERE
+				(companyId = ?) AND (groupId = ?) AND (statusId <> (?))
+		]]>
+	</sql>
+		
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsStatusFinder.selectVcmsStatus">
+		<![CDATA[
+			SELECT 
+				*
+			FROM
+				VcmsStatus
+			WHERE
+				(position = ?)
+		]]>
+	</sql>
+	
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleTypeFinder.upPosition">
+		<![CDATA[
+			UPDATE
+				VcmsArticleType
+			SET
+				position = position + 1
+			WHERE
+				(position >= (?)) AND (articleId = ?) AND (typeId = ?))
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleTypeFinder.downPosition">
+		<![CDATA[
+			UPDATE
+				VcmsArticleType
+			SET
+				position = position - 1
+			WHERE
+				((position >= (?)) AND (articleId = ?) AND (typeId = ?))
+		]]>
+	</sql>
+	
+	
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByG_L_S_T">
+		<![CDATA[
+			SELECT
+				VcmsArticle.*, VcmsArticleType.articleId as atarticle
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsArticleType
+				ON (VcmsArticle.articleId = VcmsArticleType.articleId)		
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticleType.typeId = ?)	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countByG_L_S_T">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsArticleType
+				ON (VcmsArticle.articleId = VcmsArticleType.articleId)		
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticleType.typeId = ?)				
+		]]>
+	</sql>
+	
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByG_L_S_C_D">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId 
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.publishedDate BETWEEN ? AND ?)
+				 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByG_L_S_D">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId 
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticle.publishedDate BETWEEN ? AND ?)
+				 	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countByG_L_S_C_D">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.publishedDate BETWEEN ? AND ?)	
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countOtherArticle">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.articleId <> ?)					
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findOtherArticle">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* , VcmsCARelation.articleId as CA_articleId,VcmsCARelation.categoryId
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.articleId <> ?)	
+			ORDER BY
+				VcmsArticle.publishedDate DESC			
+		]]>
+	</sql>
+	
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countByG_L_C_S_T">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsArticleType
+				ON (VcmsArticle.articleId = VcmsArticleType.articleId)
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)			
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticleType.typeId = ?)				
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findByG_L_C_S_T">
+		<![CDATA[
+			SELECT
+				VcmsArticle.* ,VcmsArticleType.articleId as atarticle,VcmsCARelation.articleId as caarticle
+			FROM
+				VcmsArticle
+			INNER JOIN VcmsArticleType
+				ON (VcmsArticle.articleId = VcmsArticleType.articleId)	
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)			
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticleType.typeId = ?)	
+			ORDER BY
+				VcmsArticle.publishedDate DESC
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countArticleNotInType">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle			
+			INNER JOIN VcmsCARelation
+				ON (VcmsArticle.articleId = VcmsCARelation.articleId)			
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsCARelation.categoryId = ?) AND
+				(VcmsArticle.status = ?) AND
+				(VcmsArticle.articleId NOT IN (SELECT articleId FROM VcmsArticleType))
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countArticleAllCatNotInType">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND				
+				(VcmsArticle.status = ?) AND
+				(VcmsArticle.articleId NOT IN (SELECT articleId FROM VcmsArticleType))
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findArticleByDateNotType">
+		<![CDATA[
+			SELECT 
+				*
+			FROM
+				VcmsArticle			
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND				
+				(VcmsArticle.publishedDate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.findArticleByDate">
+		<![CDATA[
+			SELECT 
+				*
+			FROM
+				VcmsArticle, VcmsArticleType			
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND				
+				(VcmsArticle.publishedDate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countArticleByDate">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle, VcmsArticleType
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND				
+				(VcmsArticle.publishedDate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder.countArticleByDateNotType">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VcmsArticle
+			WHERE
+				(VcmsArticle.groupId = ?) AND
+				(VcmsArticle.language = ?) AND
+				(VcmsArticle.status = ?) AND				
+				(VcmsArticle.publishedDate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	
+</custom-sql>

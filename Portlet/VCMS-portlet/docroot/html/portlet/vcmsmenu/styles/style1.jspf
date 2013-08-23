@@ -1,0 +1,73 @@
+<%--
+/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+<%
+/**
+ * Copyright (c) 2000-2008 VSI, Inc. All rights reserved.
+ *
+**/
+%>
+<script language="javascript">	
+	function <portlet:namespace/>sendDataURL(catURL){
+		document.<portlet:namespace/>fm.action = catURL;
+		document.<portlet:namespace/>fm.submit();
+	}
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0"> 
+	<%
+			String arrcategories[] = StringUtil.split(categories,StringPool.COMMA);			
+			String arrcategoriesStyle[] = StringUtil.split(categoriesStyle,StringPool.COMMA);
+			if(arrcategories.length>0){
+				for(int i=0;i<arrcategories.length;i++){
+					String catId = arrcategories[i];
+					VcmsCategory category = (VcmsCategory)VcmsCategoryServiceUtil.getCategory(catId);
+					if(category != null && category.getParentId().equals("0")){		
+						categoryURL.setParameter("categoryId",catId);
+						categoryURL.setParameter("cat_parent",catId);
+						categoryURL.setParameter("cat_style",arrcategoriesStyle[i]);
+	%>
+	            <tr>
+				<td class="menu_left">
+				   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+					  <tr>
+						<td background="<%= themeDisplay.getPathThemeImage()%>/khcn_image/i_10.gif" width="21" height="23">
+						 </td>
+						 <td>
+						    <c:if test="<%= (category.getAnchored() == false)%>">
+					 			<td><a href="javascript:void(0);" onclick="javascript:<portlet:namespace/>sendDataURL('<%=categoryURL%>');" class="me_fu bold"><%=category.getName()%></a>
+							</c:if>
+							<c:if test="<%= (category.getAnchored() == true)%>">
+								<a href="<%=category.getHref()%>"><%=category.getName()%></a>
+							</c:if>
+						 </td>
+					  </tr>
+					</table>
+				</td>
+				</tr>
+ 	            <tr>
+                	<td background="<%= themeDisplay.getPathThemeImage() %>/khcn_image/0.gif" width="1" height="1">
+					</td>
+              	</tr>
+			     <c:if test="<%=Validator.isNotNull(categoryId) && category.getCategoryId().equals(parentId)%>">
+					<%@ include file="/html/portlet/vcmsmenu/styles/view_sub_menu.jspf" %>
+				</c:if>
+
+	<%
+			}
+	  	}
+	}
+	%>
+
+ </table>

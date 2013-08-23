@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.vportal.portlet.vlinksman.model.impl.LinkGroupModelImpl">
+		<attributes>
+			<id name="linkgroupId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="name" />
+			<basic name="description" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vlinksman.model.impl.LinksModelImpl">
+		<attributes>
+			<id name="linkId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="linkgroupId" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="url" />
+			<basic name="position" />
+			<basic name="hasImage" />
+			<basic name="isTargetBlank" />
+			<basic name="imageName" />
+			<basic name="folderId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.vportal.portlet.vlinksman.model.impl.LinkGroupImpl" name="LinkGroup">
+		<table name="LinkGroup" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vlinksman.model.impl.LinksImpl" name="Links">
+		<table name="Links" />
+		<attributes />
+	</entity>
+</entity-mappings>

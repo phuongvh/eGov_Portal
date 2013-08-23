@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 6.1.0//EN" "http://www.liferay.com/dtd/liferay-display_6_0_0.dtd">
+
+<display>
+	
+	<category name="category.vsi">
+		<category name="category.VCms">
+			<portlet id="vcms"></portlet>
+			<portlet id="vcmsmenu"></portlet>
+			<portlet id="vcmsviewcontent"></portlet>
+			<portlet id="vcmsview"></portlet>
+			<portlet id="vcmsviewnews"></portlet>
+		</category>
+	</category>
+</display>

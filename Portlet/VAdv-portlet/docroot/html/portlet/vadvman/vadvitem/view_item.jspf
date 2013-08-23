@@ -1,0 +1,265 @@
+<%--/**
+ * Copyright (c)  Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */ --%>
+<%@page import="com.liferay.portal.kernel.util.StringPool"%>
+<%@page import="com.vportal.util.HtmlExt"%>
+<%@page import="com.liferay.portal.kernel.util.StringUtil"%>
+<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
+<%@page import="com.liferay.portal.kernel.dao.search.SearchContainer"%>
+<%@page import="com.vportal.portlet.vadvman.service.AdvItemServiceUtil"%>
+<%@page import="com.vportal.portal.service.AttachmentLocalServiceUtil"%>
+<%@page import="com.vportal.portlet.vadvman.model.AdvItem"%>
+<%@page import="com.liferay.portal.kernel.dao.search.RowChecker"%>
+
+<div id="ajax" style="display: none"></div>
+	
+<%
+	PortletURL addURL = renderResponse.createRenderURL();
+	addURL.setWindowState(WindowState.MAXIMIZED);	
+	addURL.setParameter("jspPage","/html/portlet/vadvman/vadvitem/edit_item.jsp");
+	addURL.setParameter("redirect", currentURL);
+	addURL.setParameter("tabs1", tabs1);
+	addURL.setParameter("cmd", "showadd");
+	
+	PortletURL searchURL = renderResponse.createRenderURL();
+	searchURL.setWindowState(WindowState.MAXIMIZED);	
+	searchURL.setParameter("jspPage", "/html/portlet/vadvman/view.jsp");
+	searchURL.setParameter("tabs1", tabs1);
+	
+	
+	String strTypeId = (String)request.getAttribute("typeId");
+	
+	List listType = AdvTypeServiceUtil.getTypeByG(groupId);
+	if(listType == null) {
+		listType = new ArrayList();
+	}
+	
+	boolean showAddItemButton = showButtons && PortletPermissionUtil
+		.contains(permissionChecker , plid.longValue() , PortletKeysExt.VADVMAN , ActionKeysExt.ADD_ITEM);
+	
+	boolean showDeleteAllButton = showButtons && PortletPermissionUtil
+		.contains(permissionChecker, plid.longValue() , PortletKeysExt.VADVMAN , ActionKeysExt.DELETE_ALL);
+%>
+
+<form name="<portlet:namespace />fm" action="<portlet:actionURL><portlet:param name="struts_action" value="/vadvman/item" /></portlet:actionURL>" method="POST">
+	<input name="<portlet:namespace />ids" type="hidden" value="">
+	<input name="<portlet:namespace />cmd" type="hidden" value="">	
+	<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>">
+	<input type="hidden" name="<portlet:namespace />cmd-search-flag" value="true"/>
+	<%-- <portlet:param name="cmd" value="dodelete"/>
+	<portlet:param name="redirect" value="<%=currentURL%>" /> --%>
+	
+	
+<%
+ 	PortletURL typeURL = renderResponse.createRenderURL();
+	typeURL.setWindowState(WindowState.MAXIMIZED);	
+	typeURL.setParameter("jspPage", "/html/portlet/vadvman/view.jsp");
+	typeURL.setParameter("tabs1", tabs1);
+	typeURL.setParameter("status", status);
+	typeURL.setParameter("typeId", String.valueOf(typeId) );
+	typeURL.setParameter("keywords", keywords);
+	typeURL.setParameter("cmd-search-flag", cmdSearchFlag );
+		
+	List headerNames = new ArrayList();
+	headerNames.add("VAdvman.form.nameItem");
+	headerNames.add("VAdvman.form.descriptionItem");
+	headerNames.add("VAdvman.form.url");
+	headerNames.add("VAdvman.form.isTargetBlank");
+	headerNames.add("VAdvman.form.expriedDate");	
+	headerNames.add(StringPool.BLANK); 
+	
+	SearchContainer searchCtn = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, typeURL, headerNames, null);	
+	searchCtn.setEmptyResultsMessage("there-are-no-items");	
+
+	List results = new ArrayList();
+	int total = 0;
+	
+	if (Validator.isNotNull(cmdSearchFlag) && Validator.equals(cmdSearchFlag,"true")){		
+		
+		results =  AdvItemServiceUtil.getItemByParam(groupId, keywords, typeId, Integer.parseInt(status), searchCtn.getStart(), searchCtn.getEnd());
+		//total = results.size();
+		total = AdvItemServiceUtil.countItemByParam(groupId, keywords, typeId, Integer.parseInt(status));
+	} else {
+		
+		results = AdvItemServiceUtil.getItemByG(groupId, searchCtn.getStart(), searchCtn.getEnd());
+		total = AdvItemServiceUtil.countItemByG(groupId);
+	}
+
+	searchCtn.setTotal(total);	
+	searchCtn.setResults(results);
+	//searchCtn.setDelta(15);
+	if (showDeleteAllButton)
+		searchCtn.setRowChecker(new RowChecker(renderResponse));
+	
+	List resultRows = searchCtn.getResultRows();
+	List attachFiles = new ArrayList();
+	
+	for (int i = 0; i < results.size(); i++) {
+		AdvItem item = (AdvItem)results.get(i);
+		
+		attachFiles = AttachmentLocalServiceUtil.getDLFileEntries(
+					AdvItem.class, item.getItemId());
+		
+		boolean isTargetBlank = item.getIsTargetBlank();
+		boolean isStatus = item.getStatus();
+
+		ResultRow row = new ResultRow(item, item.getItemId(), i);
+		PortletURL rowURL = renderResponse.createRenderURL();
+
+		rowURL.setWindowState(WindowState.MAXIMIZED);
+		rowURL.setParameter("tabs1" , tabs1 );
+		rowURL.setParameter("jspPage", "/html/portlet/vadvman/vadvitem/edit_item.jsp");
+		rowURL.setParameter("redirect", currentURL);
+		rowURL.setParameter(Constants.CMD , "showupdate" );
+		rowURL.setParameter("itemId", Long.toString(item.getItemId()));
+		
+		TextSearchEntry rowTextEntry = new TextSearchEntry();
+		rowTextEntry.setHref(rowURL.toString());
+		//rowTextEntry.setTitle(StringUtil.shorten(HtmlExt.extractText(item.getName()),200));
+		rowTextEntry.setTarget("_blank");
+		
+		//name
+		if(attachFiles!= null && attachFiles.size()>0){
+			for(int j=0;j<attachFiles.size();j++){
+				DLFileEntry fileEntry = (DLFileEntry) attachFiles.get(j);
+			rowTextEntry.setName(StringUtil.shorten(HtmlExt.extractText(fileEntry.getTitle()),200));
+			row.addText(rowTextEntry);
+			}
+		}else {	
+			rowTextEntry.setName(StringPool.BLANK);
+			row.addText(rowTextEntry);
+		
+		}
+	
+		//description
+		rowTextEntry =(TextSearchEntry)rowTextEntry.clone();
+		rowTextEntry.setName(StringUtil.shorten(item.getDescription(),100));
+		row.addText(rowTextEntry);
+	
+		//url
+		rowTextEntry =(TextSearchEntry)rowTextEntry.clone();
+		rowTextEntry.setName(StringUtil.shorten(item.getUrl(),100));
+		row.addText(rowTextEntry);		
+		
+		//isTargetBlank
+		rowTextEntry =(TextSearchEntry)rowTextEntry.clone();
+		rowTextEntry.setName(isTargetBlank ? "<b>Có</b>" : "<i>Không</i>");
+		row.addText(rowTextEntry);
+		
+		//expiration-date
+		rowTextEntry =(TextSearchEntry)rowTextEntry.clone();
+		if (item.getExpriedDate() == null ){
+			rowTextEntry.setName(LanguageUtil.get(pageContext, "never"));		
+			row.addText(rowTextEntry);
+		} else {
+			rowTextEntry.setName(VAdvmanUtil.dateParser(item.getExpriedDate()));
+			row.addText(rowTextEntry);
+		}	
+		
+		//button
+		row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/vadvman/vadvitem/item_action.jsp",application,request,response);	
+		
+		resultRows.add(row);
+	}
+%>
+
+<!-- Check permissions btnAdd -->
+<c:if test="<%=showAddItemButton%>">
+	<div class="portlet-font" style="font-weight: bold; float: left; margin-right: 10px">	
+		<input type="button" value="<liferay-ui:message key="add" />" onClick="self.location = '<%= addURL %>';" >
+	</div>
+</c:if>
+	
+<!-- Check permissions btnDeleteAll -->
+<c:if test="<%=showDeleteAllButton%>">
+	<div class="portlet-font" style="font-weight: bold; float: left; margin-right: 10px">
+		<input class="portlet-form-button" type="button"
+			value="<liferay-ui:message key="delete" />"
+			onclick="<portlet:namespace />deleteAll();" />
+	</div>
+</c:if>
+
+<br/><br/>			
+<table width="100%">			
+<tr>	
+	<td><%=LanguageUtil.get(pageContext, "VAdvman.form.keyword") %></td>	
+	<td><%=LanguageUtil.get(pageContext, "VAdvman.form.typeId") %>  </td>
+	<td><%=LanguageUtil.get(pageContext, "VAdvman.form.status") %></td>
+	<td>&nbsp;</td>
+</tr>
+	
+<tr>
+	<td><input type="text" name="<portlet:namespace/>keywords" value="<%=keywords%>" style="width:200px;"/></td>
+	<td>
+	<select name="<portlet:namespace />typeId" style=" width: 150px;" onChange="javascript:<portlet:namespace />doSearchItems();"> 
+		<option value="">---<liferay-ui:message key="all" />---</option>
+		<%	for (int i = 0; i < listType.size(); i++) {
+			AdvType type = (AdvType) listType.get(i);	%>					
+			<option value="<%= type.getTypeId() %>" <%= (type.getTypeId()== typeId) ? "selected":"" %>><%=type.getName()%></option>
+		<%	}	%> 		
+	</select></td>	
+				
+	<td>
+		<select name="<portlet:namespace />status" style="width: 150px" onchange="javascript:<portlet:namespace />doSearchItems();">
+			<option value="0" <%= (status.equals("0"))? "selected":""%>>---<liferay-ui:message key="all" />---</option>
+			<option value="1" <%= (status.equals("1"))? "selected":""%>>Còn h&#7841;n</option>
+			<option value="2" <%= (status.equals("2"))? "selected":""%>>&#272;ã h&#7871;t h&#7841;n</option>
+		</select>
+	</td>
+	<td>			
+		<input class="portlet-form-button" type="button" style="width:150px;height:23px;font-weight:bold" value='<%= LanguageUtil.get(pageContext, "search") %>' 
+				onclick="javascript:<portlet:namespace />doSearchItems();"></td>
+</tr>		
+</table>	
+
+<br>	
+	
+<div class="beta-separator"></div>
+
+	<c:if test="<%= cmdSearchFlag.equals(\"true\")%>">	
+		<div class="portlet-font" style="font-weight:bold;" align="center">
+			<% if (results.size()>0){%>
+				<strong><font color="red">K&#7871;t qu&#7843; tìm ki&#7871;m - T&#7893;ng s&#7889; qu&#7843;ng cáo &#273;&#432;&#7907;c tìm th&#7845;y : <%= total%></font></strong><br>
+			<%  }else {%>
+				<strong><font color="red">Không tìm th&#7845;y qu&#7843;ng cáo nào th&#7887;a mãn yêu c&#7847;u tìm ki&#7871;m.</font></strong><br>
+			<%	}	%>
+		</div>
+	</c:if>			
+
+<liferay-ui:search-iterator searchContainer="<%= searchCtn %>" />
+<br>
+</form>
+<script type="text/javascript">
+	Liferay.provide(window,'<portlet:namespace />deleteAll', function() {
+			var ids = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+			
+			if (ids.length >0){
+				if (confirm('<%=UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-items")%>')) {
+					document.<portlet:namespace />fm.<portlet:namespace />cmd.value = "dodelete";
+					document.<portlet:namespace />fm.<portlet:namespace />ids.value = ids;
+					submitForm(document.<portlet:namespace />fm, '<portlet:actionURL windowState="<%=WindowState.MAXIMIZED.toString()%>" name="_deleteItem"></portlet:actionURL>');
+				}
+			} else {
+				alert("<%= LanguageUtil.get(pageContext, "you-must-select-a-item-to-delete") %> ");
+			}
+		},
+		['liferay-util-list-fields']);
+	
+	
+	function <portlet:namespace />doSearchItems() {
+		var myform = document.<portlet:namespace />fm;
+		myform.action="<%= searchURL.toString() %>";
+		myform.submit();
+	}
+	
+</script>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/liferay/!svn/ver/769/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/_diffs/templates
+END
+navigation.vm
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/liferay/!svn/ver/769/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/_diffs/templates/navigation.vm
+END
+portal_pop_up.vm
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/_diffs/templates/portal_pop_up.vm
+END
+portal_normal.vm
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/_diffs/templates/portal_normal.vm
+END
+portlet.vm
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/_diffs/templates/portlet.vm
+END
+init_custom.vm
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/_diffs/templates/init_custom.vm
+END

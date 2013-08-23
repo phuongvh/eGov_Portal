@@ -1,0 +1,110 @@
+<%--/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */ --%>
+<%@page import="com.liferay.portal.service.permission.PortletPermissionUtil"%>
+<%@page import="com.vportal.portlet.vadvman.service.AdvTypeServiceUtil"%>
+<%
+	List listType = AdvTypeServiceUtil.getTypeByG(groupId);
+	
+	boolean showAddTypeButton = showButtons && PortletPermissionUtil
+		.contains(permissionChecker , plid.longValue() , PortletKeysExt.VADVMAN , ActionKeysExt.ADD_TYPE);
+
+%>
+<form name="<portlet:namespace />fm" action="<portlet:actionURL><portlet:param name="struts_action" value="/vadvman/type" /></portlet:actionURL>" method="POST">
+	<input name="<portlet:namespace />ids" type="hidden" value="">
+	<input name="<portlet:namespace />cmd" type="hidden" value="">
+	<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>">
+	
+<%
+		PortletURL addURL = renderResponse.createRenderURL();
+		addURL.setWindowState(WindowState.MAXIMIZED);	
+		addURL.setParameter("jspPage","/html/portlet/vadvman/vadvtype/edit_type.jsp");
+		addURL.setParameter("redirect", currentURL);
+		addURL.setParameter("tabs1", tabs1);
+		addURL.setParameter("cmd", "doadd");
+		
+		List headerNames = new ArrayList();
+		headerNames.add("VAdvman.form.nameType");
+		headerNames.add("VAdvman.form.descriptionType");
+		headerNames.add("VAdvman.form.numberItems");
+		headerNames.add("VAdvman.form.createdDate");		
+		headerNames.add(StringPool.BLANK);
+		
+		SearchContainer searchCtn = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, headerNames, null);	
+		searchCtn.setEmptyResultsMessage("there-are-no-types");	
+
+		List results = new ArrayList();
+		
+		results = AdvTypeServiceUtil.getTypeByG(groupId, searchCtn.getStart(), searchCtn.getEnd());		
+		int total = AdvTypeServiceUtil.countTypeByG(groupId);
+		
+		searchCtn.setTotal(total);		
+		searchCtn.setResults(results);
+
+		List resultRows = searchCtn.getResultRows();
+		for (int i = 0; i < results.size(); i++) {
+			AdvType type = (AdvType)results.get(i);
+
+			ResultRow row = new ResultRow(type, type.getTypeId(), i);
+			PortletURL rowURL = renderResponse.createRenderURL();
+
+			rowURL.setWindowState(WindowState.MAXIMIZED);
+
+			rowURL.setParameter("jspPage", "/html/portlet/vadvman/vadvtype/edit_type.jsp");
+			rowURL.setParameter("redirect", currentURL);
+			rowURL.setParameter(Constants.CMD , "showupdate" );
+			rowURL.setParameter("typeId", Long.toString(type.getTypeId()));
+
+			TextSearchEntry rowTextEntry = new TextSearchEntry();
+			rowTextEntry.setHref(rowURL.toString());
+			rowTextEntry.setTarget("_blank");
+			rowTextEntry.setTitle(StringUtil.shorten(HtmlExt.extractText(type.getName()),200));
+			//name
+			rowTextEntry.setName(StringUtil.shorten(HtmlExt.extractText(type.getName()),200));
+			row.addText(rowTextEntry);
+		
+			//description
+			rowTextEntry =(TextSearchEntry)rowTextEntry.clone();
+			rowTextEntry.setName(StringUtil.shorten(type.getDescription(),100));
+			row.addText(rowTextEntry);
+			
+			//#item of typeAdv
+			rowTextEntry =(TextSearchEntry)rowTextEntry.clone();
+			int itemCount = AdvItemServiceUtil.countItemByG_T(groupId,type.getTypeId());
+			rowTextEntry.setName(String.valueOf(itemCount));
+			row.addText(rowTextEntry);
+			
+			//create date
+			rowTextEntry =(TextSearchEntry)rowTextEntry.clone();
+			rowTextEntry.setName(VAdvmanUtil.dateParser(type.getCreateDate()));
+			row.addText(rowTextEntry);
+			
+			//button
+			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/vadvman/vadvtype/type_action.jsp",application,request,response);	
+			
+			resultRows.add(row);
+		}
+	%>
+	
+<c:if test="<%=showAddTypeButton%>" >
+	<div class="portlet-font" style="font-weight: bold; float: left; margin-right: 10px">	
+		<input type="button" value="<liferay-ui:message key="add" />"
+			onclick="self.location = '<%= addURL %>';" />	
+	</div>
+</c:if>
+<br><br>
+	
+<liferay-ui:search-iterator searchContainer="<%= searchCtn %>" />
+
+<br>
+</form>

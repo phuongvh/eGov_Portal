@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.vportal.portlet.vcms">
+	<author>hai</author>
+	<namespace>vcms</namespace>
+
+	<entity name="VcmsType" local-service="true" remote-service="true"
+	table="VcmsType">
+
+		<!-- Primary key fields -->
+		<column name="typeId" type="String" primary="true" />
+
+		<!-- Group and Company instance -->
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date" />
+		<column name="createdByUser" type="String" />
+		<column name="modifiedDate" type="Date" />
+		<column name="modifiedByUser" type="String" />
+
+		<!-- Other fields -->
+
+		<column name="code" type="String" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="language" type="String" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="createdDate" />
+		</order>
+
+		<finder name="S_C" return-type="VcmsType">
+			<finder-column name="groupId" />
+			<finder-column name="code" />
+		</finder>
+
+		<finder name="S_L" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+		</finder>
+		<!-- References -->
+		<reference package-path="com.liferay.portal" entity="Resource" />
+	</entity>
+
+	<!-- Portion: /// -->
+
+	<entity name="VcmsPortion" local-service="true" remote-service="true"
+		table="VcmsPortion">
+
+		<!-- Primary key fields -->
+		<column name="portionId" type="String" primary="true" />
+
+		<!-- Group and Company instance -->
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date" />
+		<column name="createdByUser" type="String" />
+
+		<column name="modifiedDate" type="Date" />
+		<column name="modifiedByUser" type="String" />
+
+		<!-- Other fields -->
+
+		<column name="code" type="String" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="categorizable" type="boolean" />
+		<column name="language" type="String" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="modifiedDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="Categorizable" return-type="VcmsPortion">
+			<finder-column name="groupId" />
+			<finder-column name="categorizable" />
+		</finder>
+
+		<finder name="S_C" return-type="VcmsPortion">
+			<finder-column name="groupId" />
+			<finder-column name="code" />
+		</finder>
+
+		<finder name="S_L" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+		</finder>
+
+		<!-- <finder name="L" return-type="Collection"> <finder-column name="language" 
+			/> </finder> -->
+		<!-- References -->
+		<reference package-path="com.liferay.portal" entity="Resource" />
+	</entity>
+
+	<!-- Category: /// -->
+
+	<entity name="VcmsCategory" local-service="true"
+		remote-service="true" table="VcmsCategory">
+
+		<!-- PK fields -->
+		<column name="categoryId" type="String" primary="true" />
+
+		<!-- Group and Company instance -->
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date" />
+		<column name="createdByUser" type="String" />
+
+		<column name="modifiedDate" type="Date" />
+		<column name="modifiedByUser" type="String" />
+
+		<!-- Other fields -->
+
+		<column name="portionId" type="String" />
+		<column name="parentId" type="String" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+
+		<column name="anchored" type="boolean" />
+		<column name="href" type="String" />
+
+		<column name="language" type="String" />
+		<column name="hasImage" type="boolean" />
+		<column name="image" type="String" />
+
+		<column name="position" type="long" />
+		<column name="userHit" type="long" />
+
+		<column name="rssable" type="boolean" />
+
+		<!-- Sorting -->
+		<order by="asc">
+			<order-column name="position" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="Portion_Language" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="portionId" />
+			<finder-column name="language" />
+		</finder>
+
+		<finder name="Parent_Language" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="parentId" />
+			<finder-column name="language" />
+		</finder>
+
+		<finder name="Language" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+		</finder>
+
+		<finder name="P_P_L" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="portionId" />
+			<finder-column name="parentId" />
+			<finder-column name="language" />
+		</finder>
+
+		<!-- <finder name="Parent_Portion_Language" return-type="Collection"> <finder-column 
+			name="portionId" /> <finder-column name="parentId" /> <finder-column name="language" 
+			/> </finder> -->
+
+		<!-- <finder name="Parent_Language_No_Group" return-type="Collection"> 
+			<finder-column name="parentId" /> <finder-column name="language" /> </finder> -->
+
+		<!-- References -->
+		<reference package-path="com.liferay.portal" entity="Resource" />
+	</entity>
+
+	<!-- Article: /// -->
+
+	<entity name="VcmsArticle" local-service="true" remote-service="true"
+		table="VcmsArticle">
+
+		<!-- Primary key fields -->
+		<column name="articleId" type="String" primary="true" />
+
+		<!-- Group and Company instance -->
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="createdByUser" type="String" />
+		<column name="createdDate" type="Date" />
+
+		<column name="modifiedByUser" type="String" />
+		<column name="modifiedDate" type="Date" />
+
+		<column name="approvedByUser" type="String" />
+		<column name="approvedDate" type="Date" />
+
+		<column name="publishedByUser" type="String" />
+		<column name="publishedDate" type="Date" />
+
+		<!-- Other fields -->
+		<column name="status" type="long" />
+
+		<column name="title" type="String" />
+		<column name="lead" type="String" />
+		<column name="content" type="String" />
+
+		<column name="hasImage" type="boolean" />
+		<column name="imageTitle" type="String" />
+		<column name="image" type="String" />
+
+		<column name="author" type="String" />
+		<column name="source" type="String" />
+
+		<column name="language" type="String" />
+		<column name="userHit" type="long" />
+		<column name="discussible" type="boolean" />
+
+		<column name="hasAttachment" type="boolean" />
+
+		<column name="hasPoll" type="boolean" />
+		<column name="pollId" type="String" />
+
+		<column name="effectiveDate" type="Date" />
+		<column name="expireDate" type="Date" />
+
+		<column name="sticky" type="boolean" />
+		<column name="stickyNeverExpired" type="boolean" />
+		<column name="stickyExpireDate" type="Date" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="modifiedDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="L_S" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+			<finder-column name="status" />
+		</finder>
+
+		<finder name="G_L_S_U" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+			<finder-column name="status" />
+			<finder-column name="createdByUser" />
+		</finder>
+
+		<finder name="L_S_S" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+			<finder-column name="status" />
+			<finder-column name="sticky" />
+		</finder>
+
+		<finder name="U_L" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="createdByUser" />
+			<finder-column name="language" />
+		</finder>
+
+		<finder name="U_L_S" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="createdByUser" />
+			<finder-column name="language" />
+			<finder-column name="status" />
+		</finder>
+
+		<finder name="P_L_S_D" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+			<finder-column name="status" />
+			<finder-column name="discussible" />
+		</finder>
+
+		<!-- For lucene indexing engine -->
+		<finder name="Status" return-type="Collection">
+			<finder-column name="status" />
+		</finder>
+		
+		<finder name="Company" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+	</entity>
+
+	<!-- Status: /// -->
+
+	<entity name="VcmsStatus" local-service="true" remote-service="true"
+		table="VcmsStatus">
+
+		<!-- Primary key fields -->
+		<column name="statusId" type="long" primary="true" />
+
+		<!-- Company instance -->
+		<column name="companyId" type="long" />
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date" />
+		<column name="createdByUser" type="String" />
+
+		<column name="modifiedDate" type="Date" />
+		<column name="modifiedByUser" type="String" />
+
+		<!-- Other fields -->
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="cssClass" type="String" />
+		<column name="textColor" type="String" />
+		<column name="position" type="long" />
+		<column name="isPrimary" type="boolean" />
+		<column name="active" type="boolean" />
+
+		<!-- Sorting -->
+		<order by="asc">
+			<order-column name="position" />
+			<order-column name="createdDate" order-by="desc" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+
+		<finder name="C_G" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="groupId" />
+		</finder>
+
+		<finder name="G_P" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="position" />
+		</finder>
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+
+		<finder name="C_G_A" return-type="VcmsStatus">
+			<finder-column name="companyId" />
+			<finder-column name="groupId" />
+			<finder-column name="active" />
+		</finder>
+		<finder name="A" return-type="VcmsStatus">
+			<finder-column name="active" />
+		</finder>
+		<finder name="C_A" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="active" />
+		</finder>
+
+		<finder name="C_G_P" return-type="VcmsStatus">
+			<finder-column name="companyId" />
+			<finder-column name="groupId" />
+			<finder-column name="isPrimary" />
+		</finder>
+
+		<finder name="C_P" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="isPrimary" />
+		</finder>
+
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+	</entity>
+
+	<!-- ArticleVersion: /// -->
+
+	<entity name="VcmsArticleVersion" local-service="true"
+		remote-service="true" table="VcmsArticleVersion">
+
+		<!-- Primary key fields -->
+		<column name="articleVersionId" type="long" primary="true" />
+
+		<!-- Group and Company instance -->
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="articleId" type="String" />
+		<column name="createdByUser" type="String" />
+		<column name="createdDate" type="Date" />
+
+		<!-- Other fields -->
+		<column name="typeIds" type="String" />
+		<column name="status" type="long" />
+
+		<column name="versionName" type="String" />
+		<column name="title" type="String" />
+		<column name="lead" type="String" />
+		<column name="content" type="String" />
+
+		<column name="hasImage" type="boolean" />
+		<column name="imageTitle" type="String" />
+		<column name="image" type="String" />
+		<column name="language" type="String" />
+		<column name="userHit" type="long" />
+
+		<column name="author" type="String" />
+		<column name="source" type="String" />
+
+		<column name="discussible" type="boolean" />
+
+		<column name="hasAttachment" type="boolean" />
+
+		<column name="hasPoll" type="boolean" />
+		<column name="pollId" type="String" />
+
+		<column name="effectiveDate" type="Date" />
+		<column name="expireDate" type="Date" />
+
+		<column name="sticky" type="boolean" />
+		<column name="stickyNeverExpired" type="boolean" />
+		<column name="stickyExpireDate" type="Date" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="createdDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="Article" return-type="Collection">
+			<finder-column name="articleId" />
+		</finder>
+
+	</entity>
+
+	<!-- Article Status : /// -->
+
+	<entity name="VcmsArticleStatus" local-service="true"
+		remote-service="true" table="VcmsArticleStatus">
+
+		<!-- Primary key fields -->
+		<column name="id" type="long" primary="true" />
+
+		<column name="statusId" type="long" />
+		<column name="articleId" type="String" />
+		<column name="categoryId" type="String" />
+		<column name="createdDate" type="Date" />
+
+		<!-- Audit fields -->
+		<column name="createdByUser" type="String" />
+
+		<!-- Other fields -->
+		<column name="active" type="boolean" />
+		<column name="articleVersionId" type="long" />
+
+		<!-- Sorting -->
+		<order by="asc">
+			<order-column name="createdDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="Article" return-type="Collection">
+			<finder-column name="articleId" />
+		</finder>
+
+		<finder name="Active" return-type="Collection">
+			<finder-column name="active" />
+		</finder>
+
+		<finder name="User" return-type="Collection">
+			<finder-column name="createdByUser" />
+		</finder>
+
+		<finder name="U_A" return-type="Collection">
+			<finder-column name="createdByUser" />
+			<finder-column name="active" />
+		</finder>
+
+		<!-- References -->
+	</entity>
+
+	<entity name="VcmsArticleType" local-service="true"
+		remote-service="true" table="VcmsArticleType">
+
+		<!-- Primary key fields -->
+		<column name="typeId" type="long" primary="true" />
+		<column name="articleId" type="String" primary="true" />
+
+		<!-- Other fields -->
+		<column name="position" type="long" />
+
+		<!-- Sorting -->
+		<order by="asc">
+			<order-column name="position" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="Type" return-type="Collection">
+			<finder-column name="typeId" />
+		</finder>
+
+		<finder name="Article" return-type="Collection">
+			<finder-column name="articleId" />
+		</finder>
+
+		<finder name="ArticleByType" return-type="VcmsArticleType">
+			<finder-column name="typeId" />
+			<finder-column name="articleId" />
+		</finder>
+
+		<!-- References -->
+	</entity>
+
+	<!-- Thread: /// -->
+
+	<entity name="VcmsAttachedMessage" local-service="true"
+		remote-service="true" table="VcmsAttachedMessage">
+
+		<!-- Primary key fields -->
+		<column name="messageId" type="String" primary="true" />
+
+		<!-- Group and Company instance -->
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date" />
+		<column name="createdByUser" type="String" />
+
+		<!-- Other fields -->
+		<column name="articleId" type="String" />
+		<column name="content" type="String" />
+		<column name="readMessage" type="boolean" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="createdDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="Article" return-type="Collection">
+			<finder-column name="articleId" />
+		</finder>
+		<finder name="UnRead" return-type="Collection">
+			<finder-column name="readMessage" />
+		</finder>
+		<finder name="A_R" return-type="Collection">
+			<finder-column name="articleId" />
+			<finder-column name="readMessage" />
+		</finder>
+		<finder name="G_R" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="readMessage" />
+		</finder>
+	</entity>
+
+	<!-- Thread: /// -->
+
+	<entity name="VcmsThread" local-service="true" remote-service="true"
+		table="VcmsThread">
+
+		<!-- Primary key fields -->
+		<column name="threadId" type="String" primary="true" />
+
+		<!-- Group and Company instance -->
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date" />
+		<column name="createdByUser" type="String" />
+
+		<column name="modifiedDate" type="Date" />
+		<column name="modifiedByUser" type="String" />
+
+		<!-- Other fields -->
+
+		<column name="title" type="String" />
+		<column name="description" type="String" />
+		<column name="hasImage" type="boolean" />
+		<column name="image" type="String" />
+		<column name="language" type="String" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="createdDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="P_L" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+		</finder>
+
+	</entity>
+
+	<!-- Discussion: /// -->
+
+	<entity name="VcmsDiscussion" local-service="true"
+		remote-service="true" table="VcmsDiscussion">
+
+		<!-- Primary key fields -->
+		<column name="discussionId" type="String" primary="true" />
+
+		<!-- Group and Company instance -->
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="visitorName" type="String" />
+		<column name="visitorEmail" type="String" />
+		<column name="visitorPhone" type="String" />
+		<column name="postedDate" type="Date" />
+
+		<column name="approved" type="boolean" />
+		<column name="approvedByUser" type="String" />
+		<column name="approvedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="articleId" type="String" />
+		<column name="title" type="String" />
+		<column name="content" type="String" />
+		<column name="language" type="String" />
+
+		<column name="hasAttachment" type="boolean" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="postedDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="P_L" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+		</finder>
+
+		<finder name="P_L_A" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+			<finder-column name="approved" />
+		</finder>
+
+		<finder name="A_P_L_A" return-type="Collection">
+			<finder-column name="articleId" />
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+			<finder-column name="approved" />
+		</finder>
+
+		<finder name="A_A" return-type="Collection">
+			<finder-column name="articleId" />
+			<finder-column name="approved" />
+		</finder>
+
+		<finder name="Article" return-type="Collection">
+			<finder-column name="articleId" />
+		</finder>
+
+	</entity>
+
+	<entity name="VcmsPARelation" local-service="true"
+		remote-service="true" table="VcmsPARelation">
+
+		<!-- Primary key fields -->
+		<column name="portionId" type="String" primary="true" />
+		<column name="articleId" type="String" primary="true" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="articleId" />
+			<order-column name="portionId" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="Portion" return-type="Collection">
+			<finder-column name="portionId" />
+		</finder>
+
+		<finder name="Article" return-type="Collection">
+			<finder-column name="articleId" />
+		</finder>
+
+	</entity>
+
+	<entity name="VcmsCARelation" local-service="true"
+		remote-service="true" table="VcmsCARelation">
+
+		<!-- Primary key fields -->
+		<column name="categoryId" type="String" primary="true" />
+		<column name="articleId" type="String" primary="true" />
+
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date" />
+		<column name="createdByUser" type="String" />
+
+		<column name="status" type="long" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="articleId" />
+			<order-column name="categoryId" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="Category" return-type="Collection">
+			<finder-column name="categoryId" />
+		</finder>
+
+		<finder name="Article" return-type="Collection">
+			<finder-column name="articleId" />
+		</finder>
+
+	</entity>
+
+	<entity name="VcmsTARelation" local-service="true"
+		remote-service="true" table="VcmsTARelation">
+
+		<!-- Primary key fields -->
+		<column name="threadId" type="String" primary="true" />
+		<column name="articleId" type="String" primary="true" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="articleId" />
+			<order-column name="threadId" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="Thread" return-type="Collection">
+			<finder-column name="threadId" />
+		</finder>
+
+		<finder name="Article" return-type="Collection">
+			<finder-column name="articleId" />
+		</finder>
+
+	</entity>
+
+	<!-- Application logging service -->
+	<entity name="VcmsLogger" local-service="true" remote-service="true"
+		table="VcmsLogger">
+
+		<!-- Primary Key fields -->
+		<column name="loggerId" type="String" primary="true" />
+
+		<!-- Group and Company instance -->
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date" />
+		<column name="createdByUser" type="String" />
+
+		<!-- Other fields -->
+		<column name="content" type="String" />
+
+		<!-- Sorting -->
+		<order by="desc">
+			<order-column name="createdDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="U_D" return-type="Collection">
+			<finder-column name="createdByUser" />
+			<finder-column name="createdDate" />
+		</finder>
+
+	</entity>
+
+	<!-- Application exceptions -->
+	<exceptions>
+		<exception>DeleteTypeArticle</exception>
+		<exception>DeleteStatusArticle</exception>
+		<exception>InvalidTypeCode</exception>
+		<exception>InvalidTypeName</exception>
+		<exception>DuplicateTypeCode</exception>
+
+		<exception>DeletePortion</exception>
+		<exception>InvalidPortionCode</exception>
+		<exception>InvalidPortionName</exception>
+		<exception>DuplicatePortionCode</exception>
+
+		<exception>DeleteCategory</exception>
+		<exception>InvalidCategoryName</exception>
+		<exception>InvalidCategoryPortion</exception>
+		<exception>InvalidCategoryHref</exception>
+
+		<exception>InvalidArticleTitle</exception>
+		<exception>InvalidArticleContent</exception>
+		<exception>InvalidArticleImage</exception>
+		<exception>InvalidArticleRelation</exception>
+
+		<exception>InvalidThreadTitle</exception>
+		<exception>InvalidThreadTitle</exception>
+
+		<exception>InvalidStatusName</exception>
+
+		<exception>InvalidDiscussionVisitorName</exception>
+		<exception>InvalidDiscussionVisitorEmail</exception>
+		<exception>InvalidDiscussionTitle</exception>
+		<exception>InvalidDiscussionContent</exception>
+		<exception>InvalidDiscussionAttachment</exception>
+
+	</exceptions>
+</service-builder>

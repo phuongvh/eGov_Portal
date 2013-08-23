@@ -1,0 +1,337 @@
+<%--
+/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+<%@page import="com.vportal.portal.model.Attachment"%>
+<%@page import="java.util.List"%>
+<%@page import="com.vportal.portal.service.AttachmentLocalServiceUtil"%>
+<%@page import="com.vportal.portlet.vcms.model.VcmsArticle"%>
+<%@page import="com.liferay.portal.kernel.util.StringPool"%>
+<%@page import="com.liferay.portal.kernel.util.HttpUtil"%>
+<%@page import="com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil"%>
+<%@page import="com.liferay.portlet.documentlibrary.model.DLFileEntry"%>
+<%@page import="com.vportal.portlet.vcms.action.ActionUtil"%>
+<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
+<script type="text/javascript"
+	src="/html/portlet/vclipview/swfobject.js"></script>
+<script language="JavaScript1.2"
+	src="/html/portlet/vcmsviewcontent/vietuni.js" type="text/javascript"></script>
+
+<script language="JavaScript1.2"> setTypingMode(4); </script>
+
+<style>
+
+</style>
+
+<%
+	String parentId = (String) session.getAttribute("CAT_PARENT_ID");
+	String discussionId = ParamUtil.getString(request, "discussionId");
+
+	int numberPage = ParamUtil.getInteger(request, "pagenum", 1);
+	int total = VcmsArticleServiceUtil.countOtherArticle(groupId,
+			language, statusId, categoryId, articleId);
+
+	int per = 10;
+	int pages = (total % per == 0) ? total / per : total / per + 1;
+	int begin = per * (numberPage - 1);
+	int end = (total > per * numberPage) ? per * numberPage : total;
+
+	VcmsCategory category = (VcmsCategory) request
+			.getAttribute(ConstantsExt.CATEGORY);
+	VcmsArticle article = (VcmsArticle) request
+			.getAttribute(ConstantsExt.ARTICLE);
+
+	List olderArticles = (List) request
+			.getAttribute(ConstantsExt.LIST_NEXT_OLDER_ARTICLE);
+	List newArticles = (List) request
+			.getAttribute(ConstantsExt.LIST_NEXT_NEWEST_ARTICLE);
+	List threadArticles = (List) request
+			.getAttribute(ConstantsExt.LIST_ARTICLE_OF_THREAD);
+
+	List otherArticles = new ArrayList();
+	List listDiscussion = new ArrayList();
+
+	otherArticles = (List) VcmsArticleServiceUtil.getOtherArticle(
+			groupId, language, statusId, categoryId, articleId, begin,
+			end);
+
+	PortletURL catURL = PortletURLFactoryUtil.create(request,
+			portletSelectId, plId, PortletRequest.RENDER_PHASE);
+	catURL.setParameter("jspPage", "/html/portlet/vcmsviewcontent/view.jsp");
+	catURL.setParameter("categoryId", category.getCategoryId());
+
+	PortletURL articleURL = PortletURLFactoryUtil.create(request,
+			portletSelectId, plId, PortletRequest.RENDER_PHASE);
+	articleURL.setParameter("jspPage", "/html/portlet/vcmsviewcontent/view.jsp");
+	articleURL.setParameter("articleId", article.getArticleId());
+	articleURL.setParameter("categoryId", category.getCategoryId());
+	articleURL.setParameter("cat_parent", category.getCategoryId());
+
+	PortletURL linkArticleURL = PortletURLFactoryUtil.create(request,
+			portletSelectId, plId, PortletRequest.RENDER_PHASE);
+	linkArticleURL.setParameter("jspPage", "/html/portlet/vcmsviewcontent/view.jsp");
+	linkArticleURL.setParameter("categoryId", category.getCategoryId());
+	linkArticleURL.setParameter("cat_parent", category.getCategoryId());
+	linkArticleURL.setParameter("articleId", "");
+
+	PortletURL portletURL = PortletURLFactoryUtil.create(request,
+			portletSelectId, plId, PortletRequest.RENDER_PHASE);
+	portletURL.setParameter("jspPage", "/html/portlet/vcmsviewcontent/view.jsp");
+	portletURL.setParameter("categoryId", category.getCategoryId());
+	portletURL.setParameter("articleId", "");
+
+	String leadArticle = article.getLead().toString();
+	String contentArticle = article.getContent();
+%>
+
+<script language="javascript">
+	
+</script>
+<form action="<portlet:actionURL name="">
+	</portlet:actionURL>"
+	method="post" name="<portlet:namespace />fm"
+	enctype="multipart/form-data">
+	<input type="hidden" name="<portlet:namespace />cmd"
+		value="<%=Constants.ADD%>" /> <input type="hidden"
+		name="<portlet:namespace />discussionId" value="" /> <input
+		type="hidden" name="<portlet:namespace />redirect"
+		value="<%=currentURL%>" /> <input type="hidden"
+		name="<portlet:namespace />groupId" value="<%=groupId%>" /> <input
+		type="hidden" name="<portlet:namespace />language"
+		value="<%=language%>" /> <input type="hidden"
+		name="<portlet:namespace />articleId"
+		value="<%=article.getArticleId()%>" />
+
+
+
+
+
+	<div class="wd-boxs">
+		<h2 class="wd-tlh1-2"><%=category.getName()%></h2>
+		<div class="wd-introduction">
+
+			<h3 class="wd-tlh3-4"><a href="#"><%=article.getTitle()%> </a></h3>
+			
+			
+			<p class="wd-date">Ngay dang: <%=ActionUtil.dateParser(article.getPublishedDate())%></p>
+			
+			
+			<p style="font-weight:bold;color:#393939;"> <%= article.getLead().toString() %> </p>
+			
+			<c:if test="<%=article.getHasAttachment()%>">
+				<div>
+					<b style="display: block; margin-bottom: -5px;">T&#224;i
+						li&#7879;u &#273;&#237;nh k&#232;m</b>&nbsp;&nbsp;					
+						
+					<% 
+					  List<Attachment> list = AttachmentLocalServiceUtil.getAttachments(Long.parseLong(article.getArticleId()), VcmsArticle.class);
+					for(Attachment att : list){
+					        DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.getDLFileEntry(att.getEntryId());
+					        long folderId = att.getFolderId();
+					        String urlDownload = themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + folderId + StringPool.SLASH + HttpUtil.encodeURL(dlFileEntry.getTitle(), true);
+					       %>
+					       <a  class="wd-download-pdf" href="<%= urlDownload%>"><%=att.getFileName()%></a>
+					 <% } %>	
+						
+						
+				</div>
+			</c:if>
+			
+
+			
+
+			<p><%=contentArticle.replaceAll("_linkarticle_", linkArticleURL.toString() + "")%></p>
+
+
+			<p class="wd-actor"><%= article.getAuthor() %></p>
+
+
+			<div class="wd-bortop">
+				<ul class="wd-outside-support">
+					<li><a class="wd-print" href="javascript:expandingWindow('/VCMS-portlet/html/portlet/vcmsviewcontent/print_article.jsp?printArticleId=<%=article.getArticleId()%>');">&nbsp;<%=LanguageUtil.get(pageContext,
+					"com.vportal.portlet.vcmsviewcontent.print")%></a></li>					
+					<li><a  class="wd-back" href="javascript:history.go(-1);">&nbsp;<%=LanguageUtil.get(pageContext,
+					"com.vportal.portlet.vcmsviewcontent.back")%></a></li>
+				</ul>
+			</div>
+
+			<h3 class="wd-tlh3-3"><%=LanguageUtil.get(pageContext,"com.vportal.portlet.vcmsviewcontent.otherview")%></h3>
+			<ul class="wd-other-news">
+				<%
+					String titleArticle = "";
+						for (int j = 0; j < olderArticles.size(); j++) {
+							VcmsArticle articleNew = (VcmsArticle) olderArticles.get(j);
+
+							PortletURL articleNewURL;
+							articleNewURL = PortletURLFactoryUtil.create(request,
+									portletSelectId, plId, PortletRequest.RENDER_PHASE);
+							articleNewURL.setParameter("jspPage",
+									"/html/portlet/vcmsviewcontent/view.jsp");
+							articleNewURL.setParameter("articleId",
+									articleNew.getArticleId());
+							articleNewURL.setParameter("categoryId",
+									category.getCategoryId());
+							
+				%>
+				
+				<li>
+					<a href="<%=articleNewURL%>"><%=articleNew.getTitle()%>&nbsp;<span>(<%=ActionUtil.dateParser(articleNew.getPublishedDate())%>)</span></a>
+				</li>
+				
+				
+				<%
+					}
+				%>
+				
+			</ul>
+
+		</div>
+		<div class="wd-rss">
+			<a href="<%=catURL %>" class="link-read-more"><%=LanguageUtil.get(pageContext,"com.vportal.portlet.vcmsviewcontent.viewcontinue")%></a>
+		</div>
+	</div>
+
+
+
+
+	<script type="text/javascript">	
+   function playswf(url, img)
+   {
+          var s1 = new SWFObject("/html/portlet/vclipview/player.swf","jstest","320","260","3","0x000000");
+          s1.addParam("allowfullscreen","true");
+          s1.addParam("wmode","transparent");
+          s1.addParam('allowscriptaccess','always');
+          s1.addVariable("image",img);
+          s1.addVariable("file",escape(url));
+          s1.write("insertvideoview");
+   }	 	
+</script>
+
+	<script language="javascript">
+	try{
+		if(url!=null){
+			url = url.replace(/&amp;/g, "&");
+			playswf('<%=themeDisplay.getPathMain()%>/document_library/get_file?p_l_id=<%=themeDisplay.getPlid()%>'+url,'<%=themeDisplay.getPathImage()%>/image_gallery?img_id='+img_id);
+		}
+	}catch(err){
+		
+	}
+	
+	function getPlayer(gid) {
+		if(navigator.appName.indexOf("Microsoft") != -1) {
+			return window[gid];
+		} else {
+			return document[gid];
+		}
+	};
+	
+	function addListeners() {
+		if (player) { 
+			player.addModelListener("STATE", "stateListener");
+		} else {
+			setTimeout("addListeners()",100);
+		}
+	}
+	
+	function stateListener(obj) { //get State
+		currentState = obj.newstate; 
+		previousState = obj.oldstate; 
+		if(currentState=="PLAYING"){
+			//increase view number		
+		}		
+	}
+	
+	function playerReady(obj){		
+		player = getPlayer('jstest');
+		addListeners();
+	};
+	
+</script>
+
+</form>
+<script language="javascript">	
+	
+	var flag = false;
+	function <portlet:namespace/>miximizeSearchAdvance(){
+		if(flag){
+			document.getElementById('<portlet:namespace/>formComment').style.display ="";			
+			document.getElementById('<portlet:namespace/>linkComment1').style.display ="none"; 
+			document.getElementById('<portlet:namespace/>linkComment2').style.display ="none"; 
+			document.getElementById('<portlet:namespace/>linkComment3').style.display ="none"; 
+			document.getElementById('<portlet:namespace/>visitorName').focus();
+			flag = false;
+		}else{			
+			document.getElementById('<portlet:namespace/>formComment').style.display ="none";			
+			document.getElementById('<portlet:namespace/>linkComment1').style.display =""; 
+			document.getElementById('<portlet:namespace/>linkComment2').style.display =""; 
+			document.getElementById('<portlet:namespace/>linkComment3').style.display =""; 
+			flag = true;
+		}
+	}
+	
+	<portlet:namespace/>miximizeSearchAdvance(); 
+	
+	function <portlet:namespace />submitForm() {				
+		var myform = document.<portlet:namespace />fm;	
+		
+		if (document.<portlet:namespace />fm.<portlet:namespace />visitorName.value == ''){
+			alert("<%=LanguageUtil.get(pageContext,
+					"vportal.portlet.vcms.invalidName")%>");
+			document.<portlet:namespace />fm.<portlet:namespace />visitorName.focus();
+			return;
+		}
+		
+		var r = new RegExp(/^\w+(\.[a-zA-Z]+)*\w*@(\w+\.([a-zA-Z])+){1,4}$/);
+		if(!r.test(document.<portlet:namespace />fm.<portlet:namespace />visitorEmail.value)){
+			alert("<%=LanguageUtil.get(pageContext,
+					"vportal.portlet.vcms.invalidEmail")%>");			
+			document.<portlet:namespace />fm.<portlet:namespace />visitorEmail.value = '';
+			document.<portlet:namespace />fm.<portlet:namespace />visitorEmail.focus();
+			return ;
+		}
+		
+		if (document.<portlet:namespace />fm.<portlet:namespace />title.value == ''){
+			alert("<%=LanguageUtil.get(pageContext,
+					"vportal.portlet.vcms.invalidTitle")%>");
+			document.<portlet:namespace />fm.<portlet:namespace />title.focus();
+			return;
+		}
+		
+		if (document.<portlet:namespace />fm.<portlet:namespace />content.value == ''){
+			alert("<%=LanguageUtil.get(pageContext,
+					"vportal.portlet.vcms.invalidContent")%>
+	");
+			document.<portlet:namespace />fm.<portlet:namespace />content
+					.focus();
+			return;
+		}
+		myform.submit();
+		flag = true;
+	}
+
+	function <portlet:namespace/>ResetDefault() {
+
+		document.<portlet:namespace />fm.<portlet:namespace />visitorName.value = '';
+		document.<portlet:namespace />fm.<portlet:namespace/>visitorEmail.value = '';
+		document.<portlet:namespace />fm.<portlet:namespace/>title.value = '';
+		document.<portlet:namespace />fm.<portlet:namespace/>content.value = '';
+	}
+
+	function gf(p_el) {
+	}
+	function lf(p_el) {
+	}
+	setTypingMode(4);
+</script>
+<%@ include file="/html/portlet/vcmsviewcontent/javascript.jsp"%>

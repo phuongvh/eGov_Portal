@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.vportal.portlet.vadvman.model.AdvItem" />
+	<import class="com.vportal.portlet.vadvman.model.AdvType" />
+	<class name="com.vportal.portlet.vadvman.model.impl.AdvItemImpl" table="AdvItem">
+		<cache usage="read-write" />
+		<id name="itemId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="expriedDate" type="org.hibernate.type.TimestampType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="isTargetBlank" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="txtMouseOver" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="folderId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="typeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.vportal.portlet.vadvman.model.impl.AdvTypeImpl" table="AdvType">
+		<cache usage="read-write" />
+		<id name="typeId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

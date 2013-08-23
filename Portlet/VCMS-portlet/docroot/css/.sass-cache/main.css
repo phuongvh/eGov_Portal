@@ -1,0 +1,197 @@
+/*
+style 6 phu tho 1 anh chinh va 3 anh phu duoi la cac tin bai lien quan
+*/
+.portlet-border.vcmsviewconent-portlet.default .style06 {
+  width: 100%;
+  height: 300px; }
+
+/*
+*/
+/*
+style 5 phu tho 2 cot hien thi toan bo la co anh
+ 
+*/
+.portlet-border.vcmsviewconent-portlet.default .style05 {
+  padding: 10px;
+  width: 100%; }
+
+.portlet-border.vcmsviewconent-portlet.default .style05 .col1 {
+  height: auto;
+  float: left;
+  width: 48%; }
+
+.portlet-border.vcmsviewconent-portlet.default .style05 .col2 {
+  height: auto;
+  float: left;
+  width: 48%; }
+
+.portlet-border.vcmsviewconent-portlet.default .style05 .col1 .border-image {
+  width: 100%; }
+
+.portlet-border.vcmsviewconent-portlet.default .style05 .col2 .border-image {
+  width: 100%; }
+
+.portlet-border.vcmsviewconent-portlet.default .style05 .col1 .text-link {
+  float: left;
+  width: 50%; }
+
+.portlet-border.vcmsviewconent-portlet.default .style05 .col2 .text-link {
+  float: left;
+  width: 50%; }
+
+.portlet-border.vcmsviewconent-portlet.default .style05 .col1 .border-image .image {
+  padding-right: 5px;
+  width: 80px; }
+
+.portlet-border.vcmsviewconent-portlet.default .style05 .col2 .border-image .image {
+  width: 80px; }
+
+.portlet-border.vcmsviewconent-portlet.default .style05 {
+  width: 100%; }
+
+/*end style 5*/
+.vcmsviewcontent-default-style6 {
+  width: 100%; }
+
+.vcmsviewcontent-default-style6 a img {
+  width: 300px;
+  height: auto; }
+
+/**/
+.tdHeightDefault {
+  height: 30px; }
+
+/*
+
+*/
+.right_default_category_porlet ul li a img {
+  border: 2px solid #CCCCCC;
+  float: left;
+  margin-right: 10px; }
+
+.right_default_category_porlet ul li {
+  float: left;
+  margin-bottom: 10px; }
+
+.right_default_category_porlet ul li a img:hover {
+  border: 2px solid #006699; }
+
+.right_default_category_porlet ul li a {
+  color: #2E6A9F;
+  font-weight: bold;
+  line-height: 18px; }
+
+.right_default_category_porlet ul li a:hover {
+  color: #FF0000; }
+
+.news_category {
+  border-bottom: 1px solid #9D9FA1;
+  padding-bottom: 25px;
+  min-height: 140px; }
+
+.left_default_category_porlet {
+  width: 68%;
+  float: left;
+  border-right: 1px solid #9D9FA1;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  margin-left: 5px;
+  padding-top: 15px; }
+
+.right_default_category_porlet {
+  text-align: left;
+  text-align: justify;
+  float: left;
+  width: 28%;
+  padding-top: 15px; }
+
+.default_category_porlet {
+  margin-top: 15px; }
+
+.image_news_category {
+  float: left;
+  height: 140px;
+  margin-right: 10px;
+  width: 210px; }
+
+/**/
+.title_porlet ul.menu {
+  height: 30px;
+  background: url(images/bg-menu.png) repeat-x left center; }
+
+.title_porlet ul.menu li {
+  line-height: 30px;
+  float: left;
+  text-transform: uppercase;
+  padding: 0px 10px 0px 0px;
+  border-right: 1px solid #fff; }
+
+.title_porlet ul.menu li:last-child {
+  border-right: none; }
+
+.title_porlet ul.menu li a {
+  color: #fff; }
+
+.title_porlet ul.menu li a:hover {
+  color: #000; }
+
+#main_news {
+  width: 100%; }
+
+#slide {
+  float: left;
+  width: 63%;
+  height: 266px;
+  margin-right: 10px; }
+
+#list-news {
+  width: 35%;
+  background: #f1f0f0;
+  border: 1px solid #ccc;
+  float: left; }
+
+.text-list-news {
+  line-height: 16px;
+  margin: 5px 10px 5px 10px; }
+
+.text-list-news a {
+  color: blue; }
+
+/**---------Tin noi bat------------------*/
+/*.bg_title_porlet{
+	background:url(/VCMS-portlet/html/portlet/vcmsviewcontent/images/bg-menu.png) repeat-x left center;
+	height:30px;
+}*/
+/* .title_porlet{
+	text-align:left;
+	color:#fff;
+	font-family: Arial;
+	text-transform: uppercase;
+	line-height:30px;
+	margin-left:25px;
+} */
+.li_link_portlet {
+  background: url(../images/phutho/bg-new.png) no-repeat left 5px;
+  margin: 10px 0px 10px 10px; }
+
+body {
+  background-color: #EEF0F2;
+  background: url(../images/phutho/bg.png) repeat;
+  color: #333;
+  font: 12px/1.25 Arial, Helvetica, Verdana, sans-serif; }
+
+ul, ol {
+  list-style: none; }
+
+a {
+  color: #000;
+  text-decoration: none;
+  line-height: 16px; }
+
+a:hover, a:focus {
+  /*color: #06C;*/
+  color: orange;
+  text-decoration: underline; }
+
+/*VCMS menu*/
+

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.vportal.portlet.vsitemap.model.VsmBranch">
+		<field name="branchId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createdDate" type="Date" />
+		<field name="createdByUser" type="long" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedByUser" type="long" />
+		<field name="parentId" type="long" />
+		<field name="name" type="String">
+			<hint name="max-length">250</hint>
+		</field>
+		<field name="description" type="String">
+			<hint name="max-length">550</hint>
+		</field>
+		<field name="anchored" type="boolean" />
+		<field name="href" type="String" />
+		<field name="language" type="String" />
+		<field name="hasIcon" type="boolean" />
+		<field name="icon" type="String" />
+		<field name="position" type="long" />
+	</model>
+</model-hints>

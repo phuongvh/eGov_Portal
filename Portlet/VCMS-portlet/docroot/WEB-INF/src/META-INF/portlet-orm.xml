@@ -1,0 +1,404 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsArticleModelImpl">
+		<attributes>
+			<id name="articleId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="createdByUser" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedByUser" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="approvedByUser" />
+			<basic name="approvedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="publishedByUser" />
+			<basic name="publishedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="status" />
+			<basic name="title" />
+			<basic name="lead" />
+			<basic name="content" />
+			<basic name="hasImage" />
+			<basic name="imageTitle" />
+			<basic name="image" />
+			<basic name="author" />
+			<basic name="source" />
+			<basic name="language" />
+			<basic name="userHit" />
+			<basic name="discussible" />
+			<basic name="hasAttachment" />
+			<basic name="hasPoll" />
+			<basic name="pollId" />
+			<basic name="effectiveDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="expireDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="sticky" />
+			<basic name="stickyNeverExpired" />
+			<basic name="stickyExpireDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsArticleStatusModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="statusId" />
+			<basic name="articleId" />
+			<basic name="categoryId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="active">
+				<column name="ACTIVE_" />
+			</basic>
+			<basic name="articleVersionId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsArticleTypeModelImpl">
+		<id-class class="com.vportal.portlet.vcms.service.persistence.VcmsArticleTypePK" />
+		<attributes>
+			<id name="typeId" />
+			<id name="articleId" />
+			<basic name="position" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsArticleVersionModelImpl">
+		<attributes>
+			<id name="articleVersionId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="articleId" />
+			<basic name="createdByUser" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="typeIds" />
+			<basic name="status" />
+			<basic name="versionName" />
+			<basic name="title" />
+			<basic name="lead" />
+			<basic name="content" />
+			<basic name="hasImage" />
+			<basic name="imageTitle" />
+			<basic name="image" />
+			<basic name="language" />
+			<basic name="userHit" />
+			<basic name="author" />
+			<basic name="source" />
+			<basic name="discussible" />
+			<basic name="hasAttachment" />
+			<basic name="hasPoll" />
+			<basic name="pollId" />
+			<basic name="effectiveDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="expireDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="sticky" />
+			<basic name="stickyNeverExpired" />
+			<basic name="stickyExpireDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsAttachedMessageModelImpl">
+		<attributes>
+			<id name="messageId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="articleId" />
+			<basic name="content" />
+			<basic name="readMessage" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsCARelationModelImpl">
+		<id-class class="com.vportal.portlet.vcms.service.persistence.VcmsCARelationPK" />
+		<attributes>
+			<id name="categoryId" />
+			<id name="articleId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="status" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsCategoryModelImpl">
+		<attributes>
+			<id name="categoryId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedByUser" />
+			<basic name="portionId" />
+			<basic name="parentId" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="anchored" />
+			<basic name="href" />
+			<basic name="language" />
+			<basic name="hasImage" />
+			<basic name="image" />
+			<basic name="position" />
+			<basic name="userHit" />
+			<basic name="rssable" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsDiscussionModelImpl">
+		<attributes>
+			<id name="discussionId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="visitorName" />
+			<basic name="visitorEmail" />
+			<basic name="visitorPhone" />
+			<basic name="postedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="approved" />
+			<basic name="approvedByUser" />
+			<basic name="approvedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="articleId" />
+			<basic name="title" />
+			<basic name="content" />
+			<basic name="language" />
+			<basic name="hasAttachment" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsLoggerModelImpl">
+		<attributes>
+			<id name="loggerId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="content" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsPARelationModelImpl">
+		<id-class class="com.vportal.portlet.vcms.service.persistence.VcmsPARelationPK" />
+		<attributes>
+			<id name="portionId" />
+			<id name="articleId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsPortionModelImpl">
+		<attributes>
+			<id name="portionId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedByUser" />
+			<basic name="code">
+				<column name="CODE_" />
+			</basic>
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="categorizable" />
+			<basic name="language" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsStatusModelImpl">
+		<attributes>
+			<id name="statusId" />
+			<basic name="companyId" />
+			<basic name="groupId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedByUser" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="cssClass" />
+			<basic name="textColor" />
+			<basic name="position" />
+			<basic name="isPrimary" />
+			<basic name="active">
+				<column name="ACTIVE_" />
+			</basic>
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsTARelationModelImpl">
+		<id-class class="com.vportal.portlet.vcms.service.persistence.VcmsTARelationPK" />
+		<attributes>
+			<id name="threadId" />
+			<id name="articleId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsThreadModelImpl">
+		<attributes>
+			<id name="threadId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedByUser" />
+			<basic name="title" />
+			<basic name="description" />
+			<basic name="hasImage" />
+			<basic name="image" />
+			<basic name="language" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcms.model.impl.VcmsTypeModelImpl">
+		<attributes>
+			<id name="typeId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedByUser" />
+			<basic name="code">
+				<column name="CODE_" />
+			</basic>
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="language" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsArticleImpl" name="VcmsArticle">
+		<table name="VcmsArticle" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsArticleStatusImpl" name="VcmsArticleStatus">
+		<table name="VcmsArticleStatus" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsArticleTypeImpl" name="VcmsArticleType">
+		<table name="VcmsArticleType" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsArticleVersionImpl" name="VcmsArticleVersion">
+		<table name="VcmsArticleVersion" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsAttachedMessageImpl" name="VcmsAttachedMessage">
+		<table name="VcmsAttachedMessage" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsCARelationImpl" name="VcmsCARelation">
+		<table name="VcmsCARelation" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsCategoryImpl" name="VcmsCategory">
+		<table name="VcmsCategory" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsDiscussionImpl" name="VcmsDiscussion">
+		<table name="VcmsDiscussion" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsLoggerImpl" name="VcmsLogger">
+		<table name="VcmsLogger" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsPARelationImpl" name="VcmsPARelation">
+		<table name="VcmsPARelation" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsPortionImpl" name="VcmsPortion">
+		<table name="VcmsPortion" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsStatusImpl" name="VcmsStatus">
+		<table name="VcmsStatus" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsTARelationImpl" name="VcmsTARelation">
+		<table name="VcmsTARelation" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsThreadImpl" name="VcmsThread">
+		<table name="VcmsThread" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcms.model.impl.VcmsTypeImpl" name="VcmsType">
+		<table name="VcmsType" />
+		<attributes />
+	</entity>
+</entity-mappings>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.vportal.portlet.vlinksman.model.LinkGroup" />
+	<import class="com.vportal.portlet.vlinksman.model.Links" />
+	<class name="com.vportal.portlet.vlinksman.model.impl.LinkGroupImpl" table="LinkGroup">
+		<cache usage="read-write" />
+		<id name="linkgroupId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.vportal.portlet.vlinksman.model.impl.LinksImpl" table="Links">
+		<cache usage="read-write" />
+		<id name="linkId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="linkgroupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="position" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="hasImage" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="isTargetBlank" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="imageName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="folderId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>

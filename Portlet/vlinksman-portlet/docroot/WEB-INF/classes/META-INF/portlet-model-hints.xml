@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.vportal.portlet.vlinksman.model.LinkGroup">
+		<field name="linkgroupId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createdDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+		<field name="description" type="String">
+			<hint name="max-length">250</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vlinksman.model.Links">
+		<field name="linkId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createdDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="linkgroupId" type="long" />
+		<field name="name" type="String" />
+		<field name="description" type="String">
+			<hint name="max-length">250</hint>
+		</field>
+		<field name="url" type="String">
+			<hint name="max-length">250</hint>
+		</field>
+		<field name="position" type="long" />
+		<field name="hasImage" type="boolean" />
+		<field name="isTargetBlank" type="boolean" />
+		<field name="imageName" type="String" />
+		<field name="folderId" type="long" />
+	</model>
+</model-hints>

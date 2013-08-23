@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.vportal.portlet.vadvman.model.AdvItem">
+		<field name="itemId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="expriedDate" type="Date" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="name" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="description" type="String">
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="url" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="isTargetBlank" type="boolean" />
+		<field name="txtMouseOver" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="folderId" type="long" />
+		<field name="status" type="boolean" />
+		<field name="typeId" type="long" />
+	</model>
+	<model name="com.vportal.portlet.vadvman.model.AdvType">
+		<field name="typeId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="name" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="description" type="String">
+			<hint name="max-length">1000</hint>
+		</field>
+	</model>
+</model-hints>

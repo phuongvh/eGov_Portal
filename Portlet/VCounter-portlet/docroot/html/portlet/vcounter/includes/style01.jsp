@@ -1,0 +1,41 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
+<%@page import="com.vportal.portal.service.AccessCounterServiceUtil"%>
+
+<%
+	//int accessCounter = PortalUtilExt.getTotalVcmsCount(String.valueOf(companyId));
+	System.out.println("CompanyId: " + companyId);
+	int accessCounter = AccessCounterServiceUtil.getAccess(companyId);
+	
+%>
+<div class="wd-boxs">
+	<h2 class="wd-tlh1-1 wd-alignment"><%=LanguageUtil.get(pageContext, "Total")%></h2>
+	<%
+	int total = 8;
+	int number = 0;
+	if (accessCounter<0) accessCounter=-accessCounter; // maybe you'd like to support negatives
+	List<Integer> digits = new LinkedList<Integer>();
+
+	while (accessCounter>0) {
+	    digits.add(0, accessCounter%10);
+	    accessCounter=accessCounter/10;
+	}
+	
+	if(digits.size() < 8) number = 8 - digits.size();
+	
+	%>
+	<div class="wd-visited">
+		<ul class="wd-access">
+	<%for(int j = 0; j<number;j++){ %>
+		<li><span>0</span></li>
+	<%} %>
+	<%for (int i = 0; i< digits.size(); i++){ %>
+			<li><span><%=digits.get(i) %></span></li>
+	<%} %>
+		</ul>
+	</div>
+</div>
+				
+						
+			

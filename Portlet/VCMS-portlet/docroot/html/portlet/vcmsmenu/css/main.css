@@ -1,0 +1,111 @@
+.menu_left  {
+	border:1px solid #A6E9FA;
+	color:#474747;
+	font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	line-height:16px;
+	text-decoration:none;
+	background-image: url(/shtml/portlet/vcmsmenu/images/i_09.gif);
+}
+.menu_left a:link,.menu_left a:visited, .menu_left a:active  {
+	COLOR: #474747; TEXT-DECORATION: none}
+	
+.menu_left a:hover {
+	COLOR: #ff9900; TEXT-DECORATION: underline}
+
+.text_none {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+	line-height: 16px;
+}
+.menuleft  {
+	border:1px solid #A6E9FA;
+	color:#474747;
+	font-family:Tahoma,Verdana,Arial,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	line-height:16px;
+	text-decoration:none;
+	background-image: url(/html/portlet/vcmsmenu/images/i_09.gif);
+}
+.menuleft a:link,.menu_left a:visited, .menu_left a:active  {
+	COLOR: #474747; TEXT-DECORATION: none}
+	
+.menuleft a:hover {
+	COLOR: #ff9900; TEXT-DECORATION: underline}
+
+/* Treeview CSS - Style5 */
+.treeview, .treeview ul { 
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.treeview ul {
+	background-color: white;
+}
+
+.treeview .hitarea {
+	background: url(/VCMS-portlet/html/portlet/vcmsmenu/images/style5/link_huyen_thi.png) no-repeat 5px 50%;
+	width: 25px;
+	height: 30px;
+	float: left;
+	cursor: pointer;
+}
+/* fix for IE6 */
+* html .hitarea {
+	display: inline;
+	float:none;
+}
+
+.treeview .collapsable-hitarea {
+	background: url(/VCMS-portlet/html/portlet/vcmsmenu/images/style5/link_huyen_thi_hover.png) no-repeat 5px 50%;
+}
+
+.treeview li { 
+	margin: 0;
+	border-bottom: 1px solid #fff;
+	background:url(/VCMS-portlet/html/portlet/vcmsmenu/images/style5/bg-menu.png) repeat-x left top;
+}
+
+.treeview li a { 
+	background: url(/VCMS-portlet/html/portlet/vcmsmenu/images/style5/link_huyen_thi.png) no-repeat 5px 50%;
+	padding-left: 25px;
+	line-height: 30px;
+	color: #fff;
+	text-transform:uppercase;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.treeview li:hover{	
+	background: none repeat scroll 0 0 #2972BF;
+}
+
+.treeview li.collapsable a, .treeview li.expandable a {
+	padding-left: 0; 
+	background: none;
+}
+
+.treeview a.selected {
+	background-color: #eee;
+}
+
+.treeview li.sub_menu{
+	background:#72bdff;
+	padding-left: 25px;
+	border-top:1px solid #fff;
+	border-bottom: none;
+	height:26px;
+}
+.treeview li.sub_menu:hover{
+	background:#4a8bc3;
+}
+.treeview li.sub_menu a{
+	color:#fff;
+	text-transform: normal;
+}

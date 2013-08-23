@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
+	
+	
+	<portlet>
+		<portlet-name>VContact</portlet-name>
+		<display-name>Quản trị liên hệ</display-name>
+		<portlet-class>
+			com.vportal.portlet.vcontact.action.ViewAction
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/portlet/vcontact/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<resource-bundle>content/Language</resource-bundle>
+		<portlet-info>
+			<title>Quản trị liên hệ</title>
+			<short-title>Quản trị liên hệ</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>VContactview</portlet-name>
+		<display-name>Liên hệ</display-name>
+		<portlet-class>
+			com.vportal.portlet.vcontactview.ViewAction
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/portlet/vcontactview/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>edit-jsp</name>
+			<value>/html/portlet/vcontactview/edit.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+		</supports>
+		<resource-bundle>content/Language</resource-bundle>
+		<portlet-info>
+			<title>Liên hệ</title>
+			<short-title>Liên hệ</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+</portlet-app>

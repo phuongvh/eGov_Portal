@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.vportal.portlet.polls">
+	<author>DucNN</author>
+	<namespace>poll</namespace>
+
+	<entity name="PollsQuestionExt" local-service="false"
+		remote-service="true" >
+		<reference package-path="com.liferay.portlet.polls" entity="PollsQuestion" />
+	</entity>
+
+	<!-- Application exceptions -->
+	<exceptions></exceptions>
+</service-builder>

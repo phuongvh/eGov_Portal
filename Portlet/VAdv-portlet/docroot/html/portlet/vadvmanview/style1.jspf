@@ -1,0 +1,78 @@
+<%--/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */ --%>
+<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
+<%@page import="com.liferay.portal.kernel.util.HttpUtil"%>
+		<c:if test="<%= validImageExtension%>">
+			<%-- Hien thi voi kich thuoc mac dinh --%>		
+			<%	if (item.getExpriedDate()!=null && item.getExpriedDate().before(new Date())){	%>
+			<div style="align:center;">
+				<b>Qu&#7843;ng cáo này &#273;ã h&#7871;t h&#7841;n hi&#7875;n th&#7883;</b>
+			</div>	
+			<% } else {%>
+			<%-- Hien thi voi kich thuoc mac dinh --%> 		
+			<c:if test="<%= _defaultSize%>">	
+				<div class="wd-list-images">		
+					<%if (Validator.isNotNull(item.getUrl())){%>
+					<a href="<%= item.getUrl()%>" target="<%= (item.getIsTargetBlank())? "_blank":"_self"%>" />		
+						<img src="<%=themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(item.getName(), true)%>" 
+							title="<%= item.getTxtMouseOver()%>"<%--  height="<%=hf %>" width="<%=wf %>" --%> />
+					</a>
+					<%}else{%>
+					<a href="#">
+						<img src="<%=themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(item.getName(), true)%>" 
+							title="<%= item.getTxtMouseOver()%>" <%-- height="<%=hf %>" width="<%=wf %>" --%>/>
+					</a>		
+					<%}%>	
+				</div>
+			</c:if>
+			<%-- Hien thi voi kich thuoc tuy chon --%>
+			<c:if test="<%= !_defaultSize%>">
+				<div class="wd-list-images">		
+					<%if (Validator.isNotNull(item.getUrl())){%>
+					<a href="<%= item.getUrl()%>" target="<%= (item.getIsTargetBlank())? "_blank":"_self"%>" />		
+						<img src="<%=themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(item.getName(), true)%>" 
+							title="<%= item.getTxtMouseOver()%>" width="<%=w%>" height="<%=h%>"/>
+					</a>
+					<%} else {%>
+					<a href="#">	
+						<img src="<%=themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(item.getName(), true)%>" 
+							title="<%= item.getTxtMouseOver()%>" width="<%=w%>" height="<%=h%>"/>
+					</a>		
+					<%}%>	
+				</div>
+			</c:if>	
+			<%}%>
+		</c:if>
+	
+		<c:if test="<%= !validImageExtension%>">			
+			<%	if (item.getExpriedDate()!=null && item.getExpriedDate().before(new Date())){	%>
+			<div style="align:center;">
+				<b>Qu&#7843;ng cáo này &#273;ã h&#7871;t h&#7841;n hi&#7875;n th&#7883;</b>
+			</div>	
+			<% } else if((item.getExpriedDate()!=null && item.getExpriedDate().before(new Date()))==false && Validator.isNotNull(item.getName())) {				
+			%>
+			<object width="<%= w%>" height="<%= h%>" >
+		   		<param name="allowScriptAccess" value="sameDomain" />
+		   		<param name="movie" value="<%=themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(item.getName(), true)%>" />
+		  		<param name="quality" value="high" />
+		     	<embed src="<%=themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(item.getName(), true)%>" quality="High"  width="<%= w%>" height="<%= h%>" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+		  	</object>
+		  	<%
+			}else if((item.getExpriedDate()!=null && item.getExpriedDate().before(new Date()))==false && Validator.isNull(item.getName())){
+		  	%>		  	
+				<a href="<%= item.getUrl()%>"><%=item.getDescription() %></a>
+			<%				
+			}
+			%>
+		</c:if>	

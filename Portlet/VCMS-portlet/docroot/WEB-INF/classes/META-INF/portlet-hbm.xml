@@ -1,0 +1,271 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.vportal.portlet.vcms.model.VcmsArticle" />
+	<import class="com.vportal.portlet.vcms.model.VcmsArticleStatus" />
+	<import class="com.vportal.portlet.vcms.model.VcmsArticleType" />
+	<import class="com.vportal.portlet.vcms.model.VcmsArticleVersion" />
+	<import class="com.vportal.portlet.vcms.model.VcmsAttachedMessage" />
+	<import class="com.vportal.portlet.vcms.model.VcmsCARelation" />
+	<import class="com.vportal.portlet.vcms.model.VcmsCategory" />
+	<import class="com.vportal.portlet.vcms.model.VcmsDiscussion" />
+	<import class="com.vportal.portlet.vcms.model.VcmsLogger" />
+	<import class="com.vportal.portlet.vcms.model.VcmsPARelation" />
+	<import class="com.vportal.portlet.vcms.model.VcmsPortion" />
+	<import class="com.vportal.portlet.vcms.model.VcmsStatus" />
+	<import class="com.vportal.portlet.vcms.model.VcmsTARelation" />
+	<import class="com.vportal.portlet.vcms.model.VcmsThread" />
+	<import class="com.vportal.portlet.vcms.model.VcmsType" />
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsArticleImpl" table="VcmsArticle">
+		<cache usage="read-write" />
+		<id name="articleId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="approvedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="approvedDate" type="org.hibernate.type.TimestampType" />
+		<property name="publishedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="publishedDate" type="org.hibernate.type.TimestampType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lead" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hasImage" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="imageTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="image" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="source" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userHit" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="discussible" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="hasAttachment" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="hasPoll" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="pollId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="effectiveDate" type="org.hibernate.type.TimestampType" />
+		<property name="expireDate" type="org.hibernate.type.TimestampType" />
+		<property name="sticky" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="stickyNeverExpired" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="stickyExpireDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsArticleStatusImpl" table="VcmsArticleStatus">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="statusId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="categoryId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
+		<property name="articleVersionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsArticleTypeImpl" table="VcmsArticleType">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.vportal.portlet.vcms.service.persistence.VcmsArticleTypePK">
+			<key-property name="typeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		</composite-id>
+		<property name="position" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsArticleVersionImpl" table="VcmsArticleVersion">
+		<cache usage="read-write" />
+		<id name="articleVersionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="typeIds" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="versionName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lead" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hasImage" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="imageTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="image" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userHit" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="source" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="discussible" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="hasAttachment" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="hasPoll" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="pollId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="effectiveDate" type="org.hibernate.type.TimestampType" />
+		<property name="expireDate" type="org.hibernate.type.TimestampType" />
+		<property name="sticky" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="stickyNeverExpired" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="stickyExpireDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsAttachedMessageImpl" table="VcmsAttachedMessage">
+		<cache usage="read-write" />
+		<id name="messageId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="readMessage" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsCARelationImpl" table="VcmsCARelation">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.vportal.portlet.vcms.service.persistence.VcmsCARelationPK">
+			<key-property name="categoryId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+			<key-property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		</composite-id>
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsCategoryImpl" table="VcmsCategory">
+		<cache usage="read-write" />
+		<id name="categoryId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="portionId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="parentId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="anchored" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="href" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hasImage" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="image" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="position" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userHit" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="rssable" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsDiscussionImpl" table="VcmsDiscussion">
+		<cache usage="read-write" />
+		<id name="discussionId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="visitorName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="visitorEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="visitorPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="postedDate" type="org.hibernate.type.TimestampType" />
+		<property name="approved" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="approvedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="approvedDate" type="org.hibernate.type.TimestampType" />
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hasAttachment" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsLoggerImpl" table="VcmsLogger">
+		<cache usage="read-write" />
+		<id name="loggerId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsPARelationImpl" table="VcmsPARelation">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.vportal.portlet.vcms.service.persistence.VcmsPARelationPK">
+			<key-property name="portionId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+			<key-property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		</composite-id>
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsPortionImpl" table="VcmsPortion">
+		<cache usage="read-write" />
+		<id name="portionId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="code" type="com.liferay.portal.dao.orm.hibernate.StringType" column="code_" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="categorizable" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsStatusImpl" table="VcmsStatus">
+		<cache usage="read-write" />
+		<id name="statusId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="cssClass" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="textColor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="position" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="isPrimary" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsTARelationImpl" table="VcmsTARelation">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.vportal.portlet.vcms.service.persistence.VcmsTARelationPK">
+			<key-property name="threadId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+			<key-property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		</composite-id>
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsThreadImpl" table="VcmsThread">
+		<cache usage="read-write" />
+		<id name="threadId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hasImage" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="image" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.vportal.portlet.vcms.model.impl.VcmsTypeImpl" table="VcmsType">
+		<cache usage="read-write" />
+		<id name="typeId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="code" type="com.liferay.portal.dao.orm.hibernate.StringType" column="code_" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

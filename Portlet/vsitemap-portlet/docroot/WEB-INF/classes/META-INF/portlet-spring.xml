@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.vportal.portlet.vsitemap.service.VsmBranchLocalService" class="com.vportal.portlet.vsitemap.service.impl.VsmBranchLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vsitemap.service.VsmBranchLocalServiceUtil" class="com.vportal.portlet.vsitemap.service.VsmBranchLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vsitemap.service.VsmBranchLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vsitemap.service.VsmBranchService" class="com.vportal.portlet.vsitemap.service.impl.VsmBranchServiceImpl" />
+	<bean id="com.vportal.portlet.vsitemap.service.VsmBranchServiceUtil" class="com.vportal.portlet.vsitemap.service.VsmBranchServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vsitemap.service.VsmBranchService" />
+	</bean>
+	<bean id="com.vportal.portlet.vsitemap.service.persistence.VsmBranchPersistence" class="com.vportal.portlet.vsitemap.service.persistence.VsmBranchPersistenceImpl" parent="basePersistence" />
+</beans>

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+
+<resource-action-mapping>
+    <portlet-resource>
+        <portlet-name>vimagegallery</portlet-name>
+        <supports>            
+            <!-- Quyen cau hinh va truy cap vao portlet -->            
+            <action-key>CONFIGURATION</action-key>                   
+            <action-key>VIEW</action-key>
+                        
+            <!-- Quyen them cac resource -->
+            <action-key>ADD_CATEGORY_</action-key>
+            <action-key>ADD_IMAGE_</action-key>
+            <action-key>ADD_FOLDER_</action-key>
+                            
+            <!-- Quyen them cac tabs -->
+            <action-key>VIEW_CATEGORY_TAB</action-key>
+            <action-key>VIEW_IMAGE_TAB</action-key>
+        </supports>
+        
+        <community-defaults>
+            <action-key>VIEW</action-key>
+        </community-defaults>
+        
+        <guest-defaults>        	
+        </guest-defaults>
+        
+        <guest-unsupported>
+	        <action-key>CONFIGURATION</action-key>                  
+            <action-key>VIEW</action-key>
+        	<action-key>ADD_CATEGORY_</action-key>
+        	<action-key>ADD_IMAGE_</action-key>        	
+            <action-key>VIEW_CATEGORY_TAB</action-key>
+            <action-key>VIEW_IMAGE_TAB</action-key>
+        </guest-unsupported>        
+    </portlet-resource>
+    
+    <model-resource>
+        <model-name>com.vportal.portlet.vimagegallery.model.TFCategory</model-name>
+        <!-- Dinh nghia quyen cho Model TFCategory-->
+        <portlet-ref>
+            <portlet-name>vimagegallery</portlet-name>
+        </portlet-ref>
+        
+        <supports>        	        	
+			<action-key>ADD_SUBCATEGORY_</action-key>
+            <action-key>DELETE</action-key>            
+            <action-key>PERMISSIONS</action-key>
+            <action-key>UPDATE</action-key>  
+            <action-key>ADD_FOLDER_</action-key>     
+        </supports>
+        
+        <community-defaults>        	
+            <action-key>VIEW</action-key>
+        </community-defaults>
+        
+        <guest-defaults>
+        </guest-defaults>
+        
+        <guest-unsupported>
+     		<action-key>ADD_SUB_CATEGORY_</action-key>
+            <action-key>DELETE</action-key>            
+            <action-key>PERMISSIONS</action-key>
+            <action-key>UPDATE</action-key>     
+        </guest-unsupported>
+        
+    </model-resource>
+    
+    <model-resource>
+        <model-name>com.vportal.portlet.vimagegallery.model.TFImage</model-name>
+        <!-- Dinh nghia quyen cho Model TFImage-->
+        <portlet-ref>
+            <portlet-name>vimagegallery</portlet-name>
+        </portlet-ref>
+        
+        <supports>
+        	<action-key>ADD_IMAGE_</action-key>        	        
+            <action-key>DELETE</action-key>
+            <action-key>PERMISSIONS</action-key>
+            <action-key>UPDATE</action-key>
+        </supports>
+        
+        <community-defaults>
+        </community-defaults>
+        
+       	<guest-defaults>
+        </guest-defaults>
+        
+        <guest-unsupported>
+        	<action-key>ADD_IMAGE_</action-key>      		        
+            <action-key>DELETE</action-key>
+            <action-key>PERMISSIONS</action-key>
+            <action-key>UPDATE</action-key>
+        </guest-unsupported>
+        
+    </model-resource>    
+</resource-action-mapping>

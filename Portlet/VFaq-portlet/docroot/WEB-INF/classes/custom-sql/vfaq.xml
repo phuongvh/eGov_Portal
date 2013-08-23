@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQQuestionFinder.findByCategoryId">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				FAQQuestion
+			INNER JOIN FAQCategoryQuestion
+				ON (FAQQuestion.Id_ = FAQCategoryQuestion.questionId)	
+			WHERE
+				(FAQCategoryQuestion.categoryId = ?) AND
+				(FAQQuestion.groupId = ?) AND
+				(FAQQuestion.language = ?)	
+			ORDER BY
+				FAQQuestion.sentDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQQuestionFinder.findByG_Q_A">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				FAQQuestion
+			WHERE
+			(FAQQuestion.groupId = ?) AND
+			(FAQQuestion.language = ?) AND
+			(FAQQuestion.approved = ?)	
+			ORDER BY
+				FAQQuestion.sentDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQQuestionFinder.findByC_S">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				FAQQuestion
+			INNER JOIN FAQCategoryQuestion
+				ON (FAQQuestion.Id_ = FAQCategoryQuestion.questionId)	
+			WHERE				
+				(FAQQuestion.groupId = ?) AND
+				(FAQQuestion.language = ?) AND
+				(FAQCategoryQuestion.categoryId = ?) AND
+				(LIKE LOWER(FAQQuestion.title) = LIKE LOWER(?)) AND
+				(FAQQuestion.approved = ?)	
+			ORDER BY
+				FAQQuestion.sentDate DESC
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQQuestionFinder.countByC_S">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				FAQQuestion
+			INNER JOIN FAQCategoryQuestion
+				ON (FAQQuestion.Id_ = FAQCategoryQuestion.questionId)	
+			WHERE
+				(FAQQuestion.groupId = ?) AND
+				(FAQQuestion.language = ?) AND
+				(FAQCategoryQuestion.categoryId = ?) AND
+				(LIKE LOWER(FAQQuestion.title) = LIKE LOWER(?)) AND
+				(FAQQuestion.approved = ?)	
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQQuestionFinder.findByParam">
+		<![CDATA[
+			SELECT
+				FAQQuestion.*
+			FROM
+				FAQQuestion		
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQQuestionFinder.countByParam">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				FAQQuestion		
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQCommentFinder.findByGroupId">
+		<![CDATA[
+			SELECT 
+			   FAQComment.*
+			FROM 
+			    FAQComment
+			INNER JOIN FAQQuestion
+			INNER JOIN FAQAnswer
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)
+				ON (FAQAnswer.Id_ = FAQComment.answerId)
+			WHERE
+				(FAQQuestion.groupId = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQCommentFinder.countByGroupId">
+		<![CDATA[
+			SELECT 
+			   COUNT(*) as total
+			FROM 
+			    FAQComment
+			INNER JOIN FAQQuestion
+			INNER JOIN FAQAnswer
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)
+				ON (FAQAnswer.Id_ = FAQComment.answerId)
+			WHERE
+				(FAQQuestion.groupId = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinder.findByGroupId">
+		<![CDATA[
+			SELECT 
+			    *
+			FROM 
+			    FAQAnswer
+			INNER JOIN FAQQuestion
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)
+			WHERE
+				(FAQQuestion.groupId = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinder.countByGroupId">
+		<![CDATA[
+			SELECT 
+			    COUNT(*) as total
+			FROM 
+			    FAQAnswer
+			INNER JOIN FAQQuestion
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)
+			WHERE
+				(FAQQuestion.groupId = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinder.findByG_L">
+		<![CDATA[
+			SELECT 
+			    *
+			FROM 
+			    FAQAnswer
+			INNER JOIN FAQQuestion
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)
+			WHERE
+				(FAQQuestion.groupId = ?) AND
+			    (FAQAnswer.language = ?)
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinder.findByG_L_S">
+		<![CDATA[
+			SELECT 
+			    *
+			FROM 
+			    FAQAnswer
+			INNER JOIN FAQQuestion
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)
+			WHERE
+				(FAQQuestion.groupId = ?) AND
+			    (FAQAnswer.language = ?) AND 
+			    (FAQAnswer.approved = ?) 
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinder.countByG_L_S">
+		<![CDATA[
+			SELECT 
+			    COUNT(*) as total
+			FROM 
+			    FAQAnswer
+			INNER JOIN FAQQuestion
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)
+			WHERE
+				(FAQQuestion.groupId = ?) AND
+			    (FAQAnswer.language = ?) AND 
+			    (FAQAnswer.approved = ?)
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinder.findByParam">
+		<![CDATA[
+			SELECT 
+			    FAQAnswer.*
+			FROM 
+			    FAQAnswer
+			INNER JOIN FAQQuestion
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)				
+
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinder.countByParam">
+		<![CDATA[
+			SELECT 
+			    COUNT(*) as total
+			FROM 
+			    FAQAnswer
+			INNER JOIN FAQQuestion
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)
+			
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQAnswerFinder.countByG_L_S_Q">
+		<![CDATA[
+			SELECT 
+			    COUNT(*) as total
+			FROM 
+			    FAQAnswer
+			INNER JOIN FAQQuestion
+				ON (FAQQuestion.Id_ = FAQAnswer.questionId)
+			WHERE
+				(FAQQuestion.groupId = ?) AND
+			    (FAQAnswer.language = ?) AND 
+			    (FAQAnswer.approved = ?) AND
+			    (FAQQuestion.Id_ = ?)
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vfaq.service.persistence.FAQCategoryFinder.countByG_L_C">
+		<![CDATA[
+			SELECT 
+			    COUNT(*) as total
+			FROM 
+			    FAQCategory
+			INNER JOIN FAQCategoryQuestion
+				ON (FAQCategory.Id_ = FAQCategoryQuestion.categoryId)
+			WHERE
+				(FAQCategory.groupId = ?) AND
+			    (FAQCategory.language = ?) AND
+			    (FAQCategoryQuestion.categoryId = ?)
+		]]>
+	</sql>
+</custom-sql>

@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
+	<portlet>
+		<portlet-name>vfaq</portlet-name>
+		<display-name>Quản trị hỏi đáp trực tuyến</display-name>
+		<portlet-class>
+			com.vportal.portlet.vfaq.action.ViewAction
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/portlet/vfaq/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+		</supports>
+		<resource-bundle>content/Language</resource-bundle>
+		<portlet-info>
+			<title>Quản trị hỏi đáp trực tuyến</title>
+			<short-title>Quản trị hỏi đáp trực tuyến</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>vfaqcontent</portlet-name>
+		<display-name>Hiển thị nội dung</display-name>
+		<portlet-class>
+			com.vportal.portlet.vfaqcontent.action.ViewAction
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/portlet/vfaqcontent/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>edit-jsp</name>
+			<value>/html/portlet/vfaqcontent/edit.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+		</supports>
+		<resource-bundle>content/Language</resource-bundle>
+		<portlet-info>
+			<title>Hiển thị nội dung</title>
+			<short-title>Hiển thị nội dung</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>vfaqmenu</portlet-name>
+		<display-name>Hiển thị Menu Nội Dung</display-name>
+		<portlet-class>
+			com.vportal.portlet.vfaqmenu.action.ViewAction
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/portlet/vfaqmenu/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>edit-jsp</name>
+			<value>/html/portlet/vfaqmenu/edit.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+		</supports>
+		<resource-bundle>content/Language</resource-bundle>
+		<portlet-info>
+			<title>Hiển thị Menu Nội Dung</title>
+			<short-title>Hiển thị Menu Nội Dung</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	<portlet>
+		<portlet-name>vfaqsend</portlet-name>
+		<display-name>Gửi câu hỏi</display-name>
+		<portlet-class>
+			com.vportal.portlet.vfaqsend.action.ViewAction
+		</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/html/portlet/vfaqsend/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>edit-jsp</name>
+			<value>/html/portlet/vfaqsend/edit.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+		</supports>
+		<resource-bundle>content/Language</resource-bundle>
+		<portlet-info>
+			<title>Gửi câu hỏi</title>
+			<short-title>Gửi câu hỏi</short-title>
+			<keywords></keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+</portlet-app>

@@ -1,0 +1,123 @@
+<%--
+/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+   	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td height="3"></td>
+		</tr>		        
+		<tr>
+			<td>
+				<%	
+					String arrcategories[] = StringUtil.split(categories,StringPool.COMMA);			
+					String arrcategoriesStyle[] = StringUtil.split(categoriesStyle,StringPool.COMMA);
+				    for(int i=0;i<arrcategories.length;i++){
+						boolean flag = false;
+						String catId = arrcategories[i];
+						VcmsCategory category = (VcmsCategory)VcmsCategoryServiceUtil.getCategory(catId);								
+						String catStyle = arrcategoriesStyle[i];
+						categoryURL.setParameter("categoryId",category.getCategoryId());
+						categoryURL.setParameter("cat_parent",category.getCategoryId());
+						categoryURL.setParameter("cat_style",catStyle);
+						categoryURL.setParameter("styleBorder",styleBorder);
+						for(int j=0;j<i;j++){
+							if(category.getParentId().equals(arrcategories[j])){
+								flag=true;
+							}
+						}
+							if(!flag){	
+				%>		
+					
+					<c:if test="<%= (category.getAnchored() == false)%>">																														
+						<c:if test="<%=category.getCategoryId().equals(extractValue(currentURL,\"cat_parent\",\"0\"))%>">										
+							<table width="100%">
+								<tr class="boder2">
+									<td class="bg_02"><div align="left" class="title1"><%=category.getName()%></div></td>
+								</tr>
+								<tr>
+									<td class="boder2" style="padding-top: 10px; padding-bottom: 12px;">
+											<%	
+											List subcategories = VcmsCategoryServiceUtil.getCategoriesByParent(groupId , category.getCategoryId() , language);
+												for(int count=0; count<subcategories.size(); count++){
+													VcmsCategory subcategory = (VcmsCategory)subcategories.get(count);
+														if(categories.indexOf(subcategory.getCategoryId())>0){
+															categoryURL.setParameter("categoryId",subcategory.getCategoryId());
+															categoryURL.setParameter("cat_parent",subcategory.getParentId());
+															categoryURL.setParameter("cat_style",catStyle);
+															categoryURL.setParameter("styleBorder",styleBorder);																	
+													%>
+														<ul style="margin:0px;">
+															<li style="list-style-type: none; padding:0px;">
+																<div class="text_05">												
+																	<c:if test="<%= (subcategory.getAnchored() == false)%>">
+																		<a href="<%=categoryURL%>"><%=subcategory.getName()%></a>							
+																	</c:if>
+																	<c:if test="<%= (subcategory.getAnchored() == true)%>">
+																		<a href="<%=subcategory.getHref()%>" ><%=subcategory.getName()%></a>						
+																	</c:if>
+																</div>
+															</li>
+														</ul>
+											<%
+													}
+												}
+											%>
+										</td>
+									</tr>
+								</table>											
+							</c:if>
+						</c:if>			
+								
+							<c:if test="<%= (category.getAnchored() == true)%>">
+								<c:if test="<%=category.getCategoryId().equals(extractValue(currentURL,\"cat_parent\",\"0\"))%>">
+									<table>
+									<tr class="boder2">
+										<td class="bg_02"><div align="left" class="title1"><%=category.getName()%></div></td>
+									</tr>
+									<tr>
+										<td class="boder2" style="padding-top: 10px; padding-bottom: 12px;">
+											<ul style="margin: 0 0 0 8px;">	
+											<%	
+												List subcategories = VcmsCategoryServiceUtil.getCategoriesByParent(groupId , category.getCategoryId() , language);
+												for(int count=0; count<subcategories.size(); count++){		
+													VcmsCategory subcategory = (VcmsCategory)subcategories.get(count);
+														if(categories.indexOf(subcategory.getCategoryId())>0){
+															categoryURL.setParameter("categoryId",subcategory.getCategoryId());
+															categoryURL.setParameter("cat_parent",subcategory.getParentId());	
+															categoryURL.setParameter("cat_style",catStyle);
+															categoryURL.setParameter("styleBorder",styleBorder);										
+											%>
+												
+													<li style="list-style-type: none; padding: 0 0 0 8px;">
+														<div class="text_05">
+															<c:if test="<%= (subcategory.getAnchored() == false)%>">
+																<a href="<%=categoryURL%>"><%=subcategory.getName()%></a>							
+															</c:if>
+															<c:if test="<%= (subcategory.getAnchored() == true)%>">
+																<a href="<%=subcategory.getHref()%>" ><%=subcategory.getName()%></a>						
+															</c:if>
+														</div>
+													</li>											
+											<%}}%>	
+											</ul>
+										</td>
+									</tr>
+								</table>	
+							</c:if>									
+						</c:if>
+					<%}}%>
+				</td>
+			</tr>
+			<tr><td height="3"></td></tr>
+	</table>

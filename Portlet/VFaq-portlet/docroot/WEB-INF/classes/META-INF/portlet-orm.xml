@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.vportal.portlet.vfaq.model.impl.FAQAnswerModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="questionid" />
+			<basic name="content" />
+			<basic name="answerOrder" />
+			<basic name="answeredByUser" />
+			<basic name="answeredDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedByUser" />
+			<basic name="language" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="approved" />
+			<basic name="approvedByUser" />
+			<basic name="approvedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="userId" />
+			<basic name="attachName" />
+			<basic name="folderId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vfaq.model.impl.FAQCategoryModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="language" />
+			<basic name="parent" />
+			<basic name="catorder" />
+			<basic name="catlevel" />
+			<basic name="image" />
+			<basic name="createdByUser" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedByUser" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="groupId" />
+			<basic name="userId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vfaq.model.impl.FAQCategoryQuestionModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="questionId" />
+			<basic name="categoryId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vfaq.model.impl.FAQCommentModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="answerid" />
+			<basic name="content" />
+			<basic name="commName" />
+			<basic name="commEmail" />
+			<basic name="approved" />
+			<basic name="approveByUser" />
+			<basic name="approvedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="commDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="userId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vfaq.model.impl.FAQQuestionModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="title" />
+			<basic name="content" />
+			<basic name="language" />
+			<basic name="questionOrder" />
+			<basic name="sentDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="sentByUser" />
+			<basic name="senderEmail" />
+			<basic name="questionType" />
+			<basic name="modifiedByUser" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="hitCount" />
+			<basic name="approved" />
+			<basic name="groupId" />
+			<basic name="userId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.vportal.portlet.vfaq.model.impl.FAQAnswerImpl" name="FAQAnswer">
+		<table name="FAQAnswer" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vfaq.model.impl.FAQCategoryImpl" name="FAQCategory">
+		<table name="FAQCategory" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vfaq.model.impl.FAQCategoryQuestionImpl" name="FAQCategoryQuestion">
+		<table name="FAQCategoryQuestion" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vfaq.model.impl.FAQCommentImpl" name="FAQComment">
+		<table name="FAQComment" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vfaq.model.impl.FAQQuestionImpl" name="FAQQuestion">
+		<table name="FAQQuestion" />
+		<attributes />
+	</entity>
+</entity-mappings>

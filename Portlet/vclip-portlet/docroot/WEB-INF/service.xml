@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+
+<service-builder package-path="com.vportal.portlet.vclip">
+	<author>HOAN</author>
+	<namespace>vclip</namespace>
+	<entity name="ClipType" local-service="true" remote-service="true" table="ClipType">
+		<!-- PK fields -->
+		<column name="id" type="String" primary="true"></column>
+		<!-- Audit fields -->
+		<column name="groupId" type="long"></column>
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="createdDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Other fields -->
+		<column name="title" type="String"></column>
+		<column name="name" type="String"></column>
+		<column name="description" type="String"></column>
+		<column name="active" type="boolean"></column>
+		<column name="language" type="String"></column>
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="createdDate"></order-column>
+		</order>
+		<finder return-type="Collection" name="Language">
+			<finder-column name="language"></finder-column>
+			<finder-column name="active"></finder-column>
+		</finder>
+	</entity>
+	<entity name="Clip" local-service="true" remote-service="true" table="Clip">
+		<!-- PK fields -->
+		<column name="id" type="String" primary="true"></column>
+		<!-- FK fields -->
+		<column name="clipTypeId" type="String"></column>
+		<!-- Audit fields -->
+		<column name="groupId" type="long"></column>
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="createdDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<!-- Other fields -->
+		<column name="url" type="String"></column>
+		<column name="name" type="String"></column>
+		<column name="title" type="String"></column>
+		<column name="image" type="String"></column>
+		<column name="description" type="String"></column>
+		<column name="active" type="boolean"></column>
+		<column name="language" type="String"></column>
+		<column name="hitcount" type="long"></column>
+		<column name="hitcountview" type="long"></column>
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="createdDate"></order-column>
+		</order>
+		<finder return-type="Collection" name="Language">
+			<finder-column name="language"></finder-column>
+			<finder-column name="active"></finder-column>
+		</finder>
+		<finder name="ClipTypeId" return-type="Collection">
+			<finder-column name="clipTypeId"></finder-column>
+		</finder>
+		<reference package-path="com.liferay.counter" entity="Counter"></reference>
+	</entity>
+</service-builder>

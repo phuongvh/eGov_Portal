@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.vportal.portlet.vadvman">
+	<author>DucNN</author>
+	<namespace>vadvman</namespace>
+
+	<entity name="AdvType" local-service="false" remote-service="true"
+		table="AdvType">
+
+		<!-- PK fields -->
+		<column name="typeId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+
+		<!-- Other fields -->
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="G" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+
+	</entity>
+
+	<entity name="AdvItem" local-service="false" remote-service="true"
+		table="AdvItem">
+
+		<!-- PK fields -->
+		<column name="itemId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+		<column name="expriedDate" type="Date" />
+
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+
+		<!-- Other fields -->
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="url" type="String" />
+		<column name="isTargetBlank" type="boolean" />
+		<column name="txtMouseOver" type="String" />
+		<column name="folderId" type="long" />
+		<column name="status" type="boolean" />
+
+		<column name="typeId" type="long" />
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="G" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+
+		<finder name="T" return-type="Collection">
+			<finder-column name="typeId" />
+		</finder>
+
+		<finder name="G_T" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="typeId" />
+		</finder>
+
+		<finder name="G_S" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="status" />
+		</finder>
+
+
+
+		<reference package-path="com.liferay.portal" entity="User" />
+	</entity>
+
+	<exceptions>
+		<exception>InvalidTypeName</exception>
+		<exception>InvalidItemDescription</exception>
+		<exception>InvalidSizeFile</exception>
+		<exception>InvalidUrl</exception>
+		<exception>ItemExpirationDate</exception>
+		<exception>DeleteType</exception>
+		<exception>InvalidItemName</exception>
+	</exceptions>
+</service-builder>

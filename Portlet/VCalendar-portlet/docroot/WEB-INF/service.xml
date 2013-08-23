@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+
+<service-builder package-path="com.vportal.portlet.vcalendar">
+	<author>LongLH</author>
+	<namespace>VCalendar</namespace>
+	<entity name="VCal" local-service="true" remote-service="true" table="VCal">
+		<!-- PK fields -->
+		<column name="calId" type="long" primary="true"></column>
+		<!-- Group instance -->
+		<column name="groupId" type="long"></column>
+		<!-- Audit fields -->
+		<column name="companyId" type="long"></column>
+		<column name="userId" type="long"></column>
+		<column name="userName" type="String"></column>
+		<column name="createDate" type="Date"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="languageId" type="String"></column>
+		<!-- Other fields -->
+		<column name="fileId" type="long"></column>
+		<column name="title" type="String"></column>
+		<column name="description" type="String"></column>
+		<column name="guest" type="String"></column>
+		<column name="location" type="String"></column>
+		<column name="time" type="String"></column>
+		<column name="startDate" type="Date"></column>
+		<column name="endDate" type="Date"></column>
+		<column name="status" type="long"></column>
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="startDate"></order-column>
+			<order-column name="title" case-sensitive="false"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder name="D_S_G" return-type="Collection">
+			<finder-column name="startDate"></finder-column>
+			<finder-column name="status"></finder-column>
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder name="U_D_S" return-type="Collection">
+			<finder-column name="userId"></finder-column>
+			<finder-column name="startDate"></finder-column>
+			<finder-column name="status"></finder-column>
+		</finder>
+		<finder name="D_S" return-type="Collection">
+			<finder-column name="startDate"></finder-column>
+			<finder-column name="status"></finder-column>
+		</finder>
+		<finder name="F_D_G_U" return-type="Collection">
+			<finder-column name="userId"></finder-column>
+			<finder-column name="startDate"></finder-column>
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="status"></finder-column>
+		</finder>
+		<finder name="F_D_G_T" return-type="Collection">
+			<finder-column name="fileId"></finder-column>
+			<finder-column name="startDate"></finder-column>
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="status"></finder-column>
+		</finder>
+		<finder name="User" return-type="Collection">
+			<finder-column name="userId"></finder-column>
+			<finder-column name="startDate"></finder-column>
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder name="UserGroup" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+		</finder>
+		<finder name="FileId" return-type="Collection">
+			<finder-column name="fileId"></finder-column>
+		</finder>
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter"></reference>
+		<reference package-path="com.liferay.mail" entity="Mail"></reference>
+		<reference package-path="com.liferay.portal" entity="Company"></reference>
+		<reference package-path="com.liferay.portal" entity="PortletPreferences"></reference>
+		<reference package-path="com.liferay.portal" entity="Resource"></reference>
+		<reference package-path="com.liferay.portal" entity="User"></reference>
+	</entity>
+	<entity name="VFile" local-service="false" remote-service="true" table="VFile">
+		<!-- PK fields -->
+		<column name="fileId" type="long" primary="true"></column>
+		<column name="fullname" type="String"></column>
+		<column name="phone" type="String"></column>
+		<column name="address" type="String"></column>
+		<column name="birthday" type="Date"></column>
+		<column name="position" type="String"></column>
+		<column name="status" type="long"></column>
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="fullname"></order-column>
+		</order>
+		<finder name="GroupID" return-type="Collection">
+			<finder-column name="status"></finder-column>
+		</finder>
+		<reference package-path="com.liferay.counter" entity="Counter"></reference>
+	</entity>
+	<exceptions>
+		<exception>fullname</exception>
+	</exceptions>
+</service-builder>

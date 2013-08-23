@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 6.0.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_6_0_0.dtd">
+<routes>	
+	<route>
+		<pattern>/view</pattern>
+		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
+		<implicit-parameter name="jspPage">/html/portlet/vsitemapview/view.jsp</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/edit</pattern>
+		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
+		<implicit-parameter name="jspPage">/html/portlet/vsitemapview/edit.jsp</implicit-parameter>
+	</route>
+	
+</routes>

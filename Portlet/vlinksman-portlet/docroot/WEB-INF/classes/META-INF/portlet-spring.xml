@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.vportal.portlet.vlinksman.service.LinkGroupService" class="com.vportal.portlet.vlinksman.service.impl.LinkGroupServiceImpl" />
+	<bean id="com.vportal.portlet.vlinksman.service.LinkGroupServiceUtil" class="com.vportal.portlet.vlinksman.service.LinkGroupServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vlinksman.service.LinkGroupService" />
+	</bean>
+	<bean id="com.vportal.portlet.vlinksman.service.persistence.LinkGroupPersistence" class="com.vportal.portlet.vlinksman.service.persistence.LinkGroupPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vlinksman.service.LinksService" class="com.vportal.portlet.vlinksman.service.impl.LinksServiceImpl" />
+	<bean id="com.vportal.portlet.vlinksman.service.LinksServiceUtil" class="com.vportal.portlet.vlinksman.service.LinksServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vlinksman.service.LinksService" />
+	</bean>
+	<bean id="com.vportal.portlet.vlinksman.service.persistence.LinksPersistence" class="com.vportal.portlet.vlinksman.service.persistence.LinksPersistenceImpl" parent="basePersistence" />
+</beans>

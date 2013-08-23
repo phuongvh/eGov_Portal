@@ -1,0 +1,123 @@
+<%--
+/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+<div class="wd-boxs">
+	<h2 class="wd-tlh1-1"><%= title%></h2>	
+	<ul class="wd-list-link">
+			     		<%	
+			     		String arrcategories[] = StringUtil.split(categories,StringPool.COMMA);			
+						String arrcategoriesStyle[] = StringUtil.split(categoriesStyle,StringPool.COMMA);
+			     		for(int i=0;i<arrcategories.length;i++){
+							boolean flag = false;
+							String catId = arrcategories[i];
+							String catStyle = arrcategoriesStyle[i];
+							VcmsCategory category = (VcmsCategory)VcmsCategoryServiceUtil.getCategory(catId);
+							if(category != null) {
+								categoryURL.setParameter("categoryId", catId);
+								categoryURL.setParameter("cat_parent", catId);
+								categoryURL.setParameter("cat_style",catStyle);
+								categoryURL.setParameter("styleBorder",styleBorder);
+								for(int j=0;j<i;j++){
+									if(category.getParentId().equals(arrcategories[j])){
+										flag=true;
+									}
+								}
+							}
+							if(!flag){	
+						%>				
+						
+							<c:if test="<%= (category.getAnchored() == false)%>">
+								<li>
+									<a href="<%=categoryURL.toString()%>"><%=category.getName()%></a>
+
+									
+									<c:if test="<%=category.getCategoryId().equals(extractValue(currentURL,\"cat_parent\",\"0\"))%>">
+									<%	
+										List subcategories = VcmsCategoryServiceUtil.getCategoriesByParent(groupId , category.getCategoryId() , language);
+										for(int count=0; count<subcategories.size(); count++){		
+											VcmsCategory subcategory = (VcmsCategory)subcategories.get(count);
+												if(subcategory != null && categories.indexOf(subcategory.getCategoryId())>0){
+													categoryURL.setParameter("categoryId",subcategory.getCategoryId());
+													categoryURL.setParameter("cat_parent",subcategory.getParentId());
+													categoryURL.setParameter("cat_style",catStyle);
+													categoryURL.setParameter("styleBorder",styleBorder);
+													
+									%>
+
+											<li style="list-style-type: none; padding: 0 0 0 8px;">											
+													<c:if test="<%= (subcategory.getAnchored() == false)%>">
+														<a href="<%=categoryURL%>"><%=subcategory.getName()%></a>							
+													</c:if>
+													<c:if test="<%= (subcategory.getAnchored() == true)%>">
+														<a href="<%=subcategory.getHref()%>" ><%=subcategory.getName()%></a>						
+													</c:if>
+											</li>
+									<%}}%>	
+									</c:if>
+								</li>
+							</c:if>											
+							
+							<c:if test="<%= (category.getAnchored() == true)%>">
+								<li>
+
+										<a href="<%=category.getHref()%>"><%=category.getName()%></a>
+
+									<c:if test="<%=category.getCategoryId().equals(extractValue(currentURL,\"cat_parent\",\"0\"))%>">
+
+									<%	
+										List subcategories = VcmsCategoryServiceUtil.getCategoriesByParent(groupId , category.getCategoryId() , language);
+										for(int count=0; count<subcategories.size(); count++){		
+											VcmsCategory subcategory = (VcmsCategory)subcategories.get(count);
+												if(categories.indexOf(subcategory.getCategoryId())>0){
+													categoryURL.setParameter("categoryId",subcategory.getCategoryId());
+													categoryURL.setParameter("cat_parent",subcategory.getParentId());	
+													categoryURL.setParameter("cat_style",catStyle);
+													categoryURL.setParameter("styleBorder",styleBorder);										
+									%>
+										
+											<li>
+
+													<c:if test="<%= (subcategory.getAnchored() == false)%>">
+														<a href="<%=categoryURL%>"><%=subcategory.getName()%></a>							
+													</c:if>
+													<c:if test="<%= (subcategory.getAnchored() == true)%>">
+														<a href="<%=subcategory.getHref()%>" ><%=subcategory.getName()%></a>						
+													</c:if>
+											</li>											
+									<%}}%>
+
+									</c:if>								
+										
+								</li>
+							</c:if>
+						<%}}%>
+	<ul class="wd-list-link">					
+</div>						
+
+<%!
+	String extractValue(String url, String paramName,String valueDefault) {
+		String param = "_" + paramName+"=";
+		int startIndex = url.indexOf(param);
+		String value=valueDefault;
+		if(startIndex>0){
+			int endIndex = url.indexOf("&",startIndex);	
+			if(endIndex<0){
+				endIndex = url.length();
+			}
+			value=url.substring(startIndex+param.length(),endIndex);
+		}
+		return value;
+	}   					
+%>

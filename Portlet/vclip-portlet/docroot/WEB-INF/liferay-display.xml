@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 6.1.0//EN" "http://www.liferay.com/dtd/liferay-display_6_1_0.dtd">
+
+<display>
+	<category name="category.vsi">
+		<category name="category.vclip">
+			<portlet id="vclip"></portlet>
+			<portlet id="viewv"></portlet>
+			<portlet id="vclipcontent"></portlet>
+			<portlet id="vclipmenu"></portlet>
+		</category>
+	</category>
+</display>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.vportal.portlet.vcontact.service.VContactService" class="com.vportal.portlet.vcontact.service.impl.VContactServiceImpl" />
+	<bean id="com.vportal.portlet.vcontact.service.VContactServiceUtil" class="com.vportal.portlet.vcontact.service.VContactServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcontact.service.VContactService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcontact.service.persistence.VContactPersistence" class="com.vportal.portlet.vcontact.service.persistence.VContactPersistenceImpl" parent="basePersistence" />
+</beans>

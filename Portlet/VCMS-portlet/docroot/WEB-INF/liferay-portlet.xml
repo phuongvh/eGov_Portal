@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.1.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_1_0.dtd">
+
+<liferay-portlet-app>
+
+	<portlet>
+		<portlet-name>vcms</portlet-name>
+		<icon>/icon.png</icon>
+		<indexer-class>com.vportal.portlet.vcms.util.SearchIndexer</indexer-class>
+		<open-search-class>com.vportal.portlet.vcms.util.VCMSOpenSearchImpl</open-search-class>
+		<instanceable>false</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<css-class-wrapper>vcms-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>vcmsmenu</portlet-name>
+		<icon>/html/portlet/vcmsmenu/icon.png</icon>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/html/portlet/vcmsmenu/css/main.css</header-portlet-css>
+		<header-portlet-javascript>/js/jquery.cookie.js</header-portlet-javascript>
+		<header-portlet-javascript>/js/jquery.treeview.js</header-portlet-javascript>
+		<css-class-wrapper>vcmsmenu-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>vcmsviewcontent</portlet-name>
+		<icon>/icon.png</icon>
+		<friendly-url-mapper-class>com.vportal.portlet.vcms.util.VCMSFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>vcmsviewcontent</friendly-url-mapping>
+		<friendly-url-routes>com/vportal/portlet/vcms/util/vcms-friendly-url-routes.xml</friendly-url-routes>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<css-class-wrapper>vcmsviewcontent-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>vcmsview</portlet-name>
+		<icon>/icon.png</icon>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+
+		<css-class-wrapper>vcmsview-portlet</css-class-wrapper>
+	</portlet>
+	<portlet>
+		<portlet-name>vcmsviewnews</portlet-name>
+		<icon>/icon.png</icon>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
+		<header-portal-javascript>/js/jquery.js</header-portal-javascript>
+		<css-class-wrapper>vcmsviewnews-portlet</css-class-wrapper>
+	</portlet>
+	<role-mapper>
+		<role-name>administrator</role-name>
+		<role-link>Administrator</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>guest</role-name>
+		<role-link>Guest</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>power-user</role-name>
+		<role-link>Power User</role-link>
+	</role-mapper>
+	<role-mapper>
+		<role-name>user</role-name>
+		<role-link>User</role-link>
+	</role-mapper>
+</liferay-portlet-app>

@@ -1,0 +1,25 @@
+package com.vportal.portlet.vcounter.util;
+
+public class ECounterUtil {
+	
+	private static int counter = 0;
+	private static int online = 0;
+	private static int numberAccess = 0;
+
+	public static void online() {
+		online++;
+		System.out.print(online);
+	}
+
+	public static void offline() {
+		online--;
+	}
+
+	public static int getNumberAccess() {
+		return numberAccess;
+	}
+
+	public static int getOnline() {
+		return online;
+	}
+}

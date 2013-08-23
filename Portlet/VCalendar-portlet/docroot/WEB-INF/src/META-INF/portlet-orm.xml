@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.vportal.portlet.vcalendar.model.impl.VCalModelImpl">
+		<attributes>
+			<id name="calId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="languageId" />
+			<basic name="fileId" />
+			<basic name="title" />
+			<basic name="description" />
+			<basic name="guest" />
+			<basic name="location" />
+			<basic name="time">
+				<column name="TIME_" />
+			</basic>
+			<basic name="startDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="endDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="status" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vcalendar.model.impl.VFileModelImpl">
+		<attributes>
+			<id name="fileId" />
+			<basic name="fullname" />
+			<basic name="phone" />
+			<basic name="address" />
+			<basic name="birthday">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="position" />
+			<basic name="status" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.vportal.portlet.vcalendar.model.impl.VCalImpl" name="VCal">
+		<table name="VCal" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vcalendar.model.impl.VFileImpl" name="VFile">
+		<table name="VFile" />
+		<attributes />
+	</entity>
+</entity-mappings>

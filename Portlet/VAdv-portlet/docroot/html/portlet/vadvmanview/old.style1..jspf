@@ -1,0 +1,271 @@
+<%--/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */ --%>
+
+<%
+	String temp1 = "box_left_portlet " + styleBullet + " " +styleTitle;
+	String temp2 = styleBorder;
+%>
+
+<% if(themeType.equals("1")){%> <!-- THEMES DIEN BIEN -->
+<%	String style_portlet = styleBullet + " " + styleTitle; %> 	
+<div class="<%=temp1%>">	
+	<div class="title">
+		<div class="title_wrap">
+			<div><%=titlePortlet%></div>
+		</div>
+	</div>
+	
+	<div align="center" class="<%=temp2%>">		   
+		<table width="100%" cellpadding="0" cellspacing="1" border="0">			
+		<tr>
+			<td>
+			<c:if test="<%= validImageExtension%>">
+				<%-- Hien thi voi kich thuoc mac dinh --%>		
+				<%	if (item.getExpriedDate()!=null && item.getExpriedDate().before(new Date())){	%>
+				<div align="center">
+					<b>Qu&#7843;ng cáo này &#273;ã h&#7871;t h&#7841;n hi&#7875;n th&#7883;</b>
+				</div>	
+				<% } else {%>
+				<c:if test="<%= _defaultSize%>">	
+					<div align="center">		
+						<a href="<%= item.getUrl()%>" target="<%= (item.getIsTargetBlank())? "_blank":"_self"%>" />		
+							<img src="<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(item.getName())) %>" 
+								title="<%= item.getTxtMouseOver()%>" />
+						</a>
+					</div>
+				</c:if>
+				
+				<%-- Hien thi voi kich thuoc tuy chon --%>
+				<c:if test="<%= !_defaultSize%>">
+					<div align="center">		
+						<a href="<%= item.getUrl()%>" target="<%= (item.getIsTargetBlank())? "_blank":"_self"%>" />		
+							<img src="<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(item.getName())) %>" 
+								title="<%= item.getTxtMouseOver()%>" width="<%=w%>" height="<%=h%>"/>
+						</a>
+					</div>
+				</c:if>	
+				<%}%>	
+			</c:if>
+
+			<c:if test="<%= !validImageExtension%>">
+				<script type="text/javascript" src="/VAdv-portlet/html/portlet/vadvman/swfobject.js"></script>
+				<%	if (item.getExpriedDate()!=null && item.getExpriedDate().before(new Date())){	%>
+				<div align="center">
+					<b>Qu&#7843;ng cáo này &#273;ã h&#7871;t h&#7841;n hi&#7875;n th&#7883;</b>
+				</div>	
+				<% } else {%>
+				<div id="<portlet:namespace />preview">This div will be replaced</div>
+				  	  
+				<script type="text/javascript">
+					  var s1 = new SWFObject("/VAdv-portlet/html/portlet/vadvman/player.swf","ply","<%= w%>","<%= h%>","9","#ffffff");
+					  var fileURL = encodeURIComponent("<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(item.getName())) %>");				  
+					  
+					  s1.addParam("allowfullscreen","false");				  				  
+					  s1.addParam("allowscriptaccess","always");
+					  s1.addParam("wmode","opaque");
+					  s1.addParam("flashvars",'&file=' + fileURL + '&autostart=<%= _autoStart%>&controlbar=<%= controlBar%>');
+					  s1.write("<portlet:namespace />preview");
+				</script>
+				<%}%>	
+			</c:if>
+			</td>
+		</tr>
+		</table>
+	  </div>
+</div>
+<% } else if (themeType.equals("2")){ %> <!--  Giao dien SBN-->
+<div align="center"  style="padding-left:<%=paddingLeft%>px;padding-right:<%=paddingRight%>px;">				
+<table cellspacing="3" cellpadding="5" border="0" width="100%">		
+<tr>	
+	<td bgcolor="#ffffff" <%=themeSelected.equals("3")?"class='boder9b9e9f'":""%> >
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+		<tr>
+			<td <%=(Validator.isNotNull(themeSelected))? "class='title_menuleft_xanh2'":"class='title_menuleft_xanh'"%>><%=titlePortlet%></td>
+		</tr>
+	
+		<tr>	
+			<td>
+				<div align="center">
+				<table width="100%" cellpadding="0" cellspacing="1" border="0">			
+				<tr>
+					<td>
+					<c:if test="<%= validImageExtension%>">
+						<%-- Hien thi voi kich thuoc mac dinh --%>		
+						<%	if (item.getExpriedDate()!=null && item.getExpriedDate().before(new Date())){	%>
+						<div align="center">
+							<b>Qu&#7843;ng cáo này &#273;ã h&#7871;t h&#7841;n hi&#7875;n th&#7883;</b>
+						</div>	
+						<% } else {%>
+						<c:if test="<%= _defaultSize%>">	
+							<div align="center">		
+								<a href="<%= item.getUrl()%>" target="<%= (item.getIsTargetBlank())? "_blank":"_self"%>" />		
+									<img src="<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(item.getName())) %>" 
+										title="<%= item.getTxtMouseOver()%>" />
+								</a>
+							</div>
+						</c:if>
+						
+						<%-- Hien thi voi kich thuoc tuy chon --%>
+						<c:if test="<%= !_defaultSize%>">
+							<div align="center">		
+								<a href="<%= item.getUrl()%>" target="<%= (item.getIsTargetBlank())? "_blank":"_self"%>" />		
+									<img src="<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(item.getName())) %>" 
+										title="<%= item.getTxtMouseOver()%>" width="<%=w%>" height="<%=h%>"/>
+								</a>
+							</div>
+						</c:if>	
+						<%}%>	
+					</c:if>
+
+					<c:if test="<%= !validImageExtension%>">
+						<script type="text/javascript" src="/VAdv-portlet/html/portlet/vadvman/swfobject.js"></script>
+						<%	if (item.getExpriedDate()!=null && item.getExpriedDate().before(new Date())){	%>
+						<div align="center">
+							<b>Qu&#7843;ng cáo này &#273;ã h&#7871;t h&#7841;n hi&#7875;n th&#7883;</b>
+						</div>	
+						<% } else {%>
+						<div id="<portlet:namespace />preview">This div will be replaced</div>
+				  	  
+				<script type="text/javascript">
+					  var s1 = new SWFObject("/VAdv-portlet/html/portlet/vadvman/player.swf","ply","<%= w%>","<%= h%>","9","#ffffff");
+					  var fileURL = encodeURIComponent("<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(item.getName())) %>");				  
+					  
+					  s1.addParam("allowfullscreen","false");				  				  
+					  s1.addParam("allowscriptaccess","always");
+					  s1.addParam("wmode","opaque");
+					  s1.addParam("flashvars",'&file=' + fileURL + '&autostart=<%= _autoStart%>&controlbar=<%= controlBar%>');
+					  s1.write("<portlet:namespace />preview");
+				</script>
+						<%}%>	
+					</c:if>
+					</td>
+				</tr>
+				</table>
+				</div>
+			</td>
+		</tr>	
+		</table>
+	</td>
+</tr>
+<tr><td height="5"></td></tr>							
+</table>
+</div>							
+<% } else if (themeType.equals("3")){ %> <!--  Giao dien  trang DN _ ND _ DK -->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td width="4" align="left" height="5">
+		<img src="<%= themeDisplay.getPathThemeImage() %>/DB_image/1.gif" width="4" height="5"/></td>	
+	<td height="3" background="<%= themeDisplay.getPathThemeImage() %>/DB_image/3.gif"></td>
+	<td width="4" align="right">
+		<img src="<%= themeDisplay.getPathThemeImage() %>/DB_image/2.gif" width="4" height="5" /></td>
+</tr>
+		
+<tr>
+   	<td width="4" align="left" background="<%= themeDisplay.getPathThemeImage() %>/DB_image/7.gif"></td>
+	<td>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+		<tr><td height="3px"></td></tr>
+	
+		<tr><td width="3px"></td>
+		    <td>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="17"><img src="<%= themeDisplay.getPathThemeImage() %>/DB_image/9.gif" width="17" height="30"/></td>
+					<td width="100%" background="<%= themeDisplay.getPathThemeImage() %>/DB_image/10.gif" height="30" style="color:#FFFFFF;font-size:11px;font-weight:bold;text-transform:uppercase;" valign="middle" align="left"><%=titlePortlet%></td>
+				</tr>
+				<tr>
+					<td colspan="2">			
+					
+						<div align="center">
+						<table width="100%" cellpadding="0" cellspacing="1" border="0">			
+						<tr>
+							<td>
+							<c:if test="<%= validImageExtension%>">
+								<%-- Hien thi voi kich thuoc mac dinh --%>		
+								<%	if (item.getExpriedDate()!=null && item.getExpriedDate().before(new Date())){	%>
+								<div align="center">
+									<b>Qu&#7843;ng cáo này &#273;ã h&#7871;t h&#7841;n hi&#7875;n th&#7883;</b>
+								</div>	
+								<% } else {%>
+								<c:if test="<%= _defaultSize%>">	
+									<div align="center">		
+										<a href="<%= item.getUrl()%>" target="<%= (item.getIsTargetBlank())? "_blank":"_self"%>" />		
+											<img src="<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(item.getName())) %>" 
+												title="<%= item.getTxtMouseOver()%>" />
+										</a>
+									</div>
+								</c:if>
+								
+								<%-- Hien thi voi kich thuoc tuy chon --%>
+								<c:if test="<%= !_defaultSize%>">
+									<div align="center">		
+										<a href="<%= item.getUrl()%>" target="<%= (item.getIsTargetBlank())? "_blank":"_self"%>" />		
+											<img src="<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(item.getName())) %>" 
+												title="<%= item.getTxtMouseOver()%>" width="<%=w%>" height="<%=h%>"/>
+										</a>
+									</div>
+								</c:if>	
+								<%}%>	
+							</c:if>
+
+							<c:if test="<%= !validImageExtension%>">
+								<script type="text/javascript" src="/VAdv-portlet/html/portlet/vadvman/swfobject.js"></script>
+								<%	if (item.getExpriedDate()!=null && item.getExpriedDate().before(new Date())){	%>
+								<div align="center">
+									<b>Qu&#7843;ng cáo này &#273;ã h&#7871;t h&#7841;n hi&#7875;n th&#7883;</b>
+								</div>	
+								<% } else {%>
+								<div id="<portlet:namespace />preview">This div will be replaced</div>
+				  	  
+				<script type="text/javascript">
+					  var s1 = new SWFObject("/VAdv-portlet/html/portlet/vadvman/player.swf","ply","<%= w%>","<%= h%>","9","#ffffff");
+					  var fileURL = encodeURIComponent("<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + item.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(item.getName())) %>");				  
+					  
+					  s1.addParam("allowfullscreen","false");				  				  
+					  s1.addParam("allowscriptaccess","always");
+					  s1.addParam("wmode","opaque");
+					  s1.addParam("flashvars",'&file=' + fileURL + '&autostart=<%= _autoStart%>&controlbar=<%= controlBar%>');
+					  s1.write("<portlet:namespace />preview");
+				</script>
+								<%}%>	
+							</c:if>
+							</td>
+						</tr>
+						</table>
+						</div>
+										
+					</td>
+				</tr>
+				</table>
+			</td>
+			<td width="3px"></td>
+		</tr>		
+		</table>
+	</td>
+	<td width="4" align="right" background="<%= themeDisplay.getPathThemeImage() %>/DB_image/8.gif"></td>	
+</tr>
+			
+<tr>
+	<td width="4" align="left" height="5">
+		<img src="<%= themeDisplay.getPathThemeImage() %>/DB_image/6.gif" width="4" height="5"/></td>
+	<td width="196" background="<%= themeDisplay.getPathThemeImage() %>/DB_image/4.gif" height="5"></td>
+	<td width="4" align="right">
+		<img src="<%= themeDisplay.getPathThemeImage() %>/DB_image/5.gif" width="4" height="5" /></td>
+</tr>
+
+<tr><td colspan="3" height="4"></td></tr>		
+</table>
+
+<%	} %>

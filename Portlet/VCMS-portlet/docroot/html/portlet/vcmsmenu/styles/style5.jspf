@@ -1,0 +1,188 @@
+<%--
+/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+<%@page import="java.util.List"%>
+<%@page import="com.liferay.portal.kernel.util.StringPool"%>
+<%@page import="com.liferay.portal.kernel.util.StringUtil"%>
+<%@page import="com.vportal.portlet.vcms.service.VcmsCategoryServiceUtil"%>
+<%@page import="com.vportal.portlet.vcms.model.VcmsCategory"%>
+
+
+<style>
+
+.block_hidden_only_for_screen{
+    display: none;
+}
+
+.menuview ul{
+	list-style: none;
+	position: relative;
+}
+	
+.menuview li {
+    background-color: #2972BF;
+    border-bottom: 1px solid #FFFFFF;
+    margin: 0;
+}
+
+
+.menuview .hitarea {
+    background: url("/VCMS-portlet/html/portlet/vcmsmenu/images/style5/link_huyen_thi.png") no-repeat scroll 5px 50% transparent;
+    cursor: pointer;
+    float: left;
+    height: 30px;
+    width: 25px;
+}
+
+
+.menuview li a.subme{
+    background: url("/VCMS-portlet/html/portlet/vcmsmenu/images/style5/link_huyen_thi.png") no-repeat scroll 5px 50% transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+    line-height: 30px;
+    padding-left: 25px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+.menuview li:hover{
+	background-color: #2972bf;
+  	background-image: none;
+  	background-repeat: repeat;
+ 	background-attachment: scroll;
+  	background-position: 0px 0px;
+ 	background-clip: border-box;
+ 	background-origin: padding-box;
+  	background-size: auto auto;
+  	color: #ffffff;
+}
+
+
+.menuview .stylemenu li{
+	position: relative;
+/* 	border: 1px solid white; */
+	margin-left: 2px;
+}
+
+.menuview .stylemenu li a{
+	background: none repeat-x scroll 0 0 #298ABF;
+    border-color: #ABC8F2 #ABC8F2 -moz-use-text-color;
+    border-style: solid none none;
+    border-width: 1px 1px 0;
+    color: white;
+    display: block;
+    opacity: 0.9; 
+    padding: 6px 0 6px 15px;
+    text-decoration: none;
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.menuview .stylemenu li a:hover{
+ 	background: none repeat-x scroll 0 0 #2974BF;
+    border-color: #ABC8F2 #ABC8F2 -moz-use-text-color;
+    border-style: solid none none;
+    border-width: 1px 1px 0; 
+    color: white;
+    display: block;
+    opacity: 0.9; 
+    padding: 6px 0 6px 15px;
+    text-decoration: none;
+    width: 100%;    
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+div.menuview ul li ul.stylemenu{
+	display:none;
+	position: absolute;
+	margin-top: -30px;
+	left: 99%;
+	list-style-type: none;
+	width: 180px;
+    z-index: 100000000;
+}
+
+div.menuview ul li:hover ul.stylemenu{
+	display: block;
+	width: 100%;
+}
+
+.menuview li:hover {
+    background: none repeat scroll 0 0 #4A8BC3;
+    color: #FFFFFF;
+}
+
+</style>     
+        
+<div class="vcmsmenu-portlet menuview">
+	<ul id="<portlet:namespace/>tree">
+	<%	
+	String strCategoryUrl = "";
+	String arrcategories[] = StringUtil.split(categories,StringPool.COMMA);			
+	String arrcategoriesStyle[] = StringUtil.split(categoriesStyle,StringPool.COMMA);
+
+	for(int i=0;i<arrcategories.length;i++){
+		String catStyle = arrcategoriesStyle[i];
+		VcmsCategory category = (VcmsCategory)VcmsCategoryServiceUtil.getCategory(arrcategories[i]);
+		if(category.getParentId().equals("0")){		
+			if(!category.getAnchored()) {
+				categoryURL.setParameter("categoryId",category.getCategoryId());
+				categoryURL.setParameter("cat_parent",category.getParentId());
+				categoryURL.setParameter("cat_style", catStyle);
+				categoryURL.setParameter("styleBorder",styleBorder);
+				
+				strCategoryUrl = categoryURL.toString();
+			} else {
+				strCategoryUrl = category.getHref();
+			}
+	%>								
+				<li rel="#show<%=i%>">
+					<a class="subme" href="<%= strCategoryUrl %>"><%=category.getName()%></a>					
+					<ul class="bullet3 stylemenu">
+				<%	
+				List subcategories = VcmsCategoryServiceUtil.getCategoriesByParent(groupId , category.getCategoryId() , language);
+					for(int count=0; count<subcategories.size(); count++){
+						VcmsCategory subcategory = (VcmsCategory)subcategories.get(count);
+							if(categories.indexOf(subcategory.getCategoryId())>0) {
+								if(!subcategory.getAnchored()) {
+									categoryURL.setParameter("categoryId",subcategory.getCategoryId());
+									categoryURL.setParameter("cat_parent",subcategory.getParentId());
+									categoryURL.setParameter("cat_style",catStyle);
+									categoryURL.setParameter("styleBorder",styleBorder);
+									
+									strCategoryUrl = categoryURL.toString();
+								} else {
+									strCategoryUrl = subcategory.getHref();
+								}
+						%>
+							
+								<li class="sub_menu">
+									<a href="<%= strCategoryUrl %>"><%=subcategory.getName()%></a>							
+								</li>
+							
+				<%
+						}
+					}
+				%>
+					</ul>				
+				</li>
+	<%
+		}
+    }
+	%>
+	</ul>
+</div>

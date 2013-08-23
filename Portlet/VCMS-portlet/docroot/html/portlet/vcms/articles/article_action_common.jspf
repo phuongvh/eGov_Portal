@@ -1,0 +1,222 @@
+<%--
+/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+	<%@page import="com.vportal.portlet.vcms.service.VcmsStatusLocalServiceUtil"%>
+<%
+/**
+ * Copyright (c) 2000-2006 Liferay, Inc. All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+%>
+<%
+
+
+%>
+<liferay-ui:icon-menu>
+<c:choose>
+
+	<c:when test="<%= (article.getStatus() == 0) %>">
+		<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, ActionKeysExt.SEND_ARTICLE)%>">		   
+			<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="sendArticle" var="sendURL" >
+				<portlet:param name="jspPage" value="/html/portlet/vcms/articles/edit_article.jsp" />
+				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SEND %>" />
+				<portlet:param name="redirect" value="<%= redirect %>" />
+				<portlet:param name="articleIds" value="<%= article.getArticleId() %>" />
+				<portlet:param name="tabs2" value="<%= tabs2 %>" />
+			</portlet:actionURL>
+			<liferay-ui:icon image="post" url="<%= sendURL %>" />
+		</c:if>
+		
+		<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+			<portlet:param name="jspPage" value="/html/portlet/vcms/articles/edit_article.jsp" />
+			<portlet:param name="redirect" value="<%= redirect %>" />
+			<portlet:param name="articleId" value="<%= article.getArticleId() %>" />
+		</portlet:renderURL>		
+		<liferay-ui:icon image="edit" url="<%= editURL %>" />
+
+		<liferay-security:permissionsURL
+			modelResource="<%= VcmsArticle.class.getName() %>"
+			modelResourceDescription="<%= article.getTitle() %>"
+			resourcePrimKey="<%= String.valueOf(article.getArticleId()) %>"
+			var="permissionsURL"
+		/>
+
+		<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
+	
+		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="deleteArticle" var="deleteURL">
+			<portlet:param name="redirect" value="<%= redirect %>" />
+			<portlet:param name="articleIds" value="<%= article.getArticleId() %>" />
+		</portlet:actionURL>
+		
+		<liferay-ui:icon-delete url="<%= deleteURL %>" />
+	</c:when>
+	
+
+	
+	<c:when test="<%= article.getStatus()!=0 %>">
+		<%
+			VcmsStatus vStatus = VcmsStatusLocalServiceUtil.getVcmsStatus(article.getStatus());
+			long position = vStatus.getPosition();
+			VcmsStatus vStatus1 = VcmsStatusLocalServiceUtil.getByC_G_A(companyId, groupId, true);
+			long position1 =  vStatus1.getPosition();
+
+		%>
+
+		<c:if test="<%=position < position1 -1%>">
+			<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, ActionKeysExt.SEND_ARTICLE)
+			   && VcmsStatusPermission.contains(permissionChecker, Integer.parseInt(tabs2), \"UP_ARTICLE\")%>">
+				<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="sendURL" name="sendArticle">
+					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.SEND %>" />
+					<portlet:param name="redirect" value="<%= redirect %>" />
+					<portlet:param name="articleIds" value="<%= article.getArticleId() %>" />
+					<portlet:param name="tabs2" value="<%= tabs2 %>" />
+				</portlet:actionURL>
+				<liferay-ui:icon image="post-article" url="<%= sendURL %>" />
+			</c:if>
+
+			<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, ActionKeysExt.UPDATE)
+			    && VcmsStatusPermission.contains(permissionChecker, Integer.parseInt(tabs2),\"UPDATE_ARTICLE_OF_STATUS\") %>">
+				<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+					<portlet:param name="jspPage" value="/html/portlet/vcms/articles/edit_article.jsp" />
+					<portlet:param name="redirect" value="<%= redirect %>" />
+					<portlet:param name="articleId" value="<%= article.getArticleId() %>" />
+				</portlet:renderURL>		
+				<liferay-ui:icon image="edit" url="<%= editURL %>" />		
+			</c:if>
+
+
+			<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, ActionKeysExt.PERMISSIONS) %>">
+			<liferay-security:permissionsURL
+				modelResource="<%= VcmsArticle.class.getName() %>"
+				modelResourceDescription="<%= article.getTitle() %>"
+				resourcePrimKey="<%= String.valueOf(article.getArticleId()) %>"
+				var="permissionsURL"
+			/>
+
+			<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
+			</c:if>
+		</c:if>
+		
+		<c:if test="<%=position == position1 -1%>">
+			<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, ActionKeysExt.PUBLISH_ARTICLE)
+			   && VcmsStatusPermission.contains(permissionChecker, Integer.parseInt(tabs2), \"UP_ARTICLE\")%>">			
+				<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="publishURL">
+					<portlet:param name="jspPage" value="/html/portlet/vcms/articles/publish_article.jsp" />
+					<portlet:param name="redirect" value="<%= redirect %>" />
+					<portlet:param name="articleId" value="<%= article.getArticleId() %>" />
+				</portlet:renderURL>
+				<liferay-ui:icon image="publish" url="<%= publishURL %>"  message="<%= LanguageUtil.get(pageContext, \"portlet.vcms.tooltip.publish-article\") %>"/>
+			</c:if>
+		
+	
+			<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, ActionKeysExt.UPDATE)
+				&& VcmsStatusPermission.contains(permissionChecker, Integer.parseInt(tabs2),\"UPDATE_ARTICLE_OF_STATUS\") %>">
+				<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+					<portlet:param name="jspPage" value="/html/portlet/vcms/articles/edit_article.jsp" />
+					<portlet:param name="redirect" value="<%= redirect %>" />
+					<portlet:param name="articleId" value="<%= article.getArticleId() %>" />
+				</portlet:renderURL>		
+				<liferay-ui:icon image="edit" url="<%= editURL %>" />
+			</c:if>
+
+			<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, ActionKeysExt.PERMISSIONS) %>">
+				<liferay-security:permissionsURL
+					modelResource="<%= VcmsArticle.class.getName() %>"
+					modelResourceDescription="<%= article.getTitle() %>"
+					resourcePrimKey="<%= String.valueOf(article.getArticleId()) %>"
+					var="permissionsURL"
+				/>
+
+				<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
+			</c:if>
+		</c:if>
+
+		<c:if test="<%= article.getDiscussible() == true %>">
+			<!-- Display discussion of article -->
+			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="discussionURL">
+				<portlet:param name="jspPage" value="/html/portlet/vcms/articles/discussions/list_discussion.jsp" />
+				<portlet:param name="<%= Constants.CMD %>" value="cancel_publish" />
+				<portlet:param name="redirect" value="<%= redirect %>" />
+				<portlet:param name="articleId" value="<%= article.getArticleId() %>" />
+				<portlet:param name="tabs2" value="portlet.vcms.tabs.articles.discussion" />
+				<portlet:param name="tabs1" value="portlet.vcms.tabs.article" />
+			</portlet:renderURL>
+		
+			<liferay-ui:icon image="list_article" url="<%= discussionURL %>" message="<%= LanguageUtil.get(pageContext, \"portlet.vcms.tooltip.discussions-of-article\") %>" />
+		 </c:if>
+
+		<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article,\"VIEW_VERSION_ARTICLE\")%>">
+			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="versionURL">
+				<portlet:param name="jspPage" value="/html/portlet/vcms/articles/view_version.jsp" />
+				<portlet:param name="redirect" value="<%= redirect %>" />
+				<portlet:param name="<%= Constants.CMD %>" value="view_version" />
+				<portlet:param name="articleId" value="<%= article.getArticleId() %>" />
+				<portlet:param name="tabs2" value="<%= String.valueOf(tabs2) %>" />
+			</portlet:renderURL>		
+			<liferay-ui:icon image="view_version" url="<%= versionURL %>" message="<%= LanguageUtil.get(pageContext, \"portlet.vcms.tooltip.view-version\") %>"/>		
+		</c:if>
+		
+		<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, \"VIEW_HISTORY_ARTICLE\")%>">
+			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="historyURL">
+				<portlet:param name="jspPage" value="/html/portlet/vcms/articles/history_article.jsp" />
+				<portlet:param name="redirect" value="<%= redirect %>" />
+				<portlet:param name="<%= Constants.CMD %>" value="view_history" />
+				<portlet:param name="articleId" value="<%= article.getArticleId() %>" />
+			</portlet:renderURL>		
+			<liferay-ui:icon image="history" url="<%= historyURL %>" message="<%= LanguageUtil.get(pageContext, \"portlet.vcms.tooltip.history\") %>" />
+		</c:if>
+	
+		<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, ActionKeysExt.UNSEND_ARTICLE)
+			&& VcmsStatusPermission.contains(permissionChecker, Integer.parseInt(tabs2),\"DOWN_ARTICLE\") %>">
+			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="cancel_sendURL">
+				<portlet:param name="jspPage" value="/html/portlet/vcms/articles/cancel_ap_article.jsp" />
+				<portlet:param name="<%= Constants.CMD %>" value="cancel_publish" />
+				<portlet:param name="redirect" value="<%= redirect %>" />
+				<portlet:param name="articleIds" value="<%= article.getArticleId() %>" />
+				<portlet:param name="tabs2" value="<%= tabs2%>" />
+			</portlet:renderURL>
+			<liferay-ui:icon image="widthdraw" url="<%= cancel_sendURL %>" message="<%= LanguageUtil.get(pageContext, \"portlet.vcms.tooltip.widthdraw\") %>"/>
+		</c:if>
+		
+		<c:if test="<%= VcmsArticlePermission.contains(permissionChecker, article, ActionKeysExt.DELETE) 
+		   && VcmsStatusPermission.contains(permissionChecker, Integer.parseInt(tabs2),\"DELETE_ARTICLE_OF_STATUS\")%>">
+			<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" name="deleteArticle" var="deleteURL">
+				<portlet:param name="jspPage" value="/html/portlet/vcms/articles/edit_article.jsp" />
+				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
+				<portlet:param name="redirect" value="<%= redirect %>" />
+				<portlet:param name="articleIds" value="<%= article.getArticleId() %>" />
+			</portlet:actionURL>
+			<liferay-ui:icon-delete url="<%= deleteURL %>" />	
+		</c:if>
+	</c:when>
+</c:choose>
+</liferay-ui:icon-menu>

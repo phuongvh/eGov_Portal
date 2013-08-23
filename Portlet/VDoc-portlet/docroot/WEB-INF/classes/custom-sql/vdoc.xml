@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resource-action-mapping PUBLIC "-//Liferay//DTD Resource Action Mapping 6.1.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_6_1_0.dtd">
+<custom-sql>
+	<sql id="com.vportal.portlet.vdoc.service.persistence.vdocDocumentFinder.findDocument">
+		<![CDATA[
+			SELECT
+				{vdocDocument.*}
+			FROM 
+			    vdocDocument
+			INNER JOIN
+				vdocDORel ON (vdocDocument.docId = vdocDORel.docId)
+			WHERE
+				(vdocDocument.groupId = ?) AND
+				(vdocDocument.language = ?)  AND
+				(vdocDORel.fieldId LIKE ?)  AND
+				(vdocDORel.orgId LIKE ?)  AND
+				(LOWER(vdocDocument.title) LIKE LOWER(?))  AND
+				(vdocDocument.statusDoc = ? )
+				
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vdoc.service.persistence.vdocDocumentFinder.countDocument">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM 
+			    vdocDocument
+		]]>
+	</sql>
+	<sql id="findDocument1">
+		<![CDATA[
+			SELECT
+				{vdocDocument.*}
+			FROM 
+			    vdocDocument
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.vdoc.service.persistence.vdocDocumentFinder.maxPositionDocument">
+		<![CDATA[
+			SELECT
+				MAX(position)
+			FROM 
+			    vdocDocument
+			WHERE 
+				(vdocDocument.groupId = ?) AND
+				(vdocDocument.language LIKE ?)  AND
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vdoc.service.persistence.vdocDocumentFinder.findOtherDocument">
+		<![CDATA[
+			SELECT
+				{vdocDocument.*}
+			FROM 
+			    vdocDocument
+			INNER JOIN
+				vdocDORel ON (vdocDocument.docId = vdocDORel.docId)
+			WHERE
+				(vdocDocument.groupId = ?) AND
+				(vdocDocument.language = ?)  AND
+				(LOWER(vdocDocument.title) LIKE LOWER(?))  AND
+				(vdocDocument.statusDoc = ? )
+		]]>
+	</sql>
+</custom-sql>

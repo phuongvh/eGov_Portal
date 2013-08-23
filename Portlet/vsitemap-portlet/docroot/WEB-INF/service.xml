@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+
+<service-builder package-path="com.vportal.portlet.vsitemap">
+	<author>LongLH</author>
+	<namespace>vsitemap</namespace>
+	<entity name="VsmBranch" local-service="true" remote-service="true" table="VsmBranch">
+		<!-- PK fields -->
+		<column name="branchId" type="long" primary="true"></column>
+		<!-- Group instance -->
+		<column name="groupId" type="long"></column>
+		<column name="companyId" type="long"></column>
+		<!-- Audit fields -->
+		<column name="createdDate" type="Date"></column>
+		<column name="createdByUser" type="long"></column>
+		<column name="modifiedDate" type="Date"></column>
+		<column name="modifiedByUser" type="long"></column>
+		<!-- Other fields -->
+		<column name="parentId" type="long"></column>
+		<column name="name" type="String"></column>
+		<column name="description" type="String"></column>
+		<column name="anchored" type="boolean"></column>
+		<column name="href" type="String"></column>
+		<column name="language" type="String"></column>
+		<column name="hasIcon" type="boolean"></column>
+		<column name="icon" type="String"></column>
+		<column name="position" type="long"></column>
+		<!-- Sorting -->
+		<order by="asc">
+			<order-column name="position"></order-column>
+		</order>
+		<!-- Finder methods -->
+		<finder name="Parent" return-type="Collection">
+			<finder-column name="parentId"></finder-column>
+		</finder>
+		<finder name="G_L" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="language"></finder-column>
+		</finder>
+		<finder name="G_L_P" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="language"></finder-column>
+			<finder-column name="parentId"></finder-column>
+		</finder>
+		<finder name="Icon" return-type="Collection">
+			<finder-column name="hasIcon"></finder-column>
+		</finder>
+		<finder name="Language" return-type="Collection">
+			<finder-column name="language"></finder-column>
+		</finder>
+	</entity>
+	<!-- Application exceptions -->
+	<exceptions>
+		<exception>BranchName</exception>
+		<exception>IconName</exception>
+		<exception>IconSize</exception>
+		<exception>DeleteBranch</exception>
+	</exceptions>
+</service-builder>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.vportal.portlet.vclip.model.Clip">
+		<field name="id" type="String" />
+		<field name="clipTypeId" type="String" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createdDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="url" type="String">
+			<hint name="max-length">550</hint>
+		</field>
+		<field name="name" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="title" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="image" type="String" />
+		<field name="description" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="active" type="boolean" />
+		<field name="language" type="String" />
+		<field name="hitcount" type="long" />
+		<field name="hitcountview" type="long" />
+	</model>
+	<model name="com.vportal.portlet.vclip.model.ClipType">
+		<field name="id" type="String" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createdDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="title" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="name" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="description" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="active" type="boolean" />
+		<field name="language" type="String" />
+	</model>
+</model-hints>

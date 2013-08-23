@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.vportal.portlet.vadvman.service.AdvItemService" class="com.vportal.portlet.vadvman.service.impl.AdvItemServiceImpl" />
+	<bean id="com.vportal.portlet.vadvman.service.AdvItemServiceUtil" class="com.vportal.portlet.vadvman.service.AdvItemServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vadvman.service.AdvItemService" />
+	</bean>
+	<bean id="com.vportal.portlet.vadvman.service.persistence.AdvItemPersistence" class="com.vportal.portlet.vadvman.service.persistence.AdvItemPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vadvman.service.persistence.AdvItemFinder" class="com.vportal.portlet.vadvman.service.persistence.AdvItemFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vadvman.service.AdvTypeService" class="com.vportal.portlet.vadvman.service.impl.AdvTypeServiceImpl" />
+	<bean id="com.vportal.portlet.vadvman.service.AdvTypeServiceUtil" class="com.vportal.portlet.vadvman.service.AdvTypeServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vadvman.service.AdvTypeService" />
+	</bean>
+	<bean id="com.vportal.portlet.vadvman.service.persistence.AdvTypePersistence" class="com.vportal.portlet.vadvman.service.persistence.AdvTypePersistenceImpl" parent="basePersistence" />
+</beans>

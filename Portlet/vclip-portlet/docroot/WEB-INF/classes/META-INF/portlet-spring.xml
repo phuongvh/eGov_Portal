@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.vportal.portlet.vclip.service.ClipLocalService" class="com.vportal.portlet.vclip.service.impl.ClipLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vclip.service.ClipLocalServiceUtil" class="com.vportal.portlet.vclip.service.ClipLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vclip.service.ClipLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vclip.service.ClipService" class="com.vportal.portlet.vclip.service.impl.ClipServiceImpl" />
+	<bean id="com.vportal.portlet.vclip.service.ClipServiceUtil" class="com.vportal.portlet.vclip.service.ClipServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vclip.service.ClipService" />
+	</bean>
+	<bean id="com.vportal.portlet.vclip.service.persistence.ClipPersistence" class="com.vportal.portlet.vclip.service.persistence.ClipPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vclip.service.persistence.ClipFinder" class="com.vportal.portlet.vclip.service.persistence.ClipFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vclip.service.ClipTypeLocalService" class="com.vportal.portlet.vclip.service.impl.ClipTypeLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vclip.service.ClipTypeLocalServiceUtil" class="com.vportal.portlet.vclip.service.ClipTypeLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vclip.service.ClipTypeLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vclip.service.ClipTypeService" class="com.vportal.portlet.vclip.service.impl.ClipTypeServiceImpl" />
+	<bean id="com.vportal.portlet.vclip.service.ClipTypeServiceUtil" class="com.vportal.portlet.vclip.service.ClipTypeServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vclip.service.ClipTypeService" />
+	</bean>
+	<bean id="com.vportal.portlet.vclip.service.persistence.ClipTypePersistence" class="com.vportal.portlet.vclip.service.persistence.ClipTypePersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vclip.service.persistence.ClipTypeFinder" class="com.vportal.portlet.vclip.service.persistence.ClipTypeFinderImpl" parent="basePersistence" />
+</beans>

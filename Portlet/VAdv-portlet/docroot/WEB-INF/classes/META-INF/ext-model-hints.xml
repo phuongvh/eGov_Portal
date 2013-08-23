@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.vportal.portlet.vadvman.model.AdvType">
+		<field name="name" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="description" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+	</model>
+	<model name="com.vportal.portlet.vadvman.model.AdvItem">
+		<field name="name" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="description" type="String" >
+			<hint name="max-length">1000</hint>
+		</field>
+		<field name="url" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="txtMouseOver" type="String" >
+			<hint name="max-length">500</hint>
+		</field>
+	</model>
+</model-hints>

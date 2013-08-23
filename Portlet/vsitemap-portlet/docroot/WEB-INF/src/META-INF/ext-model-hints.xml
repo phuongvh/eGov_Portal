@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model-hints>
+	<model name="com.vportal.portlet.vsitemap.model.VsmBranch">
+		<field name="name" type="String">
+			<hint name="max-length">250</hint>
+		</field>
+		<field name="description" type="String">
+			<hint name="max-length">550</hint>
+		</field>
+	</model>
+
+</model-hints>

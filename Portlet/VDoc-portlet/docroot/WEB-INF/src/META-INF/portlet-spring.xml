@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.vportal.portlet.vdoc.service.vdocDocumentService" class="com.vportal.portlet.vdoc.service.impl.vdocDocumentServiceImpl" />
+	<bean id="com.vportal.portlet.vdoc.service.vdocDocumentServiceUtil" class="com.vportal.portlet.vdoc.service.vdocDocumentServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vdoc.service.vdocDocumentService" />
+	</bean>
+	<bean id="com.vportal.portlet.vdoc.service.persistence.vdocDocumentPersistence" class="com.vportal.portlet.vdoc.service.persistence.vdocDocumentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vdoc.service.persistence.vdocDocumentFinder" class="com.vportal.portlet.vdoc.service.persistence.vdocDocumentFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vdoc.service.vdocDORelService" class="com.vportal.portlet.vdoc.service.impl.vdocDORelServiceImpl" />
+	<bean id="com.vportal.portlet.vdoc.service.vdocDORelServiceUtil" class="com.vportal.portlet.vdoc.service.vdocDORelServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vdoc.service.vdocDORelService" />
+	</bean>
+	<bean id="com.vportal.portlet.vdoc.service.persistence.vdocDORelPersistence" class="com.vportal.portlet.vdoc.service.persistence.vdocDORelPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vdoc.service.vdocFieldService" class="com.vportal.portlet.vdoc.service.impl.vdocFieldServiceImpl" />
+	<bean id="com.vportal.portlet.vdoc.service.vdocFieldServiceUtil" class="com.vportal.portlet.vdoc.service.vdocFieldServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vdoc.service.vdocFieldService" />
+	</bean>
+	<bean id="com.vportal.portlet.vdoc.service.persistence.vdocFieldPersistence" class="com.vportal.portlet.vdoc.service.persistence.vdocFieldPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vdoc.service.vdocLoggerService" class="com.vportal.portlet.vdoc.service.impl.vdocLoggerServiceImpl" />
+	<bean id="com.vportal.portlet.vdoc.service.vdocLoggerServiceUtil" class="com.vportal.portlet.vdoc.service.vdocLoggerServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vdoc.service.vdocLoggerService" />
+	</bean>
+	<bean id="com.vportal.portlet.vdoc.service.persistence.vdocLoggerPersistence" class="com.vportal.portlet.vdoc.service.persistence.vdocLoggerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vdoc.service.vdocOrgService" class="com.vportal.portlet.vdoc.service.impl.vdocOrgServiceImpl" />
+	<bean id="com.vportal.portlet.vdoc.service.vdocOrgServiceUtil" class="com.vportal.portlet.vdoc.service.vdocOrgServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vdoc.service.vdocOrgService" />
+	</bean>
+	<bean id="com.vportal.portlet.vdoc.service.persistence.vdocOrgPersistence" class="com.vportal.portlet.vdoc.service.persistence.vdocOrgPersistenceImpl" parent="basePersistence" />
+</beans>

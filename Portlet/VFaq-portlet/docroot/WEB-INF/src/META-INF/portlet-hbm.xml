@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.vportal.portlet.vfaq.model.FAQAnswer" />
+	<import class="com.vportal.portlet.vfaq.model.FAQCategory" />
+	<import class="com.vportal.portlet.vfaq.model.FAQCategoryQuestion" />
+	<import class="com.vportal.portlet.vfaq.model.FAQComment" />
+	<import class="com.vportal.portlet.vfaq.model.FAQQuestion" />
+	<class name="com.vportal.portlet.vfaq.model.impl.FAQAnswerImpl" table="FAQAnswer">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="questionid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="answerOrder" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="answeredByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="answeredDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="approved" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="approvedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="approvedDate" type="org.hibernate.type.TimestampType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="attachName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="folderId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.vportal.portlet.vfaq.model.impl.FAQCategoryImpl" table="FAQCategory">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="parent" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="catorder" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="catlevel" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="image" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.vportal.portlet.vfaq.model.impl.FAQCategoryQuestionImpl" table="FAQCategoryQuestion">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="questionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="categoryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.vportal.portlet.vfaq.model.impl.FAQCommentImpl" table="FAQComment">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="answerid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="commName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="commEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="approved" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="approveByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="approvedDate" type="org.hibernate.type.TimestampType" />
+		<property name="commDate" type="org.hibernate.type.TimestampType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.vportal.portlet.vfaq.model.impl.FAQQuestionImpl" table="FAQQuestion">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="language" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="questionOrder" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="sentDate" type="org.hibernate.type.TimestampType" />
+		<property name="sentByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="senderEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="questionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedByUser" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="hitCount" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="approved" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>

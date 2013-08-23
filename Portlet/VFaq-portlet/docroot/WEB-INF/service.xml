@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.vportal.portlet.vfaq">
+	<author>DucNN</author>
+	<namespace>vfaq</namespace>
+
+	<entity name="FAQCategory" local-service="true"
+		remote-service="false" table="FAQCategory">
+
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true" />
+
+		<!-- Audit fields -->
+		<!-- Other fields -->
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="language" type="String" />
+		<column name="parent" type="long" />
+		<column name="catorder" type="long" />
+		<column name="catlevel" type="long" />
+		<column name="image" type="String" />
+		<column name="createdByUser" type="String" />
+		<column name="createdDate" type="Date" />
+		<column name="modifiedByUser" type="String" />
+		<column name="modifiedDate" type="Date" />
+		<column name="groupId" type="long" />
+		<column name="userId" type="long" />
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="createdDate" />
+		</order>
+		<!-- Finder methods -->
+		<finder return-type="Collection" name="GroupId">
+			<finder-column name="groupId" />
+		</finder>
+		<finder return-type="FAQCategory" name="G_C">
+			<finder-column name="groupId" />
+			<finder-column name="id" />
+		</finder>
+		<finder return-type="Collection" name="G_P">
+			<finder-column name="groupId" />
+			<finder-column name="parent" />
+		</finder>
+		<finder return-type="Collection" name="ParentId">
+			<finder-column name="parent" />
+		</finder>
+		<finder return-type="Collection" name="G_L">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+		</finder>
+		
+		<finder return-type="Collection" name="G_L_P">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+			<finder-column name="parent" />
+		</finder>
+
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="Resource" />
+		
+
+	</entity>
+	<!-- FAQQuestion -->
+	<entity name="FAQQuestion" uuid="true" local-service="true"
+		remote-service="false" table="FAQQuestion">
+
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true" />
+
+		<!-- Audit fields -->
+		<!-- Other fields -->
+		<column name="title" type="String" />
+		<column name="content" type="String" />
+		<column name="language" type="String" />
+		<column name="questionOrder" type="long" />
+		<column name="sentDate" type="Date" />
+		<column name="sentByUser" type="String" />
+		<column name="senderEmail" type="String" />
+		<column name="questionType" type="String" />
+		<column name="modifiedByUser" type="String" />
+		<column name="modifiedDate" type="Date" />
+		<column name="hitCount" type="long" />
+		<column name="approved" type="boolean" />
+		<column name="groupId" type="long" />
+		<column name="userId" type="long" />
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="sentDate" />
+		</order>
+		<!-- Finder methods -->
+		<finder return-type="Collection" name="GroupId">
+			<finder-column name="groupId" />
+		</finder>
+		<finder return-type="Collection" name="G_T">
+			<finder-column name="groupId" />
+			<finder-column name="questionType" />
+		</finder>
+		<finder return-type="Collection" name="G_A">
+			<finder-column name="groupId" />
+			<finder-column name="approved" />
+		</finder>
+		<finder return-type="Collection" name="G_L">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+		</finder>
+		<finder return-type="Collection" name="G_L_A">
+			<finder-column name="groupId" />
+			<finder-column name="language" />
+			<finder-column name="approved" />
+		</finder>
+		<finder return-type="FAQQuestion" name="G_Q">
+			<finder-column name="groupId" />
+			<finder-column name="id" />
+		</finder>
+
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="Resource" />
+	</entity>
+
+	<!-- FAQCategoryQuestion -->
+	<entity name="FAQCategoryQuestion" uuid="true" local-service="true"
+		remote-service="false" table="FAQCategoryQuestion">
+
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true" />
+
+		<!-- Audit fields -->
+		<!-- Other fields -->
+		<column name="questionId" type="long" />
+		<column name="categoryId" type="long" />
+		<!-- Order -->
+		<!-- Finder methods -->
+		<finder return-type="Collection" name="QuestionId">
+			<finder-column name="questionId" />
+		</finder>
+		<finder return-type="Collection" name="CategoryId">
+			<finder-column name="categoryId" />
+		</finder>
+		
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="Resource" />
+	</entity>
+
+
+	<!-- FAQAnswer -->
+	<entity name="FAQAnswer" uuid="true" local-service="true"
+		remote-service="false" table="FAQAnswer">
+
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true" />
+
+		<!-- Audit fields -->
+		<!-- Other fields -->
+		<column name="questionid" type="long" />
+		<column name="content" type="String" />
+		<column name="answerOrder" type="long" />
+		<column name="answeredByUser" type="String" />
+		<column name="answeredDate" type="Date" />
+		<column name="modifiedByUser" type="String" />
+		<column name="language" type="String" />
+		<column name="modifiedDate" type="Date" />
+		<column name="approved" type="boolean" />
+		<column name="approvedByUser" type="String" />
+		<column name="approvedDate" type="Date" />
+		<column name="userId" type="long" />
+		<column name="attachName" type="String"/>
+		<column name="folderId" type="long"/>
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="answeredDate" />
+		</order>
+		<!-- Finder methods -->
+		<finder return-type="Collection" name="Language">
+			<finder-column name="language" />
+		</finder>
+		<finder return-type="Collection" name="Approved">
+			<finder-column name="approved" />
+		</finder>
+		<finder return-type="Collection" name="QuestionId">
+			<finder-column name="questionid" />
+		</finder>
+
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="Resource" />
+	</entity>
+
+	<!-- FAQComment -->
+	<entity name="FAQComment" uuid="true" local-service="true"
+		remote-service="false" table="FAQComment">
+
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true" />
+
+		<!-- Audit fields -->
+		<!-- Other fields -->
+		<column name="answerid" type="long" />
+		<column name="content" type="String" />
+		<column name="commName" type="String" />
+		<column name="commEmail" type="String" />
+		<column name="approved" type="boolean" />
+		<column name="approveByUser" type="String" />
+		<column name="approvedDate" type="Date" />
+		<column name="commDate" type="Date" />
+		<column name="userId" type="long" />
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="commDate" />
+		</order>
+		<!-- Finder methods -->
+		<finder return-type="Collection" name="Approved">
+			<finder-column name="approved" />
+		</finder>
+		<finder return-type="Collection" name="Answerid">
+			<finder-column name="answerid" />
+		</finder>
+
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="Resource" />
+	</entity>
+
+	<exceptions>
+		<exception>FAQStringLength</exception>
+
+		<exception>FAQCategoryName</exception>
+		<exception>FAQCategoryDescription</exception>
+
+		<exception>FAQQuestionTitle</exception>
+		<exception>FAQQuestionCategory</exception>
+		<exception>FAQQuestionSender</exception>
+		<exception>FAQQuestionEmail</exception>
+		<exception>FAQQuestionDescription</exception>
+
+		<exception>FAQAnswerContent</exception>
+		<exception>FAQAnswerSender</exception>
+		<exception>FAQAnswerApprover</exception>
+
+		<exception>FAQCommentContent</exception>
+		<exception>FAQCommentSender</exception>
+		<exception>FAQCommentEmail</exception>
+		<exception>FAQCommentApprover</exception>
+
+	</exceptions>
+</service-builder>

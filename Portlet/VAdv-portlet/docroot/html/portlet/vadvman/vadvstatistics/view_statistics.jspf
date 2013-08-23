@@ -1,0 +1,116 @@
+<%--/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */ --%>
+ <%@page import="com.vportal.portlet.vadvman.service.AdvTypeServiceUtil"%>
+<%@page import="com.vportal.portlet.vadvman.service.AdvItemServiceUtil"%>
+<%
+	//count type vadv
+	int countType = AdvTypeServiceUtil.countTypeByG(groupId);
+	
+	//count item vadv
+	int countItem = AdvItemServiceUtil.countItemByG(groupId);
+	int expriedItem = AdvItemServiceUtil.countItemByG_S(groupId, false);
+	int longerItem = AdvItemServiceUtil.countItemByG_S(groupId, true);
+	
+	
+	PortletURL typeURL = renderResponse.createRenderURL();	
+	typeURL.setWindowState(WindowState.MAXIMIZED);
+	typeURL.setParameter("jspPage", "/html/portlet/vadvman/view.jsp");	
+	typeURL.setParameter("tabs1", "VAdvman.title.type");
+	
+	PortletURL itemURL = renderResponse.createRenderURL();	
+	itemURL.setWindowState(WindowState.MAXIMIZED);
+	itemURL.setParameter("jspPage", "/html/portlet/vadvman/view.jsp");	
+	itemURL.setParameter("tabs1", "VAdvman.title.item");
+	
+	PortletURL eitemURL = renderResponse.createRenderURL();	
+	eitemURL.setWindowState(WindowState.MAXIMIZED);
+	eitemURL.setParameter("jspPage", "/html/portlet/vadvman/view.jsp");	
+	eitemURL.setParameter("tabs1", "VAdvman.title.item");
+	eitemURL.setParameter("status", "1");
+	eitemURL.setParameter("cmd-search-flag", "true");
+	
+	PortletURL litemURL = renderResponse.createRenderURL();	
+	litemURL.setWindowState(WindowState.MAXIMIZED);
+	litemURL.setParameter("jspPage", "/html/portlet/vadvman/view.jsp");	
+	litemURL.setParameter("tabs1", "VAdvman.title.item");
+	litemURL.setParameter("status", "2");
+	litemURL.setParameter("cmd-search-flag", "true");
+	
+%>
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+<tr>
+		<td align="left" width="50%" valign="top">
+			<fieldset>
+				<legend><%= LanguageUtil.get(pageContext, "VAdvman.title.statistics") %></legend>
+				<table border="0" cellpadding="4" cellspacing="0" width="100%" height="auto">
+					<tr>
+						<td align="left" width="1%" valign="middle">
+							<img src="<%= themeDisplay.getPathThemeImage() %>/vcms/dot.gif" valign="middle" />
+						</td>
+						<td align="left" width="99%" valign="middle">
+							<b><%= LanguageUtil.get(pageContext, "VAdvman.title.label1") %></b>
+						</td>
+					</tr>
+	
+					<tr>
+						<td align="left" width="1%" valign="middle">
+							<img src="<%= themeDisplay.getPathThemeImage() %>/vcms/arrow.png" valign="middle" />
+						</td>
+						<td align="left" width="99%" valign="middle">
+							<a href="<%=typeURL%>"><%= LanguageUtil.get(pageContext, "VAdvman.title.totalVadvType") %></a>: <b><%=countType%></b>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="left" width="1%" valign="middle">
+							<img src="<%= themeDisplay.getPathThemeImage() %>/vcms/dot.gif" valign="middle" />
+						</td>
+						<td align="left" width="99%" valign="middle">
+							<b><%= LanguageUtil.get(pageContext, "VAdvman.title.label2") %></b>
+						</td>
+					</tr>
+	
+					<tr>
+						<td align="left" width="1%" valign="middle">
+							<img src="<%= themeDisplay.getPathThemeImage() %>/vcms/arrow.png" valign="middle" />
+						</td>
+						<td align="left" width="99%" valign="middle">
+							<a href="<%=itemURL%>"><%= LanguageUtil.get(pageContext, "VAdvman.title.totalVadvItem") %></a>: <b><%=countItem%></b>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="left" width="1%" valign="middle">
+							<img src="<%= themeDisplay.getPathThemeImage() %>/vcms/arrow.png" valign="middle" />
+						</td>
+						<td align="left" width="99%" valign="middle">
+							<a href="<%=eitemURL%>"><%= LanguageUtil.get(pageContext, "VAdvman.title.longerItem") %></a>: <b><%=longerItem%></b>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="left" width="1%" valign="middle">
+							<img src="<%= themeDisplay.getPathThemeImage() %>/vcms/arrow.png" valign="middle" />
+						</td>
+						<td align="left" width="99%" valign="middle">
+							<a href="<%=litemURL%>"><%= LanguageUtil.get(pageContext, "VAdvman.title.expriedItem") %></a>: <b><%=expriedItem%></b>
+						</td>
+					</tr>
+				
+				</table>
+			</fieldset>
+		</td>
+</tr>
+
+</table>

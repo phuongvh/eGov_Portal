@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.vportal.portlet.vimagegallery">
+	<author>DucNN</author>
+	<namespace>vimagegallery</namespace>
+
+	<entity name="TFCategory" local-service="false" remote-service="true"
+		table="TFCategory">
+
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true" />
+
+		<!-- Group instance -->
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="image" type="String" />
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+	</entity>
+
+	<entity name="TFImage" local-service="false" remote-service="true"
+		table="TFImage">
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true" />
+
+		<!-- Group instance -->
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+		<column name="categoryId" type="long" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="image" type="String" />
+		<column name="isShow" type="boolean" />
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="G_C" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="categoryId" />
+		</finder>
+
+		<finder name="G_C_I" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="categoryId" />
+			<finder-column name="isShow" />
+		</finder>
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+
+		<finder name="G_I" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="isShow" />
+		</finder>
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+	</entity>
+
+	<exceptions>
+		<exception>TFCategoryName</exception>
+		<exception>TFImageName</exception>
+		<exception>ImageSize</exception>
+		<exception>DeleteCategory</exception>
+	</exceptions>
+</service-builder>

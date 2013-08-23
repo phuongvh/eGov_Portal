@@ -1,0 +1,50 @@
+#dong1 {
+  font-weight: bold;
+  line-height: 16px;
+  margin-bottom: 8px; }
+
+#titlet_ans {
+  color: #3175B9;
+  text-decoration: none;
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 16px;
+  margin-bottom: 8px; }
+
+#question_title {
+  background-image: url(../images/i_06.gif);
+  border-top: 1px solid #6AC0F6;
+  color: #C52D37;
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  padding-bottom: 9px;
+  padding-left: 15px;
+  padding-top: 9px; }
+
+.sendquestion_link a {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #FF8A3B;
+  /*background: url(/html/portlet/vfaqcontent/images/mail_send.png) -10px 0px no-repeat;*/ }
+
+.sendquestion_link a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: #FF8A3B; }
+
+#dong2 {
+  text-decoration: none;
+  text-align: justify;
+  margin-bottom: 7px; }
+
+.ans_view {
+  color: #000000;
+  font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+  font-size: 11px;
+  font-weight: normal;
+  line-height: 16px;
+  text-decoration: none;
+  text-align: justify; }
+

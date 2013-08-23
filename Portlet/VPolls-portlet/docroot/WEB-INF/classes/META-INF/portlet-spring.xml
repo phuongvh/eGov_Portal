@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.vportal.portlet.polls.service.PollsQuestionExtService" class="com.vportal.portlet.polls.service.impl.PollsQuestionExtServiceImpl" />
+	<bean id="com.vportal.portlet.polls.service.PollsQuestionExtServiceUtil" class="com.vportal.portlet.polls.service.PollsQuestionExtServiceUtil">
+		<property name="service" ref="com.vportal.portlet.polls.service.PollsQuestionExtService" />
+	</bean>
+</beans>

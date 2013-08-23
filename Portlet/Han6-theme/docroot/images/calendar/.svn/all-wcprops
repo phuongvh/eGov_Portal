@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/calendar
+END
+day_heading.png
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/calendar/day_heading.png
+END
+event_indicator.png
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/calendar/event_indicator.png
+END
+calendar_day_drop_shadow.png
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/calendar/calendar_day_drop_shadow.png
+END
+event_indicator_current.png
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/calendar/event_indicator_current.png
+END
+calendar_drop_shadow.png
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/calendar/calendar_drop_shadow.png
+END

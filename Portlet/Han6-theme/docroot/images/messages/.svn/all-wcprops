@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/messages
+END
+alert.png
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/messages/alert.png
+END
+success.png
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/messages/success.png
+END
+error.png
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/messages/error.png
+END
+info.png
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/liferay/!svn/ver/581/phutho/branches/hanoi6.1/plugin6.1.0GA1/themes/Han6-theme/docroot/images/messages/info.png
+END

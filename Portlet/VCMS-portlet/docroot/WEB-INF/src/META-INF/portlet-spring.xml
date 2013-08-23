@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsArticleLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsArticleLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsArticleLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleService" class="com.vportal.portlet.vcms.service.impl.VcmsArticleServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleServiceUtil" class="com.vportal.portlet.vcms.service.VcmsArticleServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsArticleService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsArticlePersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsArticlePersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinder" class="com.vportal.portlet.vcms.service.persistence.VcmsArticleFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleStatusLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsArticleStatusLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleStatusLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsArticleStatusLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsArticleStatusLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleStatusService" class="com.vportal.portlet.vcms.service.impl.VcmsArticleStatusServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleStatusServiceUtil" class="com.vportal.portlet.vcms.service.VcmsArticleStatusServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsArticleStatusService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsArticleStatusPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsArticleStatusPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsArticleStatusFinder" class="com.vportal.portlet.vcms.service.persistence.VcmsArticleStatusFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleTypeLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsArticleTypeLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleTypeLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsArticleTypeLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsArticleTypeLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleTypeService" class="com.vportal.portlet.vcms.service.impl.VcmsArticleTypeServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleTypeServiceUtil" class="com.vportal.portlet.vcms.service.VcmsArticleTypeServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsArticleTypeService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsArticleTypePersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsArticleTypePersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleVersionLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsArticleVersionLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleVersionLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsArticleVersionLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsArticleVersionLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleVersionService" class="com.vportal.portlet.vcms.service.impl.VcmsArticleVersionServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsArticleVersionServiceUtil" class="com.vportal.portlet.vcms.service.VcmsArticleVersionServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsArticleVersionService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsArticleVersionPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsArticleVersionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsAttachedMessageLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsAttachedMessageLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsAttachedMessageLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsAttachedMessageLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsAttachedMessageLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsAttachedMessageService" class="com.vportal.portlet.vcms.service.impl.VcmsAttachedMessageServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsAttachedMessageServiceUtil" class="com.vportal.portlet.vcms.service.VcmsAttachedMessageServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsAttachedMessageService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsAttachedMessagePersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsAttachedMessagePersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsCARelationLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsCARelationLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsCARelationLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsCARelationLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsCARelationLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsCARelationService" class="com.vportal.portlet.vcms.service.impl.VcmsCARelationServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsCARelationServiceUtil" class="com.vportal.portlet.vcms.service.VcmsCARelationServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsCARelationService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsCARelationPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsCARelationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsCategoryLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsCategoryLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsCategoryLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsCategoryLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsCategoryLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsCategoryService" class="com.vportal.portlet.vcms.service.impl.VcmsCategoryServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsCategoryServiceUtil" class="com.vportal.portlet.vcms.service.VcmsCategoryServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsCategoryService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsCategoryPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsCategoryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsDiscussionLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsDiscussionLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsDiscussionLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsDiscussionLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsDiscussionLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsDiscussionService" class="com.vportal.portlet.vcms.service.impl.VcmsDiscussionServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsDiscussionServiceUtil" class="com.vportal.portlet.vcms.service.VcmsDiscussionServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsDiscussionService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsDiscussionPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsDiscussionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsDiscussionFinder" class="com.vportal.portlet.vcms.service.persistence.VcmsDiscussionFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsLoggerLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsLoggerLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsLoggerLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsLoggerLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsLoggerLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsLoggerService" class="com.vportal.portlet.vcms.service.impl.VcmsLoggerServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsLoggerServiceUtil" class="com.vportal.portlet.vcms.service.VcmsLoggerServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsLoggerService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsLoggerPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsLoggerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsLoggerFinder" class="com.vportal.portlet.vcms.service.persistence.VcmsLoggerFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsPARelationLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsPARelationLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsPARelationLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsPARelationLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsPARelationLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsPARelationService" class="com.vportal.portlet.vcms.service.impl.VcmsPARelationServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsPARelationServiceUtil" class="com.vportal.portlet.vcms.service.VcmsPARelationServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsPARelationService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsPARelationPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsPARelationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsPortionLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsPortionLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsPortionLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsPortionLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsPortionLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsPortionService" class="com.vportal.portlet.vcms.service.impl.VcmsPortionServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsPortionServiceUtil" class="com.vportal.portlet.vcms.service.VcmsPortionServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsPortionService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsPortionPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsPortionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsStatusLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsStatusLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsStatusLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsStatusLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsStatusLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsStatusService" class="com.vportal.portlet.vcms.service.impl.VcmsStatusServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsStatusServiceUtil" class="com.vportal.portlet.vcms.service.VcmsStatusServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsStatusService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsStatusPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsStatusPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsStatusFinder" class="com.vportal.portlet.vcms.service.persistence.VcmsStatusFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsTARelationLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsTARelationLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsTARelationLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsTARelationLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsTARelationLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsTARelationService" class="com.vportal.portlet.vcms.service.impl.VcmsTARelationServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsTARelationServiceUtil" class="com.vportal.portlet.vcms.service.VcmsTARelationServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsTARelationService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsTARelationPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsTARelationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsThreadLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsThreadLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsThreadLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsThreadLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsThreadLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsThreadService" class="com.vportal.portlet.vcms.service.impl.VcmsThreadServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsThreadServiceUtil" class="com.vportal.portlet.vcms.service.VcmsThreadServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsThreadService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsThreadPersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsThreadPersistenceImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsThreadFinder" class="com.vportal.portlet.vcms.service.persistence.VcmsThreadFinderImpl" parent="basePersistence" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsTypeLocalService" class="com.vportal.portlet.vcms.service.impl.VcmsTypeLocalServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsTypeLocalServiceUtil" class="com.vportal.portlet.vcms.service.VcmsTypeLocalServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsTypeLocalService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.VcmsTypeService" class="com.vportal.portlet.vcms.service.impl.VcmsTypeServiceImpl" />
+	<bean id="com.vportal.portlet.vcms.service.VcmsTypeServiceUtil" class="com.vportal.portlet.vcms.service.VcmsTypeServiceUtil">
+		<property name="service" ref="com.vportal.portlet.vcms.service.VcmsTypeService" />
+	</bean>
+	<bean id="com.vportal.portlet.vcms.service.persistence.VcmsTypePersistence" class="com.vportal.portlet.vcms.service.persistence.VcmsTypePersistenceImpl" parent="basePersistence" />
+</beans>

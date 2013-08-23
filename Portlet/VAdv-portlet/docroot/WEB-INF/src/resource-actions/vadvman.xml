@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+
+<resource-action-mapping>
+    <portlet-resource>
+        <portlet-name>VAdvman</portlet-name>
+        <supports>
+        	<action-key>ADD_TO_PAGE</action-key>
+        	<action-key>ADD_ITEM</action-key>
+            <action-key>ADD_TYPE</action-key>
+            <action-key>CONFIGURATION</action-key>
+            <action-key>DELETE_ALL</action-key>                   
+            <action-key>VIEW</action-key>            
+            <action-key>VIEW_TYPE_TAB</action-key>
+            <action-key>VIEW_ITEM_TAB</action-key>            
+        </supports>
+        
+        <community-defaults>
+            <action-key>VIEW</action-key>
+        </community-defaults>
+        
+        <guest-defaults>        	
+        </guest-defaults>
+        
+        <guest-unsupported>
+        	<action-key>ADD_ITEM</action-key>
+            <action-key>ADD_TYPE</action-key>
+            <action-key>CONFIGURATION</action-key>
+            <action-key>DELETE_ALL</action-key>                   
+            <action-key>VIEW</action-key>            
+            <action-key>VIEW_TYPE_TAB</action-key>
+            <action-key>VIEW_ITEM_TAB</action-key>
+            <action-key>ADD_TO_PAGE</action-key>
+        </guest-unsupported>        
+    </portlet-resource>
+    
+    <model-resource>
+        <model-name>com.vportal.portlet.vadvman.model.AdvType</model-name>
+        
+        <portlet-ref>
+            <portlet-name>VAdvman</portlet-name>
+        </portlet-ref>
+        
+        <supports>
+        	<action-key>VIEW</action-key>
+            <action-key>DELETE</action-key>            
+            <action-key>PERMISSIONS</action-key>
+            <action-key>UPDATE</action-key>       
+        </supports>
+        
+        <community-defaults>        	
+            <action-key>VIEW</action-key>
+        </community-defaults>
+        
+        <guest-defaults>
+        </guest-defaults>
+        
+        <guest-unsupported>
+            <action-key>DELETE</action-key>            
+            <action-key>PERMISSIONS</action-key>
+            <action-key>UPDATE</action-key>     
+        </guest-unsupported>        
+    </model-resource>
+    
+    <model-resource>
+        <model-name>com.vportal.portlet.vadvman.model.AdvItem</model-name>
+        
+        <portlet-ref>
+            <portlet-name>VAdvman</portlet-name>
+        </portlet-ref>
+        
+        <supports>
+        	<action-key>VIEW</action-key>
+			<action-key>VIEW_DETAIL</action-key>
+            <action-key>DELETE</action-key>            
+            <action-key>PERMISSIONS</action-key>
+            <action-key>UPDATE</action-key>
+        </supports>
+        
+        <community-defaults>        	
+            <action-key>VIEW</action-key>
+        </community-defaults>
+        
+        <guest-defaults>
+        </guest-defaults>
+        
+        <guest-unsupported>
+        	<action-key>VIEW_DETAIL</action-key>
+            <action-key>DELETE</action-key>            
+            <action-key>PERMISSIONS</action-key>
+            <action-key>UPDATE</action-key>     
+        </guest-unsupported>
+        
+    </model-resource>    
+</resource-action-mapping>

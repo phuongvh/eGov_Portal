@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.vportal.portlet.vcontact">
+	<author>LongLH</author>
+	<namespace>vcontact</namespace>
+
+	<entity name="VContact" local-service="false" remote-service="true" table="VContact">
+		
+		<!-- PK fields -->
+		<column name="id" type="long" primary="true" />
+	
+		<!-- Audit fields -->
+		<column name="groupId" type="long" />	
+		<column name="companyId" type="long" />
+
+		<column name="createdDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->		
+		<column name="guestName" type="String" />
+		<column name="email" type="String" />
+		<column name="title" type="String" />
+		<column name="address" type="String" />
+		<column name="phone" type="String" />
+		<column name="fax" type="String" />
+		<column name="content" type="String" />		
+
+		<column name="hasAttach" type="boolean" />
+		<column name="status" type="int" />
+		
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="createdDate" />
+		</order>
+		<!-- Finder methods -->
+
+		<finder name="Status" return-type="Collection">
+			<finder-column name="status" />
+		</finder>	
+		
+		<finder name="G_S" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="status" />
+		</finder>	
+		
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		
+	</entity>
+</service-builder>

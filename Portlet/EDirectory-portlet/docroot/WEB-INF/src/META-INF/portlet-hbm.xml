@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.vportal.portlet.edirectory.model.EDDepartment" />
+	<import class="com.vportal.portlet.edirectory.model.EDEmployee" />
+	<import class="com.vportal.portlet.edirectory.model.EDFunction" />
+	<import class="com.vportal.portlet.edirectory.model.EDFunctionDepartment" />
+	<import class="com.vportal.portlet.edirectory.model.EDFunctionEmployee" />
+	<class name="com.vportal.portlet.edirectory.model.impl.EDDepartmentImpl" table="EDDepartment">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="parent" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="phone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fax" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="levelEd" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="website" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="imgurl" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="languageId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="domainId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.vportal.portlet.edirectory.model.impl.EDEmployeeImpl" table="EDEmployee">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="birthday" type="org.hibernate.type.TimestampType" />
+		<property name="homeSide" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="family" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="race" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="home" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="homePhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workPhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="mobilePhone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="departmentId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="majorLevel" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="philosophism" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="foreignLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="joinDate" type="org.hibernate.type.TimestampType" />
+		<property name="image" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="isShowTree" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="otherInfo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="languageId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="displayOrder" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="sex" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="show" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.vportal.portlet.edirectory.model.impl.EDFunctionImpl" table="EDFunction">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="createdDate" type="org.hibernate.type.TimestampType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="levelEd" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="isShowTree" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="languageId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.vportal.portlet.edirectory.model.impl.EDFunctionDepartmentImpl" table="EDFunctionDepartment">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="functionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="departmentId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.vportal.portlet.edirectory.model.impl.EDFunctionEmployeeImpl" table="EDFunctionEmployee">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<property name="functionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="employeeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<%--
+/**
+ * Copyright (c) Vietsoftware, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+<liferay-ui:icon-menu>
+
+<c:if test="<%= VcmsStatusPermission.contains(permissionChecker, status , ActionKeysExt.PERMISSIONS) %>">
+	<liferay-security:permissionsURL
+		modelResource="<%= VcmsStatus.class.getName() %>"
+		modelResourceDescription="<%= status.getName() %>"
+		resourcePrimKey="<%= String.valueOf(status.getStatusId()) %>"
+		var="permissionsURL"
+	/>
+
+	<liferay-ui:icon image="permissions" url="<%= permissionsURL %>" />
+</c:if>
+
+<c:if test="<%= VcmsStatusPermission.contains(permissionChecker, status , ActionKeysExt.UPDATE) %>">
+	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+		<portlet:param name="jspPage" value="/html/portlet/vcms/manage/status/edit_status.jsp" />
+		<portlet:param name="statusId" value="<%= String.valueOf(status.getStatusId())%>"/>
+	</portlet:renderURL>
+
+	<liferay-ui:icon image="edit" url="<%= editURL %>" />
+</c:if>
+<c:if test="<%= VcmsStatusPermission.contains(permissionChecker, status , ActionKeysExt.DELETE) %>">
+	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL" name="deleteStatus">
+		<portlet:param name="statusIds" value="<%= String.valueOf(status.getStatusId()) %>" />
+		<portlet:param name="groupId" value="<%= String.valueOf(groupId)%>"/>
+	</portlet:actionURL>
+
+	<liferay-ui:icon-delete url="<%= deleteURL %>" />
+</c:if>
+</liferay-ui:icon-menu>

@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.findByAllWeek">
+		<![CDATA[
+			SELECT
+				DISTINCT User_.*
+			FROM
+				User_
+			INNER JOIN VCal
+			   ON (User_.userId=VCal.fileId)
+			WHERE
+				 (VCal.startDate >= ?) AND
+				 (VCal.startDate <= ?) AND
+				 (VCal.groupId = ?) AND
+				 (VCal.status = ?) AND
+				 (VCal.type_ = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.findByUserGroup">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				User_
+			INNER JOIN Users_Orgs
+				ON (User_.userId=Users_Orgs.userId) 
+		    WHERE 
+		       (Users_Orgs.organizationId = ?) AND
+               (User_.active_=?)  
+
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.VCalFinder.findByGroupOrg">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				Group_
+			INNER JOIN Organization_
+				ON (Organization_.organizationId=Group_.classPK) 
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.findByUser">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VCal
+			WHERE 
+			 (VCal.attend LIKE ?) AND
+			 (VCal.startDate >= ?) AND
+			 (VCal.startDate <= ?) AND
+			 (VCal.groupId = ?) AND
+			 (VCal.type_ = ?)
+			 	
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.countByUser">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VCal
+			WHERE 
+			 (VCal.attend LIKE ?) AND
+			 (VCal.startDate >= ?) AND
+			 (VCal.startDate <= ?) AND
+			 (VCal.groupId = ?) AND
+			 (VCal.type_ = ?)
+			 	
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.findByD_S_G">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VCal
+			WHERE
+			 (VCal.startDate >= ?) AND
+			 (VCal.startDate <= ?) AND
+			 (VCal.groupId = ?) AND
+			 (VCal.status = ?) AND
+			 (VCal.type_ = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.countByD_S_G">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VCal
+			WHERE
+			 (VCal.startDate >= ?) AND
+			 (VCal.startDate <= ?) AND
+			 (VCal.groupId = ?) AND
+			 (VCal.status = ?) AND
+			 (VCal.type_ = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.VCalFinder.findByF_D_G_T">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VCal
+			WHERE
+			 (VCal.fileId = ?) AND
+			 (VCal.startDate >= ?) AND
+			 (VCal.startDate <= ?) AND
+			 (VCal.groupId = ?) AND
+			 (VCal.type_ = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.countByF_D_G_T">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VCal
+			WHERE
+			 (VCal.fileId = ?) AND
+			 (VCal.startDate >= ?) AND
+			 (VCal.startDate <= ?) AND
+			 (VCal.groupId = ?) AND
+			 (VCal.type_ = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.countByF_D_S_G">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VCal
+			WHERE
+			 (VCal.fileId = ?) AND
+			 (VCal.startDate >= ?) AND
+			 (VCal.startDate <= ?) AND
+			 (VCal.groupId = ?) AND
+			 (VCal.status = ?) AND
+			 (VCal.type_ = ?)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.countByF_D_G">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM
+				VCal
+			WHERE
+			 (VCal.fileId = ?) AND
+			 (((VCal.startDate < ?) AND (VCal.startDate < ?)) OR
+			 ((VCal.startDate > ?) AND (VCal.endDate < ?))) AND
+			 (VCal.groupId = ?) AND
+			 (VCal.type_ <> 2)
+		]]>
+	</sql>
+	<sql id="com.vportal.portlet.vcalendar.service.persistence.findByF_D_S_G_AMPM">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				VCal
+			WHERE
+			 (VCal.fileId = ?) AND
+			 (VCal.startDate >= ?) AND
+			 (VCal.startDate <= ?) AND
+			 (VCal.groupId = ?) AND
+			 (VCal.status = ?) AND
+			 (VCal.type_ = ?) AND
+			 (VCal.ampm = ?)
+		]]>
+	</sql>
+</custom-sql>

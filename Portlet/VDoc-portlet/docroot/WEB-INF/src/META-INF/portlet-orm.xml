@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.vportal.portlet.vdoc.model.impl.vdocDocumentModelImpl">
+		<attributes>
+			<id name="docId" />
+			<basic name="groupId" />
+			<basic name="language" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createdByUser" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedByUser" />
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="approvedByUser" />
+			<basic name="approvedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="publishedByUser" />
+			<basic name="publishedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="promulDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="effectivedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="expiredDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="replaceDoc" />
+			<basic name="title" />
+			<basic name="content" />
+			<basic name="process" />
+			<basic name="base" />
+			<basic name="time">
+				<column name="TIME_" />
+			</basic>
+			<basic name="cost" />
+			<basic name="require" />
+			<basic name="result" />
+			<basic name="objects" />
+			<basic name="style" />
+			<basic name="position" />
+			<basic name="note" />
+			<basic name="userHit" />
+			<basic name="statusDoc" />
+			<basic name="typeDoc" />
+			<basic name="hasAttachment" />
+			<basic name="fieldId" />
+			<basic name="orgRels" />
+			<basic name="fieldRels" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vdoc.model.impl.vdocDORelModelImpl">
+		<id-class class="com.vportal.portlet.vdoc.service.persistence.vdocDORelPK" />
+		<attributes>
+			<id name="docId" />
+			<id name="orgId" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vdoc.model.impl.vdocFieldModelImpl">
+		<attributes>
+			<id name="fieldId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="modifiedByUser" />
+			<basic name="parentId" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="language" />
+			<basic name="statusField" />
+			<basic name="position" />
+			<basic name="listparent" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vdoc.model.impl.vdocLoggerModelImpl">
+		<attributes>
+			<id name="loggerId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="content" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.vportal.portlet.vdoc.model.impl.vdocOrgModelImpl">
+		<attributes>
+			<id name="orgId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="createdDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="createdByUser" />
+			<basic name="modifiedByUser" />
+			<basic name="parentId" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="address" />
+			<basic name="phone" />
+			<basic name="fax" />
+			<basic name="language" />
+			<basic name="statusOrg" />
+			<basic name="position" />
+			<basic name="listparent" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.vportal.portlet.vdoc.model.impl.vdocDocumentImpl" name="vdocDocument">
+		<table name="vdocDocument" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vdoc.model.impl.vdocDORelImpl" name="vdocDORel">
+		<table name="vdocDORel" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vdoc.model.impl.vdocFieldImpl" name="vdocField">
+		<table name="vdocField" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vdoc.model.impl.vdocLoggerImpl" name="vdocLogger">
+		<table name="vdocLogger" />
+		<attributes />
+	</entity>
+	<entity class="com.vportal.portlet.vdoc.model.impl.vdocOrgImpl" name="vdocOrg">
+		<table name="vdocOrg" />
+		<attributes />
+	</entity>
+</entity-mappings>

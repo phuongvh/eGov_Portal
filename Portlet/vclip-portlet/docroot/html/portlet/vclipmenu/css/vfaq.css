@@ -1,0 +1,21 @@
+#menu{
+	background:transparent url(../images/bull_o.gif) no-repeat scroll 0px 10px;
+	border-top:1px dashed #CCCCCC;
+	color:#FF8A3B;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+	margin-top: -10px;
+	padding:5px 0px 5px 10px;
+	text-align: left;
+}
+#menucliptop{
+	background:transparent url(../images/bull_o.gif) no-repeat scroll 0px 10px;
+	color:#FF8A3B;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+	margin-top: -10px;
+	padding:5px 0px 5px 10px;
+	text-align: left;
+}

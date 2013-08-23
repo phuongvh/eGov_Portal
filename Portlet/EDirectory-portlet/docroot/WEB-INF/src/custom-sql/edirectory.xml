@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resource-action-mapping PUBLIC "-//Liferay//DTD Resource Action Mapping 6.1.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_6_1_0.dtd">
+
+<custom-sql>
+	<sql id="com.vportal.portlet.edirectory.service.persistence.EDEmployeeFinderImpl.findEmployee">
+		<![CDATA[
+			SELECT
+				{EDEmployee.*}
+			FROM 
+			    EDEmployee
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.edirectory.service.persistence.EDEmployeeFinderImpl.countFunction">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM 
+			    EDFunction
+		]]>
+	</sql>
+	
+	
+	<sql id="com.vportal.portlet.edirectory.service.persistence.EDEmployeeFinderImpl.findFunction">
+		<![CDATA[
+			SELECT
+				*
+			FROM 
+			    EDFunction
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.edirectory.service.persistence.EDEmployeeFinderImpl.countEmployee">
+		<![CDATA[
+			SELECT
+				COUNT(*) as total
+			FROM 
+			    EDEmployee
+		]]>
+	</sql>
+	
+	
+	<sql id="com.vportal.portlet.edirectory.service.persistence.EDEmployeeFinder.getEmployees">
+		<![CDATA[
+			SELECT EDEmployee.*
+			FROM EDEmployee
+			INNER JOIN EDFunctionEmployee
+			ON EDEmployee.id_ = EDFunctionEmployee.employeeId
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.edirectory.service.persistence.EDEmployeeFinder.countEmployees">
+		<![CDATA[
+			SELECT count(*) as total
+			FROM EDEmployee
+			INNER JOIN EDFunctionEmployee
+			ON EDEmployee.id_ = EDFunctionEmployee.employeeId
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.edirectory.service.persistence.EDEmployeeFinder.getEmployeesByDepartmentNamePhoneEmail">
+		<![CDATA[
+			SELECT EDEmployee.*
+			FROM EDEmployee
+		]]>
+	</sql>
+	
+	<sql id="com.vportal.portlet.edirectory.service.persistence.EDEmployeeFinder.countEmployeesByDepartmentNamePhoneEmail">
+		<![CDATA[
+			SELECT count(*) as total
+			FROM EDEmployee, EDDepartment
+			WHERE EDEmployee.departmentid = EDDepartment.id_
+		]]>
+	</sql>
+	
+</custom-sql>
